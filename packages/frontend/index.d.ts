@@ -23,7 +23,6 @@ interface SimpleLinkType {
     title: string;
 }
 
-
 interface AdTargetParam {
     name: string;
     value: string | string[];
@@ -34,9 +33,7 @@ interface EditionCommercialProperties {
     branding?: Branding;
 }
 
-type CommercialProperties = {
-    [E in Edition]: EditionCommercialProperties
-}
+type CommercialProperties = { [E in Edition]: EditionCommercialProperties };
 
 interface Branding {
     type: 'paid-content';
@@ -212,5 +209,8 @@ declare namespace JSX {
         'amp-geo': any;
         'amp-consent': any;
         template: any;
+
+        // gap-elements
+        'gap-slot': any;
     }
 }

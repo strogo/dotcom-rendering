@@ -12,9 +12,17 @@ import { log, warn } from '@root/scripts/env/log';
 import { render as renderAMPArticle } from '@frontend/amp/server/render';
 import { render as renderArticle } from '@frontend/web/server/render';
 
+const slotAPIStub = ({ body }: express.Request, res: express.Response) => {
+    const resp = JSON.stringify({
+        headerSlotA: '<div>Foo</div>',
+    });
+    res.status(200).send(resp);
+};
+
 // this export is the function used by webpackHotServerMiddleware in /scripts/frontend-dev-server
 // tslint:disable-next-line:no-default-export
 export default (options: any) => {
+    if ('slotStub' in options) return slotAPIStub;
     if ('amp' in options) return renderAMPArticle;
     return renderArticle;
 };

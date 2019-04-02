@@ -67,8 +67,8 @@ export const document = ({ data }: Props) => {
     // const vendorJS = getDist('vendor.js');
 
     const gapScripts = [
-        'http://localhost:3040/gap-core',
-        'http://localhost:3040/gap-slot',
+        'http://localhost:3040/gap-core.js',
+        'http://localhost:3040/gap-slot.js',
     ];
 
     const polyfillIO =

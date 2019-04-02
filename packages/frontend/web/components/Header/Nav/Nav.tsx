@@ -87,6 +87,12 @@ export class Nav extends Component<
                         these need to be dynamic.
                     */}
 
+                    <gap-slot
+                        id="header-slot-a"
+                        data-src="/slot-api-stub.json"
+                        data-slot-id="headerSlotA"
+                    />
+
                     <ReaderRevenueLinks
                         urls={nav.readerRevenueLinks.header}
                         edition={edition}

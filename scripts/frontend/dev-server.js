@@ -73,6 +73,16 @@ const go = async () => {
         }),
     );
 
+    // TODO remove - temporary endpoint for testing purposes only
+    app.get(
+        '/slot-api-stub.json',
+        async (req, res, next) => next(),
+        webpackHotServerMiddleware(compiler, {
+            chunkName: `${siteName}.server`,
+            serverRendererOptions: { slotStub: true },
+        }),
+    );
+
     app.get('/', (req, res) => {
         res.send(`
             <!DOCTYPE html>
