@@ -1,6 +1,6 @@
 import React from 'react';
 import { extractCritical } from 'emotion-server';
-import { renderToString } from 'react-dom/server';
+import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { cache } from 'emotion';
 import { CacheProvider } from '@emotion/core';
 
@@ -31,8 +31,7 @@ export const document = ({ data }: Props) => {
     const { page, site, CAPI, NAV, config, linkedData } = data;
     const title = `${CAPI.headline} | ${CAPI.sectionLabel} | The Guardian`;
     const { html, css, ids: cssIDs }: RenderToStringResult = extractCritical(
-        renderToString(
-            // TODO: CacheProvider can be removed when we've moved over to using @emotion/core
+        renderToStaticMarkup(
             <CacheProvider value={cache}>
                 <Article data={{ CAPI, NAV, config }} />
             </CacheProvider>,
@@ -64,12 +63,18 @@ export const document = ({ data }: Props) => {
      * Please talk to the dotcom platform team before adding more.
      * Scripts will be executed in the order they appear in this array
      */
-    const bundleJS = getDist(`${site}.${page.toLowerCase()}.js`);
-    const vendorJS = getDist('vendor.js');
+    // const bundleJS = getDist(`${site}.${page.toLowerCase()}.js`);
+    // const vendorJS = getDist('vendor.js');
+
+    const gapScripts = [
+        'http://localhost:3040/gap-core',
+        'http://localhost:3040/gap-slot',
+    ];
+
     const polyfillIO =
         'https://assets.guim.co.uk/polyfill.io/v3/polyfill.min.js?rum=0&features=es6,es7,es2017,default-3.6,HTMLPictureElement,IntersectionObserver,IntersectionObserverEntry&flags=gated&callback=guardianPolyfilled&unknown=polyfill';
     const commercialBundle = config.commercialUrl;
-    const priorityScripts = [polyfillIO, vendorJS, bundleJS];
+    const priorityScripts = [polyfillIO].concat(gapScripts);
     const preloadScripts = [
         ...new Set([commercialBundle].concat(priorityScripts)),
     ];
