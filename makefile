@@ -145,3 +145,12 @@ post-publish-pasteup:
 publish-pasteup: clear clean-pasteup install
 	$(call log, "publishing pasteup")
 	@cd packages/pasteup && yarn publish
+
+# slots ############################################
+
+slots-watch:
+	@rm -rf packages/slots/dist
+	@NODE_ENV=development webpack --watch --config packages/slots/webpack.config.js
+
+slots-dev:
+	@nodemon packages/slots/dist/server.js
