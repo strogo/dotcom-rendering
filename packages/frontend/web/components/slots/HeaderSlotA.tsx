@@ -1,13 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { css } from 'emotion';
-import {
-    mobileLandscape,
-    tablet,
-    desktop,
-    mobileMedium,
-    until,
-    leftCol,
-} from '@guardian/pasteup/breakpoints';
+import { mobileLandscape, tablet } from '@guardian/pasteup/breakpoints';
 
 const styles = css`
     position: absolute;
