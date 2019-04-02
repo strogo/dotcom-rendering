@@ -14,7 +14,7 @@ import { render as renderArticle } from '@frontend/web/server/render';
 
 const slotAPIStub = ({ body }: express.Request, res: express.Response) => {
     const resp = JSON.stringify({
-        headerSlotA: '<div>Foo</div>',
+        headerSlotA: '<div>Header slot A!</div>',
     });
     res.status(200).send(resp);
 };
