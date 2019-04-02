@@ -12,6 +12,7 @@ import { MainMenu } from './MainMenu/MainMenu';
 import { SubNav } from './SubNav/SubNav';
 import { ReaderRevenueLinks } from './ReaderRevenueLinks';
 import { getCookie } from '@frontend/web/browser/cookie';
+import { HeaderSlotA } from '../../slots/HeaderSlotA';
 
 const centered = css`
     ${tablet} {
@@ -87,11 +88,7 @@ export class Nav extends Component<
                         these need to be dynamic.
                     */}
 
-                    <gap-slot
-                        id="header-slot-a"
-                        data-src="/slot-api-stub.json"
-                        data-slot-id="headerSlotA"
-                    />
+                    <HeaderSlotA />
 
                     <ReaderRevenueLinks
                         urls={nav.readerRevenueLinks.header}
