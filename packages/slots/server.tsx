@@ -2,8 +2,10 @@ import express from 'express';
 import { renderToStaticMarkup } from 'react-dom/server';
 import React from 'react';
 import { renderStylesToString } from 'emotion-server';
+import cors from 'cors';
 
 const app = express();
+app.use(cors());
 const port = 3050;
 
 app.get('/', (req, res) => {
@@ -12,7 +14,7 @@ app.get('/', (req, res) => {
             <html>
             <body>
                 <ul>
-                    <li><a href="/component/Example.ts">/component/:name</a></li>
+                    <li><a href="/component/Example">/component/:name</a></li>
                 </ul>
             </body>
             </html>
