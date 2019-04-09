@@ -12,10 +12,14 @@ import { log, warn } from '@root/scripts/env/log';
 import { render as renderAMPArticle } from '@frontend/amp/server/render';
 import { render as renderArticle } from '@frontend/web/server/render';
 
-const slotAPIStub = ({ body }: express.Request, res: express.Response) => {
+const slotAPIStub = (req: express.Request, res: express.Response) => {
+    // tslint:disable-next-line:no-string-literal
+    const config = req.query['config'] || {};
+
     const resp = JSON.stringify({
-        headerSlotA: '<div>Header slot A!</div>',
+        headerSlotA: `<div>Config received was ${JSON.stringify(config)}</div>`,
     });
+
     res.status(200).send(resp);
 };
 

@@ -10,8 +10,7 @@ export const htmlTemplate = ({
     lowPriorityScripts,
     css,
     html,
-    data,
-    cssIDs,
+    guardianWindow,
     nonBlockingJS = '',
     fontFiles = [],
 }: {
@@ -22,10 +21,7 @@ export const htmlTemplate = ({
     lowPriorityScripts: string[];
     css: string;
     html: string;
-    data: {
-        page: string;
-        site: string;
-    };
+    guardianWindow: object;
     cssIDs: string[];
     nonBlockingJS?: string;
     fontFiles?: string[];
@@ -59,17 +55,9 @@ export const htmlTemplate = ({
                     .join('\n')}
                 <style>${getFontsCss()}${resetCSS}${css}</style>
                 <script>
-                window.guardian = ${JSON.stringify({
-                    app: {
-                        data,
-                        cssIDs,
-                    },
-                    config: {
-                        tests: {
-                            renderer: 'new',
-                        },
-                    },
-                })};
+                
+                window.guardian = ${JSON.stringify(guardianWindow)};
+                
                 // this is a global that's called at the bottom of the pf.io response,
                 // once the polyfills have run. This may be useful for debugging.
                 // mainly to support browsers that don't support async=false or defer

@@ -25,6 +25,6 @@ export const HeaderSlotA: React.FC<{}> = () => (
         id="header-slot-a"
         data-src="/slot-api-stub.json"
         data-slot-id="headerSlotA"
-        // config
+        data-config-path="guardian.gapSlotsMeta"
     />
 );

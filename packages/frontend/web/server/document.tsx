@@ -88,6 +88,18 @@ export const document = ({ data }: Props) => {
         'https://www.google-analytics.com/analytics.js',
     ];
 
+    const guardianWindow = {
+        config: {
+            tests: {
+                renderer: 'new',
+            },
+        },
+        gapSlotsMeta: {
+            IsContributor: false,
+            HasAdConsented: false,
+        },
+    };
+
     return htmlTemplate({
         linkedData,
         preloadScripts,
@@ -97,7 +109,7 @@ export const document = ({ data }: Props) => {
         html,
         cssIDs,
         fontFiles,
-        data,
+        guardianWindow,
         title,
     });
 };
