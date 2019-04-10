@@ -1,12 +1,11 @@
 import React from 'react';
 import { extractCritical } from 'emotion-server';
-import { renderToString, renderToStaticMarkup } from 'react-dom/server';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { cache } from 'emotion';
 import { CacheProvider } from '@emotion/core';
 
 import { htmlTemplate } from './htmlTemplate';
 import { Article } from '../pages/Article';
-import { getDist } from '@frontend/lib/assets';
 import { GADataType } from '@frontend/model/extract-ga';
 
 interface Props {
@@ -28,7 +27,7 @@ interface RenderToStringResult {
 }
 
 export const document = ({ data }: Props) => {
-    const { page, site, CAPI, NAV, config, linkedData } = data;
+    const { CAPI, NAV, config, linkedData } = data;
     const title = `${CAPI.headline} | ${CAPI.sectionLabel} | The Guardian`;
     const { html, css, ids: cssIDs }: RenderToStringResult = extractCritical(
         renderToStaticMarkup(

@@ -176,6 +176,7 @@ interface ConfigType {
 // 3rd party type declarations
 declare module 'emotion-server' {
     export const extractCritical: any;
+    export const renderStylesToString: any;
 }
 declare module 'dompurify' {
     const createDOMPurify: any;
