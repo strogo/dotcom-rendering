@@ -11,6 +11,7 @@ import { ArticleBody } from '@frontend/web/components/ArticleBody';
 import { BackToTop } from '@frontend/web/components/BackToTop';
 import { SubNav } from '@frontend/web/components/Header/Nav/SubNav/SubNav';
 import { CookieBanner } from '@frontend/web/components/CookieBanner';
+import { OverlayBannerSlot } from '@frontend/web/components/slots/OverlayBannerSlot';
 
 // TODO: find a better of setting opacity
 const articleWrapper = css`
@@ -71,6 +72,8 @@ export const Article: React.FC<{
         <BackToTop />
 
         <Footer />
+
+        <OverlayBannerSlot />
 
         <CookieBanner />
     </div>

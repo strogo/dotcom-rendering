@@ -18,6 +18,10 @@ module.exports = () => ({
                 exclude: /node_modules/,
                 use: ['babel-loader'],
             },
+            {
+                test: /\.svg$/,
+                use: ['desvg-loader/react', 'svg-loader'],
+            },
         ],
     },
     resolve: {

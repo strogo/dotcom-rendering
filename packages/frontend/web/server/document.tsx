@@ -68,6 +68,7 @@ export const document = ({ data }: Props) => {
     const gapScripts = [
         'http://localhost:3040/gap-core.js',
         'http://localhost:3040/gap-slot.js',
+        'http://localhost:3040/gap-display.js',
     ];
 
     const polyfillIO =

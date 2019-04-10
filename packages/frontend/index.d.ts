@@ -213,5 +213,6 @@ declare namespace JSX {
 
         // gap-elements
         'gap-slot': any;
+        'gap-display': any;
     }
 }

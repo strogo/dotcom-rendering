@@ -11,13 +11,19 @@ import { dist, root, port } from '@root/scripts/frontend/config';
 import { log, warn } from '@root/scripts/env/log';
 import { render as renderAMPArticle } from '@frontend/amp/server/render';
 import { render as renderArticle } from '@frontend/web/server/render';
+import fetch from 'node-fetch';
 
-const slotAPIStub = (req: express.Request, res: express.Response) => {
+const slotAPIStub = async (req: express.Request, res: express.Response) => {
     // tslint:disable-next-line:no-string-literal
     const config = req.query['config'] || {};
 
+    const cookieBanner = await fetch(
+        'http://localhost:3050/components/CookieBanner',
+    ).then(r => r.json());
+
     const resp = JSON.stringify({
         headerSlotA: `<div>Config received was ${JSON.stringify(config)}</div>`,
+        overlayBannerSlot: cookieBanner.markup,
     });
 
     res.status(200).send(resp);
