@@ -15,16 +15,16 @@ const styles = css`
         top: 10px;
     }
 
-    width: 100px;
-    background-color: red;
+    width: 300px;
+    max-height: 73px;
 `;
 
 export const HeaderSlotA: React.FC<{}> = () => (
     <gap-slot
         class={styles}
         id="header-slot-a"
-        data-src="/slot-api-stub.json"
-        data-slot-id="headerSlotA"
+        data-src="https://8sxxopt4aa.execute-api.eu-west-1.amazonaws.com/PROD/slots"
+        data-slot-id="header-slot-a"
         data-config-path="guardian.gapSlotsMeta"
     />
 );

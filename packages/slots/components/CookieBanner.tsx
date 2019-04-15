@@ -117,7 +117,7 @@ export const CookieBanner: React.FC<{}> = () => (
             <div className={actions}>
                 <gap-display
                     data-hide="true"
-                    target="CookieBanner"
+                    data-target="CookieBanner"
                     class={button}
                 >
                     <TickIcon />

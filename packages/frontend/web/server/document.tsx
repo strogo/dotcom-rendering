@@ -95,8 +95,8 @@ export const document = ({ data }: Props) => {
             },
         },
         gapSlotsMeta: {
-            IsContributor: false,
-            HasAdConsented: false,
+            IsContributor: true,
+            HasAdConsented: true,
         },
     };
 

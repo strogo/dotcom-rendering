@@ -9,12 +9,13 @@ const styles = css`
     background-color: red;
 `;
 
+// TODO how to make this only on certain breakpoints?
 export const OverlayBannerSlot: React.FC<{}> = () => (
     <gap-slot
         class={styles}
         id="overlay-banner-slot"
-        data-src="/slot-api-stub.json"
-        data-slot-id="overlayBannerSlot"
+        data-src="https://8sxxopt4aa.execute-api.eu-west-1.amazonaws.com/PROD/slots"
+        data-slot-id="overlay-banner-slot"
         data-config-path="guardian.gapSlotsMeta"
     />
 );

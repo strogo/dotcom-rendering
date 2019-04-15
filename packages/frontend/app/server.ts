@@ -21,8 +21,12 @@ const slotAPIStub = async (req: express.Request, res: express.Response) => {
         'http://localhost:3050/components/CookieBanner',
     ).then(r => r.json());
 
+    const rrLinks = await fetch(
+        'http://localhost:3050/components/ReaderRevenueCTA',
+    ).then(r => r.json());
+
     const resp = JSON.stringify({
-        headerSlotA: `<div>Config received was ${JSON.stringify(config)}</div>`,
+        headerSlotA: rrLinks.markup,
         overlayBannerSlot: cookieBanner.markup,
     });
 
