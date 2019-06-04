@@ -11,6 +11,15 @@ const typeScriptBuild = () =>
         }
     );
 
-typeScriptBuild();
+const createToc = () =>
+    execa(
+        'yarn run createtoc',
+        [],
+        {
+            stdio: 'inherit',
+        }
+    );
 
+typeScriptBuild();
+createToc();
 
