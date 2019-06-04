@@ -10,7 +10,7 @@
         "tsc": "tsc",
         "test": "jest",
         "postinstall": "./scripts/git-hooks/install.js",
-        "createtoc": "doctoc README.md packages/pasteup/README.md packages/pasteup/CONTRIBUTING.md packages/guui/README.md packages/design/README.md docs/contributing/** --github"
+        "createtoc": "doctoc README.md packages/pasteup/README.md packages/pasteup/CONTRIBUTING.md packages/guui/README.md packages/design/CONTRIBUTING.md docs/contributing/** --github"
     },
     "bundlesize": [
         {
