@@ -13,12 +13,26 @@ const typeScriptBuild = () =>
 
 const createToc = () =>
     execa(
-        'yarn run createtoc',
+        'yarn run createtoc && git add . && git commit -m "Add TOC update"',
         [],
         {
             stdio: 'inherit',
         }
     );
+
+    // make sure docs TOC stays up to date
+const updateTOC = changed => {
+    if (changed.some(file => file.includes('docs/'))) {
+        const docs = path.resolve('docs');
+        const readme = path.resolve(docs, 'README.md');
+        return execa
+            .stdout(path.resolve(docs, 'generate-toc.sh'))
+            .then(toc => writeFile(readme, toc, 'utf8'))
+            .then(() => execa.sync('git', ['add', readme]))
+            .then(() => changed);
+    }
+    return changed;
+};
 
 typeScriptBuild();
 createToc();
