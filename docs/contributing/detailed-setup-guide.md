@@ -1,10 +1,27 @@
+
+
 # Detailed setup guide
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [Chat](#chat)
 - [Developing](#developing)
+  - [Setup](#setup)
+  - [Start](#start)
+  - [Running alongside identity](#running-alongside-identity)
+  - [Previewing article on local](#previewing-article-on-local)
+  - [Previewing AMP on local](#previewing-amp-on-local)
+  - [Debugging tools](#debugging-tools)
 - [Production](#production)
 - [Other tasks](#other-tasks)
+  - [Code quality](#code-quality)
 - [IDE setup](#ide-setup)
+  - [Extensions](#extensions)
+  - [Auto fix on save](#auto-fix-on-save)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Chat
 

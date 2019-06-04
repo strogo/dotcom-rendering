@@ -1,5 +1,21 @@
 # Where should my code live?
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Scripts](#scripts)
+  - [Low priority scripts](#low-priority-scripts)
+  - [High priority scripts](#high-priority-scripts)
+- [Data extraction](#data-extraction)
+  - [Axiom 1](#axiom-1)
+  - [Axiom 2](#axiom-2)
+  - [Axiom 3](#axiom-3)
+  - [Architecture Decision Records](#architecture-decision-records)
+- [Components](#components)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Scripts
 
 Externally hosted third party scripts should always be loaded asynchronously. If possible, they should be loaded conditionally using JavaScript by injecting a script element into the head of the document.

@@ -1,8 +1,21 @@
-# What goes in pasteup?
+# Contributing to Pasteup
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [What goes in pasteup?](#what-goes-in-pasteup)
+- [Releasing pasteup](#releasing-pasteup)
+- [Versioning rules of thumb](#versioning-rules-of-thumb)
+- [Migrations](#migrations)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## What goes in pasteup?
 Anything that either generates style primitives or can be used to generate style primitives and is plain javascript (including JSON). For the most part this is pretty unambiguous: Colours, sizes, grid, etc all fit the bill. Font mappings are a good candidate too. Do NOT use paste up for components (as of Feb ‘19).
 Think of pasteup as a base foundation you can use to build components with the tech stack of your choice.
 
-# Releasing pasteup
+## Releasing pasteup
 After your PR gets approved, but before merging run
 
 ```
@@ -22,7 +35,7 @@ TBD: Should we create an email address? Do we have one?
 TBD: Should we release via riffraff or travis? What are the downsides? How hard is this to set up?
 
 
-# Versioning rules of thumb
+## Versioning rules of thumb
 Given the cross-cutting nature of this project, we are committed to avoiding breaking changes as that would erode trust from potential consumers:
 - PATCH for anything that tweaks the current value of a token (use common sense! If we rebrand green tomorrow that is bigger than a patch)
 - MINOR version for anything that adds a new token or function. 
