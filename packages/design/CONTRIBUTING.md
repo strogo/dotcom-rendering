@@ -6,7 +6,7 @@ All the content is inside `src/content` As we use `markdown` files you are welco
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+<!-- Automatically created with yarn run createtoc and on push hook -->
 
 - [Running the docs](#running-the-docs)
 - [Technical decision record](#technical-decision-record)
