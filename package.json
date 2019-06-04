@@ -5,12 +5,13 @@
     "workspaces": [
         "packages/*"
     ],
+    "tocList": "README.md packages/pasteup/README.md packages/pasteup/CONTRIBUTING.md packages/guui/README.md packages/design/CONTRIBUTING.md docs/contributing/**",
     "scripts": {
         "lint": "eslint . --ext .ts,.tsx",
         "tsc": "tsc",
         "test": "jest",
         "postinstall": "./scripts/git-hooks/install.js",
-        "createtoc": "doctoc README.md packages/pasteup/README.md packages/pasteup/CONTRIBUTING.md packages/guui/README.md packages/design/CONTRIBUTING.md docs/contributing/** --github --title '<!-- Automatically created with yarn run createtoc and on push hook -->' "
+        "createtoc": "doctoc $npm_package_tocList --github --title '<!-- Automatically created with yarn run createtoc and on push hook -->' "
     },
     "bundlesize": [
         {
