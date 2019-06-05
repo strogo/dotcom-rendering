@@ -6,7 +6,7 @@ Frontend rendering framework for theguardian.com. It uses [React](https://reactj
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 <!-- Automatically created with yarn run createtoc and on push hook -->
 
-- [Chat](#chat)
+- [Chat @ Dotcom rendering](#chat--dotcom-rendering)
 - [Quick start](#quick-start)
   - [Install Node.js](#install-nodejs)
   - [Running instructions](#running-instructions)
@@ -20,7 +20,7 @@ Frontend rendering framework for theguardian.com. It uses [React](https://reactj
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## Chat
+## Chat @ Dotcom rendering
 
 Check out the [Digital/dotcom-rendering](https://chat.google.com/room/AAAA6yBswlI) channel on Chat. If you haven't already done so already, please ask the Dotcom Platform team for an invite.
 
@@ -42,22 +42,20 @@ $ cd dotcom-rendering
 $ make dev
 ```
 
-This will start the development server on port 3030: [http://localhost:3030](http://localhost:3030). 
+This will start the development server on port 3030: [http://localhost:3030](http://localhost:3030).
 
 ### Detailed Setup
 
 If you're new to JavaScript projects, if you're trying to integrate with other applications or if you prefer to take things slow, we also have a more [detailed setup guide](docs/contributing/detailed-setup-guide.md).
 
 ### Note on rebasing
+
 The dotcom-rendering github account is set up to enforce rebasement on the `master` branch before merging. If you are working on a feature branch and plan to make a PR, please avoid merging from `master` during your work and, instead, always rebase on `master`. The reason is that if you simply merge from `master`, then when the time to rebase on master comes any conflicts you may have had to correct will show up again thereby duplicating your efforts.
 
 ### Feedback
 
-After completing this setup guide, we would greatly appreciate it if you could complete our [dotcom-rendering setup 
+After completing this setup guide, we would greatly appreciate it if you could complete our [dotcom-rendering setup
 questionnaire](https://docs.google.com/forms/d/e/1FAIpQLSdwFc05qejwW_Gtl3pyW4N22KqmY5zXoDKAUAjrkOwb2uXNcQ/viewform?vc=0&c=0&w=1). It should only take 3 minutes and will help us improve this documentation and the setup process in the future. Thank you! 🙏
-
-
-
 
 ## Other tasks
 
@@ -65,7 +63,7 @@ You can ensure your code passes code quality tests by running:
 
 ```
 $ make validate
-``` 
+```
 
 This runs our linting tool, the TypeScript compiler and our tests, before finally building the bundles.
 
@@ -91,7 +89,7 @@ We recommend using [VSCode](https://code.visualstudio.com/).
 
 ### Extensions
 
-VSCode should prompt you to install our recommended extensions when you open the project. 
+VSCode should prompt you to install our recommended extensions when you open the project.
 
 You can also find these extensions by searching for `@recommended` in the extensions pane.
 
@@ -101,5 +99,3 @@ We recommend you update your workspace settings to automatically fix formatting 
 
 1. Open the Command Palette (`shift + cmd + P`) and type `>Preferences: Open Settings (JSON)`
 2. Add the key value `"tslint.autoFixOnSave": true,`
-
-
