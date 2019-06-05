@@ -13,6 +13,12 @@
         "postinstall": "./scripts/git-hooks/install.js",
         "createtoc": "doctoc $npm_package_tocList --github --title '<!-- Automatically created with yarn run createtoc and on push hook -->' "
     },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm test",
+            "pre-push": "tsc && createtoc && git add $npm_package_tocList && git commit -m 'Add TOC update'"
+        }
+    },
     "bundlesize": [
         {
             "path": "./dist/frontend.article.*.js",
@@ -50,6 +56,7 @@
         "doctoc": "^1.4.0",
         "eslint": "^5.16.0",
         "friendly-errors-webpack-plugin": "^1.7.0",
+        "husky": "^2.3.0",
         "jest": "^23.6.0",
         "jest-dom": "^2.1.0",
         "jest-teamcity-reporter": "^0.9.0",
