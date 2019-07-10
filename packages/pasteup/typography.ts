@@ -78,3 +78,4 @@ const fs = (
 export const headline = (level: HeadlineLevel): string => fs('headline', level);
 export const body = (level: BodyLevel): string => fs('body', level);
 export const textSans = (level: TextSansLevel): string => fs('textSans', level);
+export const lineHeight0 = 'line-height: 0;';
