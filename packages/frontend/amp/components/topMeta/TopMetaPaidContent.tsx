@@ -10,8 +10,6 @@ import { PaidForBand } from '@frontend/amp/components/topMeta/PaidForBand';
 
 import { palette } from '@guardian/pasteup/palette';
 import { textSans, body } from '@guardian/pasteup/typography';
-import { getSharingUrls } from '@frontend/model/sharing-urls';
-import { getAgeWarning } from '@frontend/model/age-warning';
 
 const headerStyle = css`
     ${textSans(9)};
@@ -116,15 +114,9 @@ export const TopMetaPaidContent: React.FC<{
             />
 
             <TopMetaExtras
-                sharingUrls={getSharingUrls(
-                    articleData.pageId,
-                    articleData.webTitle,
-                )}
+                sharingUrls={articleData.sharingUrls}
                 pillar={articleData.pillar}
-                ageWarning={getAgeWarning(
-                    articleData.tags,
-                    articleData.webPublicationDate,
-                )}
+                ageWarning={articleData.ageWarning}
                 webPublicationDate={articleData.webPublicationDateDisplay}
                 twitterHandle={articleData.author.twitterHandle}
             />

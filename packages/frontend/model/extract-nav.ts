@@ -16,7 +16,7 @@ const getLink = (data: {}, { isPillar }: { isPillar: boolean }): LinkType => {
     };
 };
 
-const rrLinkConfig = 'readerRevenueLinks';
+const rrLinkConfig = 'site.readerRevenueLinks';
 const buildRRLinkCategories = (
     data: {},
     position: ReaderRevenuePosition,
@@ -35,11 +35,11 @@ const buildRRLinkModel = (data: {}): ReaderRevenuePositions => ({
 });
 
 export const extract = (data: {}): NavType => {
-    let pillars = getArray<any>(data, 'pillars');
+    let pillars = getArray<any>(data, 'site.nav.pillars');
 
     pillars = pillars.map(link => getLink(link, { isPillar: true }));
 
-    const subnav = get(data, 'subNavSections');
+    const subnav = get(data, 'site.nav.subNavSections');
 
     return {
         pillars,
@@ -48,14 +48,16 @@ export const extract = (data: {}): NavType => {
             title: 'More',
             longTitle: 'More',
             more: true,
-            children: getArray<object>(data, 'otherLinks', []).map(l =>
+            children: getArray<object>(data, 'site.nav.otherLinks', []).map(l =>
                 getLink(l, { isPillar: false }),
             ),
         },
-        brandExtensions: getArray<object>(data, 'brandExtensions', []).map(l =>
-            getLink(l, { isPillar: false }),
-        ),
-        currentNavLink: getString(data, 'currentNavLink.title', ''),
+        brandExtensions: getArray<object>(
+            data,
+            'site.nav.brandExtensions',
+            [],
+        ).map(l => getLink(l, { isPillar: false })),
+        currentNavLink: getString(data, 'site.nav.currentNavLink.title', ''),
         subNavSections: subnav
             ? {
                   parent: subnav.parent

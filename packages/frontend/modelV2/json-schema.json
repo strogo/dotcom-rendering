@@ -7,9 +7,6 @@
         "standfirst": {
             "type": "string"
         },
-        "webTitle": {
-            "type": "string"
-        },
         "mainMediaElements": {
             "type": "array",
             "items": {
@@ -126,6 +123,12 @@
         "pageId": {
             "type": "string"
         },
+        "ageWarning": {
+            "type": "string"
+        },
+        "sharingUrls": {
+            "$ref": "#/definitions/{facebook?:{url:string;userMessage:string;};twitter?:{url:string;userMessage:string;};email?:{url:string;userMessage:string;};whatsApp?:{url:string;userMessage:string;};pinterest?:{url:string;userMessage:string;};linkedIn?:{url:string;userMessage:string;};messenger?:{url:string;userMessage:string;};}"
+        },
         "tags": {
             "type": "array",
             "items": {
@@ -203,7 +206,9 @@
         "trailText": {
             "type": "string"
         },
-        "nav": {}
+        "nielsenAPIID": {
+            "type": "string"
+        }
     },
     "required": [
         "author",
@@ -224,11 +229,12 @@
         "linkedData",
         "main",
         "mainMediaElements",
-        "nav",
+        "nielsenAPIID",
         "pageId",
         "pillar",
         "sectionLabel",
         "sectionUrl",
+        "sharingUrls",
         "shouldHideAds",
         "standfirst",
         "subMetaKeywordLinks",
@@ -237,7 +243,6 @@
         "trailText",
         "webPublicationDate",
         "webPublicationDateDisplay",
-        "webTitle",
         "webURL"
     ],
     "definitions": {
@@ -1246,6 +1251,116 @@
             ],
             "type": "string"
         },
+        "{facebook?:{url:string;userMessage:string;};twitter?:{url:string;userMessage:string;};email?:{url:string;userMessage:string;};whatsApp?:{url:string;userMessage:string;};pinterest?:{url:string;userMessage:string;};linkedIn?:{url:string;userMessage:string;};messenger?:{url:string;userMessage:string;};}": {
+            "type": "object",
+            "properties": {
+                "facebook": {
+                    "type": "object",
+                    "properties": {
+                        "url": {
+                            "type": "string"
+                        },
+                        "userMessage": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "url",
+                        "userMessage"
+                    ]
+                },
+                "twitter": {
+                    "type": "object",
+                    "properties": {
+                        "url": {
+                            "type": "string"
+                        },
+                        "userMessage": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "url",
+                        "userMessage"
+                    ]
+                },
+                "email": {
+                    "type": "object",
+                    "properties": {
+                        "url": {
+                            "type": "string"
+                        },
+                        "userMessage": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "url",
+                        "userMessage"
+                    ]
+                },
+                "whatsApp": {
+                    "type": "object",
+                    "properties": {
+                        "url": {
+                            "type": "string"
+                        },
+                        "userMessage": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "url",
+                        "userMessage"
+                    ]
+                },
+                "pinterest": {
+                    "type": "object",
+                    "properties": {
+                        "url": {
+                            "type": "string"
+                        },
+                        "userMessage": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "url",
+                        "userMessage"
+                    ]
+                },
+                "linkedIn": {
+                    "type": "object",
+                    "properties": {
+                        "url": {
+                            "type": "string"
+                        },
+                        "userMessage": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "url",
+                        "userMessage"
+                    ]
+                },
+                "messenger": {
+                    "type": "object",
+                    "properties": {
+                        "url": {
+                            "type": "string"
+                        },
+                        "userMessage": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "url",
+                        "userMessage"
+                    ]
+                }
+            }
+        },
         "TagType": {
             "type": "object",
             "properties": {
@@ -1313,6 +1428,9 @@
                 "sentryHost": {
                     "type": "string"
                 },
+                "isDev": {
+                    "type": "boolean"
+                },
                 "switches": {
                     "type": "object",
                     "additionalProperties": {
@@ -1330,6 +1448,7 @@
                 "ajaxUrl",
                 "commercialUrl",
                 "dfpAccountId",
+                "isDev",
                 "sentryHost",
                 "sentryPublicApiKey",
                 "switches"

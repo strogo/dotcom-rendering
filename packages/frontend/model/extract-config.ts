@@ -4,6 +4,7 @@ export const extract = (data: {}): ConfigType => ({
     ajaxUrl: getNonEmptyString(data, 'site.ajaxUrl'),
     sentryPublicApiKey: getString(data, 'site.sentryPublicApiKey', ''),
     sentryHost: getString(data, 'site.sentryHost', ''),
+    isDev: process.env.NODE_ENV === 'development',
     switches: getObject(data, 'site.switches', {}),
     dfpAccountId: getObject(data, 'site.dfpAccountId', ''), // TODO check and fix
     commercialUrl: getNonEmptyString(data, 'site.commercialUrl'),

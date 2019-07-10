@@ -135,7 +135,6 @@ interface Pagination {
 interface CAPIType {
     headline: string;
     standfirst: string;
-    webTitle: string;
     mainMediaElements: CAPIElement[];
     main: string;
     keyEvents: Block[];
@@ -152,6 +151,13 @@ interface CAPIType {
     editionLongForm: string;
     editionId: Edition;
     pageId: string;
+    ageWarning?: string; // TODO remove as we should derive this at point of use
+    sharingUrls: {
+        [K in SharePlatform]?: {
+            url: string;
+            userMessage: string;
+        }
+    };
     tags: TagType[];
     pillar: Pillar;
     isImmersive: boolean;
@@ -162,6 +168,7 @@ interface CAPIType {
     subMetaKeywordLinks: SimpleLinkType[];
     shouldHideAds: boolean;
     webURL: string;
+
     linkedData: object[];
     config: ConfigType;
 
@@ -175,8 +182,7 @@ interface CAPIType {
     commercialProperties: CommercialProperties;
     starRating?: number;
     trailText: string;
-
-    nav: any; // as not extracting directly into NavType here for now (nav stuff is getting moved out)
+    nielsenAPIID: string;
 }
 
 interface TagType {
@@ -198,6 +204,7 @@ interface ConfigType {
     ajaxUrl: string;
     sentryPublicApiKey: string;
     sentryHost: string;
+    isDev: boolean;
     switches: { [key: string]: boolean };
     dfpAccountId: string;
     commercialUrl: string;

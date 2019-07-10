@@ -11,8 +11,6 @@ import { string as curly } from 'curlyquotes';
 import { TopMetaExtras } from '@frontend/amp/components/topMeta/TopMetaExtras';
 import { Standfirst } from '@frontend/amp/components/topMeta/Standfirst';
 import { SeriesLink } from '@frontend/amp/components/topMeta/SeriesLink';
-import { getSharingUrls } from '@frontend/model/sharing-urls';
-import { getAgeWarning } from '@frontend/model/age-warning';
 
 const headerStyle = css`
     ${headline(5)};
@@ -119,15 +117,9 @@ export const TopMetaNews: React.FC<{ articleData: ArticleModel }> = ({
         />
 
         <TopMetaExtras
-            sharingUrls={getSharingUrls(
-                articleData.pageId,
-                articleData.webTitle,
-            )}
+            sharingUrls={articleData.sharingUrls}
             pillar={articleData.pillar}
-            ageWarning={getAgeWarning(
-                articleData.tags,
-                articleData.webPublicationDate,
-            )}
+            ageWarning={articleData.ageWarning}
             webPublicationDate={articleData.webPublicationDateDisplay}
             twitterHandle={articleData.author.twitterHandle}
         />

@@ -33,7 +33,7 @@ export const render = (
             contentType: CAPI.contentType,
             id: CAPI.pageId,
             beacon: `${CAPI.beaconURL}/count/pv.gif`,
-            neilsenAPIID: 'FIXME', // TODO fix CAPI.nielsenAPIID,
+            neilsenAPIID: CAPI.nielsenAPIID,
             domain: 'amp.theguardian.com',
         };
 
@@ -50,7 +50,7 @@ export const render = (
             body: (
                 <Article
                     articleData={CAPI}
-                    nav={extractNAV(CAPI.nav)}
+                    nav={extractNAV(body)}
                     analytics={analytics}
                     config={config}
                 />

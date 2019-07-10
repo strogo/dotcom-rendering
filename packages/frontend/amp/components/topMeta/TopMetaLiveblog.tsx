@@ -9,8 +9,6 @@ import { Byline } from '@frontend/amp/components/topMeta/Byline';
 import { string as curly } from 'curlyquotes';
 import { TopMetaExtras } from '@frontend/amp/components/topMeta/TopMetaExtras';
 import { ListStyle } from '@frontend/amp/components/elements/Text';
-import { getSharingUrls } from '@frontend/model/sharing-urls';
-import { getAgeWarning } from '@frontend/model/age-warning';
 
 const headerStyle = (pillar: Pillar) => css`
     ${headline(5)};
@@ -103,15 +101,9 @@ export const TopMetaLiveblog: React.FC<{
         />
 
         <TopMetaExtras
-            sharingUrls={getSharingUrls(
-                articleData.pageId,
-                articleData.webTitle,
-            )}
+            sharingUrls={articleData.sharingUrls}
             pillar={articleData.pillar}
-            ageWarning={getAgeWarning(
-                articleData.tags,
-                articleData.webPublicationDate,
-            )}
+            ageWarning={articleData.ageWarning}
             webPublicationDate={articleData.webPublicationDateDisplay}
             twitterHandle={articleData.author.twitterHandle}
         />
