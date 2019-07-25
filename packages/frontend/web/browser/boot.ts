@@ -1,6 +1,6 @@
-import React from 'react';
-import { hydrate as hydrateCSS } from 'emotion';
-import { hydrate as hydrateApp } from 'react-dom';
+// import React from 'react';
+// import { hydrate as hydrateCSS } from 'emotion';
+// import { hydrate as hydrateApp } from 'react-dom';
 import 'ophan-tracker-js';
 import { getRaven } from '@frontend/web/browser/raven';
 import {
@@ -8,7 +8,8 @@ import {
     sendPageView as sendGaPageView,
 } from '@frontend/web/browser/ga';
 import { sendOphanPlatformRecord } from '@frontend/web/browser/ophan';
-import { Article } from '@frontend/web/pages/Article';
+// import { Article } from '@frontend/web/pages/Article';
+// import { Article } from '@frontend/web/pages/Article';
 import { ReportedError, reportError } from '@frontend/web/browser/reportError';
 import { loadScript } from '@frontend/web/browser/loadScript';
 import { RavenStatic } from 'raven-js';
@@ -33,11 +34,10 @@ const initApp = (): void => {
              * in development mode to retain the sourceMap info. As detailed
              * in the issue raised here https://github.com/emotion-js/emotion/issues/487
              */
-            if (process.env.NODE_ENV !== 'development') {
-                hydrateCSS(cssIDs);
-            }
-
-            hydrateApp(React.createElement(Article, { data }), container);
+            // if (process.env.NODE_ENV !== 'development') {
+            //     hydrateCSS(cssIDs);
+            // }
+            // hydrateApp(React.createElement(Article, { data }), container);
         }
 
         // Ophan

@@ -1,9 +1,6 @@
 import React from 'react';
 import { extractCritical } from 'emotion-server';
-import { renderToString } from 'react-dom/server';
-import { cache } from 'emotion';
-import { CacheProvider } from '@emotion/core';
-
+import { renderToStaticMarkup } from 'react-dom/server';
 import { htmlTemplate } from './htmlTemplate';
 import { Article } from '../pages/Article';
 import { getDist } from '@frontend/lib/assets';
@@ -20,12 +17,7 @@ export const document = ({ data }: Props) => {
     const { page, site, CAPI, NAV, config, linkedData } = data;
     const title = `${CAPI.headline} | ${CAPI.sectionLabel} | The Guardian`;
     const { html, css, ids: cssIDs }: RenderToStringResult = extractCritical(
-        renderToString(
-            // TODO: CacheProvider can be removed when we've moved over to using @emotion/core
-            <CacheProvider value={cache}>
-                <Article data={{ CAPI, NAV, config }} />
-            </CacheProvider>,
-        ),
+        renderToStaticMarkup(<Article data={{ CAPI, NAV, config }} />),
     );
 
     /**
@@ -59,8 +51,13 @@ export const document = ({ data }: Props) => {
         'https://assets.guim.co.uk/polyfill.io/v3/polyfill.min.js?rum=0&features=es6,es7,es2017,default-3.6,HTMLPictureElement,IntersectionObserver,IntersectionObserverEntry&flags=gated&callback=guardianPolyfilled&unknown=polyfill';
     const commercialBundle = config.commercialBundleUrl;
 
-    const priorityScripts = [polyfillIO, vendorJS, bundleJS];
+    const gapScripts = [
+        'http://localhost:3040/gap-core.js',
+        'http://localhost:3040/gap-list.js',
+        'http://localhost:3040/gap-select.js',
+    ];
 
+    const priorityScripts = [polyfillIO, vendorJS, bundleJS, ...gapScripts];
     const preloadScripts = [
         ...new Set([commercialBundle].concat(priorityScripts)),
     ];

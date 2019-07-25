@@ -317,5 +317,8 @@ declare namespace JSX {
         'amp-live-list': any;
         'amp-audio': any;
         template: any;
+
+        'gap-list': any;
+        'gap-select': any;
     }
 }

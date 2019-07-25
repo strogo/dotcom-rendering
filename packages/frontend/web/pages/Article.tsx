@@ -3,7 +3,7 @@ import { Container } from '@guardian/guui';
 import { css, cx } from 'emotion';
 import { palette } from '@guardian/pasteup/palette';
 import { desktop, mobileLandscape } from '@guardian/pasteup/breakpoints';
-import { MostViewed } from '@frontend/web/components/MostViewed';
+import { MostViewed2 } from '@frontend/web/components/MostViewed2';
 import { Header } from '@frontend/web/components/Header/Header';
 import { Footer } from '@frontend/web/components/Footer';
 import { ArticleBody } from '@frontend/web/components/ArticleBody';
@@ -64,7 +64,11 @@ export const Article: React.FC<{
                     `,
                 )}
             >
-                <MostViewed sectionName={data.CAPI.sectionName} />
+                <MostViewed2
+                    src={
+                        'https://api.nextgen.guardianapps.co.uk/most-read/money.json?guui'
+                    }
+                />
             </Container>
         </main>
 
