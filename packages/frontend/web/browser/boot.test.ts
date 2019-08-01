@@ -6,9 +6,6 @@ import {
     sendPageView as sendGaPageView_,
 } from '@frontend/web/browser/ga';
 import { sendOphanPlatformRecord as sendOphanPlatformRecord_ } from '@frontend/web/browser/ophan';
-import { hydrate as hydrateCSS_ } from 'emotion';
-import { hydrate as hydrateApp_ } from 'react-dom';
-import { createElement as createElement_ } from 'react';
 import { reportError as reportError_ } from '@frontend/web/browser/reportError';
 
 const getRaven: any = getRaven_;
@@ -16,9 +13,6 @@ const loadScript: any = loadScript_;
 const initGa: any = initGa_;
 const sendGaPageView: any = sendGaPageView_;
 const sendOphanPlatformRecord: any = sendOphanPlatformRecord_;
-const hydrateCSS: any = hydrateCSS_;
-const hydrateApp: any = hydrateApp_;
-const createElement: any = createElement_;
 const reportError: any = reportError_;
 
 jest.mock('ophan-tracker-js', jest.fn());
@@ -35,18 +29,7 @@ jest.mock('@frontend/web/browser/ga', () => ({
 jest.mock('@frontend/web/browser/ophan', () => ({
     sendOphanPlatformRecord: jest.fn(),
 }));
-jest.mock('emotion', () => ({
-    hydrate: jest.fn(),
-}));
-jest.mock('react-dom', () => ({
-    hydrate: jest.fn(),
-}));
-jest.mock('react', () => ({
-    createElement: jest.fn(),
-}));
-jest.mock('@frontend/web/pages/Article', () => ({
-    Article: `<h1>hello world</h1>`,
-}));
+
 jest.mock('@frontend/web/browser/reportError', () => ({
     reportError: jest.fn(),
 }));
@@ -109,9 +92,6 @@ describe('boot', () => {
         initGa.mockReset();
         sendGaPageView.mockReset();
         sendOphanPlatformRecord.mockReset();
-        hydrateCSS.mockReset();
-        hydrateApp.mockReset();
-        createElement.mockReset();
 
         window.guardian = Object.assign({}, window.guardian, {
             onPolyfilled,
@@ -168,14 +148,10 @@ describe('boot', () => {
     });
 
     describe('enhances application', () => {
-        let cssIDs: string[];
-        let data: object;
         const container = document.createElement('div');
         container.id = 'app';
 
         beforeEach(() => {
-            cssIDs = window.guardian.app.cssIDs;
-            data = window.guardian.app.data;
             process.env.NODE_ENV = 'production';
             document.body.appendChild(container);
         });
@@ -184,13 +160,6 @@ describe('boot', () => {
             expect(initGa).toHaveBeenCalledTimes(1);
             expect(sendGaPageView).toHaveBeenCalledTimes(1);
             expect(sendOphanPlatformRecord).toHaveBeenCalledTimes(1);
-            expect(hydrateCSS).toHaveBeenCalledTimes(1);
-            expect(hydrateCSS).toHaveBeenCalledWith(cssIDs);
-            expect(hydrateApp).toHaveBeenCalledTimes(1);
-            expect(createElement).toHaveBeenCalledTimes(1);
-            expect(createElement).toHaveBeenCalledWith('<h1>hello world</h1>', {
-                data,
-            });
             document.body.removeChild(container);
         });
 

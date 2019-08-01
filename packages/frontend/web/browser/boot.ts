@@ -1,6 +1,3 @@
-// import React from 'react';
-// import { hydrate as hydrateCSS } from 'emotion';
-// import { hydrate as hydrateApp } from 'react-dom';
 import 'ophan-tracker-js';
 import { getRaven } from '@frontend/web/browser/raven';
 import {
@@ -8,8 +5,6 @@ import {
     sendPageView as sendGaPageView,
 } from '@frontend/web/browser/ga';
 import { sendOphanPlatformRecord } from '@frontend/web/browser/ophan';
-// import { Article } from '@frontend/web/pages/Article';
-// import { Article } from '@frontend/web/pages/Article';
 import { ReportedError, reportError } from '@frontend/web/browser/reportError';
 import { loadScript } from '@frontend/web/browser/loadScript';
 import { RavenStatic } from 'raven-js';
@@ -19,29 +14,14 @@ if (module.hot) {
 }
 
 const initApp = (): void => {
-    const { cssIDs, data } = window.guardian.app;
+    const { data } = window.guardian.app;
     const commercialBundleUrl = data.config.commercialBundleUrl;
 
     const enhanceApp = () => {
         initGa();
 
-        const container = document.getElementById('app');
-
-        if (container) {
-            /**
-             * TODO: Remove conditional when Emotion's issue is resolved.
-             * We're having to prevent emotion hydrating styles in the browser
-             * in development mode to retain the sourceMap info. As detailed
-             * in the issue raised here https://github.com/emotion-js/emotion/issues/487
-             */
-            // if (process.env.NODE_ENV !== 'development') {
-            //     hydrateCSS(cssIDs);
-            // }
-            // hydrateApp(React.createElement(Article, { data }), container);
-        }
-
-        // Ophan
-        // Lets record a 'platformVariant' field so that we can track DCR views in datalake(regardless of A / B test)
+        // Ophan - Let's record a 'platformVariant' field so that we can track
+        // DCR views in datalake(regardless of A / B test)
         sendOphanPlatformRecord();
 
         // Google Analytics

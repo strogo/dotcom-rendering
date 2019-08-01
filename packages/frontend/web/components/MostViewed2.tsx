@@ -11,7 +11,6 @@ import {
 } from '@guardian/pasteup/breakpoints';
 import { screenReaderOnly } from '@guardian/pasteup/mixins';
 import { BigNumber } from '@guardian/guui';
-import { reportError } from '@frontend/web/browser/reportError';
 import {
     MoustacheSection,
     moustacheVariable,
@@ -77,10 +76,6 @@ const list = css`
         column-fill: balance;
         column-count: 2;
     }
-`;
-
-const hideList = css`
-    display: none;
 `;
 
 const listItem = css`
@@ -181,10 +176,6 @@ const listTab = css`
     }
 `;
 
-const selectedListTab = css`
-    background-color: ${palette.neutral[100]};
-`;
-
 const tabButton = css`
     ${headline(1)};
     margin: 0;
@@ -220,17 +211,6 @@ const liveKicker = css`
         margin: 0 4px;
     }
 `;
-
-// interface Trail {
-//     url: string;
-//     linkText: string;
-//     isLiveBlog: boolean;
-// }
-
-// interface Tab {
-//     heading: string;
-//     trails: Trail[];
-// }
 
 const tabs = css`
     display: flex;
