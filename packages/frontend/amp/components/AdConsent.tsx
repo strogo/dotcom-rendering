@@ -85,7 +85,8 @@ export const AdConsent: React.FC<{}> = ({}) => {
                     o={{
                         consents: {
                             adconsent: {
-                                onUpdateHref: 'https://consent-logs.code.dev-guardianapis.com/report/amp',
+                                onUpdateHref:
+                                    'https://consent-logs.code.dev-guardianapis.com/report/amp',
                                 promptIfUnknownForGeoGroup: 'eea',
                                 promptUI: 'adconsent-ui',
                             },
