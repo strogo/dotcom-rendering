@@ -73,10 +73,6 @@ const headerAdWrapper = css`
     ${stickyAdSlot};
 `;
 
-const headerAdWrapperHidden = css`
-    display: none;
-`;
-
 const headerAd = css`
     margin: 0 auto;
     height: 151px;
@@ -148,13 +144,7 @@ export const Article: React.FC<{
 }> = ({ data }) => (
     <div>
         <div className={headerWrapper}>
-            <div
-                className={cx({
-                    [headerAdWrapper]: true,
-                    [headerAdWrapperHidden]:
-                        data.CAPI.isAdFreeUser || data.CAPI.shouldHideAds,
-                })}
-            >
+            <div className={headerAdWrapper}>
                 <AdSlot
                     asps={namedAdSlotParameters('top-above-nav')}
                     config={data.config}

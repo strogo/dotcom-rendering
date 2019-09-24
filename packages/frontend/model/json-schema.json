@@ -168,9 +168,6 @@
         "shouldHideAds": {
             "type": "boolean"
         },
-        "isAdFreeUser": {
-            "type": "boolean"
-        },
         "webURL": {
             "type": "string"
         },
@@ -237,7 +234,6 @@
         "hasRelated",
         "hasStoryPackage",
         "headline",
-        "isAdFreeUser",
         "isCommentable",
         "isImmersive",
         "keyEvents",
@@ -815,14 +811,10 @@
                 },
                 "role": {
                     "type": "string"
-                },
-                "attribution": {
-                    "type": "string"
                 }
             },
             "required": [
                 "_type",
-                "attribution",
                 "html",
                 "role"
             ]
@@ -1386,9 +1378,6 @@
                 "googletagUrl": {
                     "type": "string"
                 },
-                "stage": {
-                    "type": "string"
-                },
                 "frontendAssetsFullURL": {
                     "type": "string"
                 },
@@ -1401,14 +1390,13 @@
                 "ajaxUrl",
                 "commercialBundleUrl",
                 "dfpAccountId",
-                "frontendAssetsFullURL",
                 "googletagUrl",
-                "hbImpl",
                 "revisionNumber",
                 "sentryHost",
                 "sentryPublicApiKey",
-                "stage",
-                "switches"
+                "switches",
+                "frontendAssetsFullURL",
+                "hbImpl"
             ]
         },
         "DesignType": {
