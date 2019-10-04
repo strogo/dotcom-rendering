@@ -16,6 +16,6 @@ jobs:
     - name: Validate
       run: make validate-ci
       env:
-        TERM: xterm-256-color
+        TERM: xterm-256color
     - name: build and publish
       run: make riffraff-publish
