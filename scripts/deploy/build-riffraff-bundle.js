@@ -94,11 +94,11 @@ const createBuildConfig = () => {
     log(' - creating build.json');
     const buildConfig = {
         projectName: process.env.PROJECT || 'dotcom:rendering',
-        buildNumber: process.env.BUILD_NUMBER || '0',
+        buildNumber: process.env.BUILD_NUMBER || process.env.GITHUB_SHA || '0',
         startTime: process.env.BUILD_START_DATE || new Date().toISOString(),
         revision: process.env.BUILD_VCS_NUMBER || 'unknown',
         vcsURL: 'git@github.com:guardian/dotcom-rendering.git',
-        branch: process.env.BRANCH_NAME || 'unknown',
+        branch: process.env.BRANCH_NAME || process.env.GITHUB_REF || 'unknown',
     };
 
     return writeFile(
