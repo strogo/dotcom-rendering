@@ -1,0 +1,19 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Use Node.js ${{ matrix.node_version }}
+      uses: actions/setup-node@v1
+      with:
+        version: 10.15
+    - uses: actions/checkout@v1
+    - name: Validate
+      run: make validate-ci
+    - name: build and publish
+      run: make riffraff-publish
