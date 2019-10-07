@@ -296,6 +296,7 @@ interface Props {
 // ------------------------------
 declare module 'emotion-server' {
     export const extractCritical: any;
+    export const renderStylesToString: any;
 }
 declare module 'dompurify' {
     const createDOMPurify: any;
