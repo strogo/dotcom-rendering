@@ -246,12 +246,13 @@ const mainMedia = css`
 `;
 
 const headerStyle = css`
-    ${headline(7)};
+    ${headline(5)};
     font-weight: 500;
     padding-bottom: 24px;
     padding-top: 3px;
 
     ${tablet} {
+        ${headline(7)};
         padding-bottom: 36px;
     }
 `;
