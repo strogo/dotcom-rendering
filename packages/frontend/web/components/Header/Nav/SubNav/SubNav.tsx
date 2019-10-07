@@ -3,7 +3,7 @@ import { css } from 'emotion';
 
 import { Container } from '@guardian/guui';
 import { palette } from '@guardian/pasteup/palette';
-import { Inner } from './Inner';
+import { InnerSubNav } from './InnerSubNav';
 
 const subnavWrapper = css`
     background-color: white;
@@ -93,7 +93,7 @@ export class SubNav extends Component<
         return (
             <div className={subnavWrapper}>
                 <Container borders={true}>
-                    <Inner
+                    <InnerSubNav
                         links={this.props.subnav.links}
                         pillar={this.props.pillar}
                         parent={this.props.subnav.parent}

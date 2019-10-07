@@ -20,7 +20,7 @@ const wrapperCollapsed = css`
 
 const subnav = css`
     list-style: none;
-    padding: 0 5px;
+    padding: 0 4px;
 
     ${mobileLandscape} {
         padding: 0 15px;
@@ -46,16 +46,17 @@ const subnavCollapsed = css`
 `;
 
 const fontStyle = css`
-    ${textSans(5)};
+    ${textSans(4)};
     font-weight: 500;
     color: ${palette.neutral[7]};
-    padding: 0 5px;
+    padding: 0 4px;
     height: 36px;
     /* Design System: Line height is being used here for centering layout, we need the primitives */
     /* stylelint-disable-next-line property-blacklist */
     line-height: 36px;
 
     ${tablet} {
+        ${textSans(5)};
         height: 42px;
         /* Design System: Line height is being used here for centering layout, we need the primitives */
         /* stylelint-disable-next-line property-blacklist */
@@ -121,7 +122,7 @@ const psp = pillarMap(
     `,
 );
 
-export const Inner: React.FC<{
+export const InnerSubNav: React.FC<{
     links: LinkType[];
     currentNavLink: string;
     pillar: Pillar;
