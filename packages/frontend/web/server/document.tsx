@@ -1,6 +1,6 @@
 import React from 'react';
 import { extractCritical } from 'emotion-server';
-import { renderToString } from 'react-dom/server';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { cache } from 'emotion';
 import { CacheProvider } from '@emotion/core';
 
@@ -19,8 +19,8 @@ interface RenderToStringResult {
 export const document = ({ data }: Props) => {
     const { CAPI, NAV, config, linkedData } = data;
     const title = `${CAPI.headline} | ${CAPI.sectionLabel} | The Guardian`;
-    const { html, css, ids: cssIDs }: RenderToStringResult = extractCritical(
-        renderToString(
+    const { html, css }: RenderToStringResult = extractCritical(
+        renderToStaticMarkup(
             // TODO: CacheProvider can be removed when we've moved over to using @emotion/core
             <CacheProvider value={cache}>
                 <Article data={{ CAPI, NAV, config }} />
@@ -59,7 +59,6 @@ export const document = ({ data }: Props) => {
     const priorityScripts = [
         polyfillIO,
         getDist('raven.js'),
-        getDist('react.js'),
         config.commercialBundleUrl,
     ];
 
@@ -77,7 +76,7 @@ export const document = ({ data }: Props) => {
         'https://www.google-analytics.com/analytics.js',
     ];
 
-    const windowGuardian = makeWindowGuardian(data, cssIDs);
+    const windowGuardian = makeWindowGuardian(data);
 
     const ampLink = `https://amp.theguardian.com/${data.CAPI.pageId}`;
 

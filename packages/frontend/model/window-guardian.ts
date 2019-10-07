@@ -54,16 +54,6 @@ const makeWindowGuardianConfig = (
 };
 
 export interface WindowGuardian {
-    // At least until October 2019, do not modify this interface without checking with Pascal first.
-
-    // The 'app' attribute contains all the data that we decided to pass
-    // from frontend and the dotcom-rendering server side model
-    // to the client side.
-    app: {
-        data: DCRDocumentData;
-        cssIDs: string[];
-    };
-
     // The 'config' attribute is derived from DCRDocumentData and contains
     // all the data that, for legacy reasons, for instance compatibility
     // with the frontend commercial stack, or other scripts, we want to find
@@ -84,13 +74,8 @@ export interface WindowGuardian {
 
 export const makeWindowGuardian = (
     dcrDocumentData: DCRDocumentData,
-    cssIDs: string[],
 ): WindowGuardian => {
     return {
-        app: {
-            cssIDs,
-            data: dcrDocumentData,
-        },
         config: makeWindowGuardianConfig(dcrDocumentData),
         polyfilled: false,
         adBlockers: {
