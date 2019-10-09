@@ -194,9 +194,9 @@ export const Article: React.FC<{
                     `,
                 )}
             >
-                <MostViewed
-                    sectionName={data.CAPI.sectionName}
-                    config={data.config}
+                <gap-slot
+                    data-slot-id="most-viewed"
+                    data-src="http://localhost:9070/components/MostViewed?json"
                 />
             </Container>
         </main>

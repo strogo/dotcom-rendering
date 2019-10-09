@@ -1,8 +1,10 @@
 import express from 'express';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { renderStylesToString } from 'emotion-server';
+import cors from 'cors';
 
 const app = express();
+app.use(cors());
 
 app.get('/components/:component', async (req, resp) => {
     const componentID = req.params.component;

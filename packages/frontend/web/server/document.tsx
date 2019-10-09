@@ -60,6 +60,10 @@ export const document = ({ data }: Props) => {
         polyfillIO,
         getDist('raven.js'),
         config.commercialBundleUrl,
+
+        'http://localhost:3040/gap-core.js',
+        'http://localhost:3040/gap-slot.js',
+        'http://localhost:3040/gap-select.js',
     ];
 
     /**
