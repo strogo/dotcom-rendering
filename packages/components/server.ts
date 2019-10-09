@@ -13,7 +13,21 @@ app.get('/components/:component', async (req, resp) => {
 
     const markup = renderStylesToString(renderToStaticMarkup(resolved));
 
-    resp.status(200).send({ html: markup });
+    if (req.query.json !== undefined) {
+        resp.status(200).send({ html: markup });
+        return;
+    }
+
+    const doc = `
+    <html lang="en">
+    <head>
+        <title>${componentID}</title>
+        </head>
+        <body>${markup}</body>
+    </html>
+    `;
+
+    resp.status(200).send(doc);
 });
 
 app.use((err: any, req: any, res: any, next: any) => {
