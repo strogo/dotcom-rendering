@@ -8,9 +8,10 @@ app.get('/components/:component', async (req, resp) => {
     const componentID = req.params.component;
     const component = await import(`./${componentID}`);
 
-    const markup = renderStylesToString(
-        renderToStaticMarkup(component.default()),
-    );
+    // Some components are async, so coerce all into promises and then await
+    const resolved = await Promise.resolve(component.default());
+
+    const markup = renderStylesToString(renderToStaticMarkup(resolved));
 
     resp.status(200).send({ html: markup });
 });
