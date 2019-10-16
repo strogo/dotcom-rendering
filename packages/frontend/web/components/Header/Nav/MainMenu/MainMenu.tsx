@@ -12,15 +12,7 @@ import { Columns } from './Columns';
 import { palette } from '@guardian/pasteup/palette';
 import { textSans } from '@guardian/pasteup/typography';
 
-const showMenu = css`
-    ${desktop} {
-        display: block;
-        overflow: visible;
-    }
-    ${until.desktop} {
-        transform: translateX(0%);
-    }
-`;
+const showMenu = css``;
 
 const mainMenu = css`
     background-color: ${palette.brand.main};
@@ -70,18 +62,24 @@ const mainMenu = css`
             margin-right: -50vw;
         }
     }
+
+    :not[hidden] {
+        ${desktop} {
+            display: block;
+            overflow: visible;
+        }
+        ${until.desktop} {
+            transform: translateX(0%);
+        }
+    }
 `;
 
 export const MainMenu: React.FC<{
     showMainMenu: boolean;
     id: string;
     nav: NavType;
-}> = ({ showMainMenu, id, nav }) => (
-    <div
-        className={cx(mainMenu, { [showMenu]: showMainMenu })}
-        aria-hidden={!showMainMenu}
-        id={id}
-    >
-        {showMainMenu && <Columns nav={nav} />}
+}> = ({ id, nav }) => (
+    <div className={mainMenu} id={id}>
+        <Columns nav={nav} />
     </div>
 );

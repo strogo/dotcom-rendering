@@ -339,5 +339,6 @@ declare namespace JSX {
         'amp-audio': any;
 
         'gap-slot': any;
+        'gap-display': any;
     }
 }
