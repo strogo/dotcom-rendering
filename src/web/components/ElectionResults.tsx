@@ -11,8 +11,7 @@ const electionResultsModal = (open: boolean) => css`
     background: #fff;
     padding: 8px;
     border-radius: 3px;
-    -webkit-box-shadow: 0 1px 6px rgba(0,0,0,.06), 0 2px 32px rgba(0,0,0,.16);
-    box-shadow: 0 1px 6px rgba(0,0,0,.06), 0 2px 32px rgba(0,0,0,.16);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06), 0 2px 32px rgba(0, 0, 0, 0.16);
     overflow: hidden;
 
     iframe {
@@ -48,11 +47,10 @@ const electionResultsButton = css`
     background: rgb(29, 53, 129);
     -webkit-transition: -webkit-box-shadow 80ms ease-in-out;
     transition: -webkit-box-shadow 80ms ease-in-out;
-    transition: box-shadow 80ms ease-in-out,-webkit-box-shadow 80ms ease-in-out;
-    box-shadow: 0 1px 6px rgba(0,0,0,.06), 0 2px 32px rgba(0,0,0,.16);
+    transition: box-shadow 80ms ease-in-out, -webkit-box-shadow 80ms ease-in-out;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06), 0 2px 32px rgba(0, 0, 0, 0.16);
 
     &:hover {
-
         cursor: pointer;
     }
 
@@ -66,8 +64,7 @@ const electionResultsButton = css`
     }
 `;
 
-
-// TODO: 
+// TODO:
 // Timebox
 // Remove from page option
 // How would it play with cookie banners
@@ -79,12 +76,16 @@ export const ElectionResults: React.FC<{}> = () => {
         <section>
             <section>
                 <div className={electionResultsModal(open)}>
-                    <iframe src="http://frequent-holiday.surge.sh/interactive.html"/>
+                    <iframe src="http://frequent-holiday.surge.sh/interactive.html" />
                 </div>
-                <div className={electionResultsArrow(open)}></div>
+                <div className={electionResultsArrow(open)} />
             </section>
-            <div className={electionResultsButton} onClick={(e) => setOpen(!open)}>
-                { open ? <X className="center"/> : <EUElection/> } 
+            <div
+                className={electionResultsButton}
+                role="button"
+                onClick={e => setOpen(!open)}
+            >
+                {open ? <X className="center" /> : <EUElection />}
             </div>
         </section>
     );
