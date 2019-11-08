@@ -16,7 +16,7 @@ const electionResultsModal = (open: boolean) => css`
     overflow: hidden;
 
     iframe {
-        height: 205px;
+        height: 210px;
         width: 400px;
     }
 
