@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { css } from 'emotion';
 import EUElection from '@frontend/static/icons/eu_election.svg';
+import { palette } from '@guardian/src-foundations';
 import X from '@frontend/static/icons/x.svg';
 
 const electionResultsModal = (open: boolean) => css`
@@ -8,7 +9,7 @@ const electionResultsModal = (open: boolean) => css`
     position: fixed;
     bottom: 100px;
     right: 20px;
-    background: #fff;
+    background: ${palette.neutral[100]};
     padding: 8px;
     border-radius: 3px;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06), 0 2px 32px rgba(0, 0, 0, 0.16);
@@ -31,7 +32,7 @@ const electionResultsArrow = (open: boolean) => css`
     height: 0;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-top: 10px solid #fff;
+    border-top: 10px solid ${palette.neutral[100]};
     display: ${open ? 'block' : 'none'};
 `;
 
@@ -45,8 +46,6 @@ const electionResultsButton = css`
     border-radius: 100px;
     overflow: hidden;
     background: rgb(29, 53, 129);
-    -webkit-transition: -webkit-box-shadow 80ms ease-in-out;
-    transition: -webkit-box-shadow 80ms ease-in-out;
     transition: box-shadow 80ms ease-in-out, -webkit-box-shadow 80ms ease-in-out;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06), 0 2px 32px rgba(0, 0, 0, 0.16);
 
