@@ -22,6 +22,8 @@ import { HeaderAdSlot } from '@root/src/web/components/HeaderAdSlot';
 
 import { StandardHeader } from './StandardHeader';
 
+import { ElectionResults } from '@root/src/web/components/ElectionResults';
+
 interface Props {
     CAPI: CAPIType;
     config: ConfigType;
@@ -82,6 +84,10 @@ export const StandardLayout = ({ CAPI, config, NAV }: Props) => (
                     <StickyAd config={config} />
                 </ArticleRight>
             </Flex>
+        </Section>
+
+        <Section islandId="election-results">
+            <ElectionResults />
         </Section>
 
         <Section showTopBorder={false}>

@@ -7,6 +7,7 @@ import { MostViewed } from '@frontend/web/components/MostViewed/MostViewed';
 import { ShareCount } from '@frontend/web/components/ShareCount';
 import { RichLinkComponent } from '@frontend/web/components/elements/RichLinkComponent';
 import { ReaderRevenueLinks } from '@frontend/web/components/ReaderRevenueLinks';
+import { ElectionResults } from '../components/ElectionResults';
 
 type IslandProps =
     | {
@@ -103,6 +104,15 @@ export const hydrateIslands = (
                 sectionName,
             },
             root: 'most-viewed',
+        },
+        {
+            component: ElectionResults,
+            props: {
+                config,
+                pillar,
+                sectionName,
+            },
+            root: 'election-results',
         },
         {
             component: ReaderRevenueLinks,
