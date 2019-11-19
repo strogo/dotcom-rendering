@@ -82,6 +82,15 @@ const common = ({ platform, page = '' }) => ({
                 test: /\.svg$/,
                 use: ['desvg-loader/react', 'svg-loader'],
             },
+            {
+                test: /\.png$/,
+                use: [
+                    'file-loader',
+                    {
+                        loader: 'image-webpack-loader',
+                    },
+                ],
+            },
         ],
     },
     plugins: [
