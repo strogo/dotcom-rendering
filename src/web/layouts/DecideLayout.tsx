@@ -13,7 +13,8 @@ type Props = {
     NAV: NavType;
 };
 
-const badgeSvgs: any = {
+type badgeMapType = Record<string, () => JSX.Element>;
+const badgeSvgs: badgeMapType = {
     'world/series/the-new-arrivals': require('@frontend/static/badges/new-arrivals.png'),
     'uk-news/series/the-brexit-gamble': require('@frontend/static/badges/EUReferendumBadge.svg'),
     'politics/series/road-to-the-vote': require('@frontend/static/badges/EUReferendumBadge.svg'),
