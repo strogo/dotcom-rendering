@@ -7,7 +7,7 @@ import { palette } from '@guardian/src-foundations';
 import { SharingIcons } from '@frontend/web/components/ShareIcons';
 import { SubMetaLinksList } from '@frontend/web/components/SubMetaLinksList';
 import { SyndicationButton } from '@frontend/web/components/SyndicationButton';
-import { Badge } from '@frontend/web/components/Badge';
+import { Badge } from '@frontend/web/components/Badge/Badge';
 import { getSharingUrls } from '@frontend/lib/sharing-urls';
 
 const subMetaLabel = css`

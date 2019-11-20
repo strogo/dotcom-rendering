@@ -353,6 +353,12 @@ interface TrailType {
     pillar: Pillar;
 }
 
+//
+interface BadgeType {
+    linkTo: string;
+    svgSrc: () => JSX.Element;
+}
+
 // ------------------------------
 // 3rd party type declarations //
 // ------------------------------

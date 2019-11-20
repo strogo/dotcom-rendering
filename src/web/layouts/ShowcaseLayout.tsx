@@ -27,6 +27,7 @@ interface Props {
     CAPI: CAPIType;
     config: ConfigType;
     NAV: NavType;
+    badge?: BadgeType;
 }
 
 export const ShowcaseLayout = ({ CAPI, config, NAV }: Props) => (

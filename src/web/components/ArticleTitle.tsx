@@ -2,7 +2,7 @@ import React from 'react';
 import { css, cx } from 'emotion';
 
 import { from, until } from '@guardian/src-foundations/mq';
-import { Badge } from '@frontend/web/components/Badge';
+import { Badge } from '@frontend/web/components/Badge/Badge';
 import { SeriesSectionLink } from './SeriesSectionLink';
 
 const sectionStyles = css`
