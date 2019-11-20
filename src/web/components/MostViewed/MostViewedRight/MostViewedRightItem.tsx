@@ -25,17 +25,17 @@ const linkTagStyles = css`
     ${headline.tiny()};
 
     &:link,
-    &:active,
-    &:visited {
+    &:active {
         color: ${palette.neutral[7]};
     }
 `;
 
-const textWrapperStyles = css`
+const lineWrapperStyles = css`
     display: flex;
 `;
 
 const headlineWrapperStyles = css`
+    width: calc(100% - 82px);
     display: flex;
     flex-direction: column;
 `;
@@ -59,8 +59,6 @@ const imageTagStyles = css`
     left: -24px;
     clip-path: circle(36% at 50% 50%);
 `;
-
-const ageWarningStyles = css``;
 
 type Props = {
     trail: TrailType;
@@ -90,7 +88,7 @@ export const MostViewedRightItem = ({ trail }: Props) => {
                 data-link-name={'article'}
                 ref={hoverRef}
             >
-                <div className={textWrapperStyles}>
+                <div className={lineWrapperStyles}>
                     <div className={imageWrapperStyles}>
                         <img
                             src={trail.image}
@@ -106,14 +104,14 @@ export const MostViewedRightItem = ({ trail }: Props) => {
                             size="tiny"
                             showUnderline={isHovered}
                             {...itemProps}
+                            link={{
+                                to: trail.url,
+                                visitedColour: palette.neutral[46],
+                                preventFocus: true,
+                            }}
                         />
                         {trail.ageWarning && (
-                            <div className={ageWarningStyles}>
-                                <AgeWarning
-                                    age={trail.ageWarning}
-                                    size="small"
-                                />
-                            </div>
+                            <AgeWarning age={trail.ageWarning} size="small" />
                         )}
                     </div>
                 </div>
