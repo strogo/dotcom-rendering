@@ -16,7 +16,7 @@ import badgeCAFiles from '@frontend/static/badges/calock.svg';
 import badgeNHS70 from '@frontend/static/badges/nhs-70.svg';
 import badgeCricketWorldCup2019 from '@frontend/static/badges/cricket-world-cup.svg';
 import badgeWomensWorldCup2019 from '@frontend/static/badges/womens-world-cup.svg';
-import badgeGreenBlood from '@frontend/static/badges/womens-world-cup.svg';
+import badgeGreenBlood from '@frontend/static/badges/green-blood.svg';
 import badgeUSElections2020 from '@frontend/static/badges/us-elections-2020.svg';
 import badgeAustralianElections2019 from '@frontend/static/badges/australian-election-2019.svg';
 import badgeMidtermElections2018 from '@frontend/static/badges/midterm.svg';
