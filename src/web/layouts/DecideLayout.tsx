@@ -7,11 +7,7 @@ import { ShowcaseLayout } from './ShowcaseLayout';
 import { hasShowcase } from './layoutHelpers';
 
 // import badgeNewArrivals from '@frontend/static/badges/new-arrivals.png';
-import badgeBrexitGamble from '@frontend/static/badges/EUReferendumBadge.svg';
-import badgeRoadToVote from '@frontend/static/badges/EUReferendumBadge.svg';
-import badgeBrexitFrontline from '@frontend/static/badges/EUReferendumBadge.svg';
-import badgeBrexitDividedGenerations from '@frontend/static/badges/EUReferendumBadge.svg';
-import badgeBrexitHowItCameToThis from '@frontend/static/badges/EUReferendumBadge.svg';
+import badgeEUReferendum from '@frontend/static/badges/EUReferendumBadge.svg';
 import badgeLondonVersus from '@frontend/static/badges/london-versus.svg';
 import badgeBeyondTheBlade from '@frontend/static/badges/beyondthebladebadge.svg';
 import badgeEUElection from '@frontend/static/badges/eu_election.svg';
@@ -47,11 +43,11 @@ type Props = {
 type badgeMapType = Record<string, () => JSX.Element>;
 const badgeSvgs: badgeMapType = {
     // 'world/series/the-new-arrivals': badgeNewArrivals,
-    'uk-news/series/the-brexit-gamble': badgeBrexitGamble,
-    'politics/series/road-to-the-vote': badgeRoadToVote,
-    'politics/series/brexit-frontline': badgeBrexitFrontline,
-    'politics/series/brexit-divided-generations': badgeBrexitDividedGenerations,
-    'politics/series/brexit-how-it-came-to-this': badgeBrexitHowItCameToThis,
+    'uk-news/series/the-brexit-gamble': badgeEUReferendum,
+    'politics/series/road-to-the-vote': badgeEUReferendum,
+    'politics/series/brexit-frontline': badgeEUReferendum,
+    'politics/series/brexit-divided-generations': badgeEUReferendum,
+    'politics/series/brexit-how-it-came-to-this': badgeEUReferendum,
     'uk-news/series/london-versus': badgeLondonVersus,
     'membership/series/beyond-the-blade': badgeBeyondTheBlade,
     'politics/2019-european-parliamentary-elections': badgeEUElection,
