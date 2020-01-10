@@ -144,9 +144,9 @@ export const Elements = (
             case 'model.dotcomrendering.pageElements.InteractiveMarkupBlockElement':
                 return (
                     <InteractiveMarkup
+                        id={element.id}
                         html={element.html}
                         styles={element.css}
-                        js={element.js}
                     />
                 );
             case 'model.dotcomrendering.pageElements.InteractiveUrlBlockElement':

@@ -17,32 +17,37 @@ const showMore = css`
 `;
 
 export const InteractiveMarkup: React.SFC<{
+    id: string;
     html?: string;
     styles?: string;
-    js?: string;
-}> = ({ html, styles, js }) => {
+}> = ({ id, html, styles }) => {
     const styleTag = styles ? `<style>${styles}</style>` : '';
-    const scripts = js ? `<script>${js}</script>` : '';
+
+    const jslink = `${id.replace(
+        'interactives',
+        'https://interactive.guim.co.uk/amp-external-js',
+    )}/main.js`;
+    const scripts = jslink ? `<script src=${jslink}>` : '';
 
     const body = `
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charSet="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width,minimum-scale=1,initial-scale=1"
-        />
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charSet="utf-8" />
+            <meta
+                name="viewport"
+                content="width=device-width,minimum-scale=1,initial-scale=1"
+            />
 
-        ${styleTag}
-    </head>
+            ${styleTag}
+        </head>
 
-    <body>
-        ${html}
-        ${scripts}
-    </body>
-    </html>
-`;
+        <body>
+            ${html}
+            ${scripts}
+        </body>
+        </html>
+    `;
 
     return (
         <amp-iframe
