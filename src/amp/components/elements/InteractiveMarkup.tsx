@@ -59,6 +59,11 @@ export const InteractiveMarkup: React.SFC<{
             srcdoc={body}
             resizable=""
         >
+            <amp-img
+                layout="fill"
+                src="https://via.placeholder.com/480"
+                placeholder={true}
+            />
             <div overflow="" className={showMore}>
                 <ShowMoreButton />
             </div>
