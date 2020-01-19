@@ -3,6 +3,7 @@ import { designTypeDefault } from '@root/src/lib/designTypes';
 
 import { StandardLayout } from './StandardLayout';
 import { ShowcaseLayout } from './ShowcaseLayout';
+import { ImmersiveLayout } from './ImmersiveLayout';
 
 import { hasShowcase } from './layoutHelpers';
 
@@ -13,6 +14,9 @@ type Props = {
 };
 
 export const DecideLayout = ({ designType, CAPI, NAV }: Props) => {
+    if (CAPI.isImmersive) {
+        return <ImmersiveLayout CAPI={CAPI} NAV={NAV} />;
+    }
     if (hasShowcase(CAPI.mainMediaElements)) {
         return <ShowcaseLayout CAPI={CAPI} NAV={NAV} />;
     }
