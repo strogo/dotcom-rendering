@@ -1,7 +1,7 @@
 // tslint:disable:react-no-dangerous-html
 
 import React from 'react';
-import { css } from 'emotion';
+import { css, cx } from 'emotion';
 import { palette } from '@guardian/src-foundations';
 import { textSans } from '@guardian/src-foundations/typography';
 import { from } from '@guardian/src-foundations/mq';
@@ -77,6 +77,11 @@ const mobileStickyAdStyles = css`
         ${textSans.xsmall()};
     }
 `;
+
+const minHeight = css`
+    min-height: 274px;
+`;
+
 export interface AdSlotParameters {
     name: string;
     adTypes: string[];
@@ -150,19 +155,21 @@ export const AdSlotCore: React.FC<{
 
     const sizeMappings = makeInternalSizeMappings(sizeMapping);
     return (
-        <div
-            id={`dfp-ad--${optId || name}`}
-            className={`${makeClassNames(
-                name,
-                adTypes,
-                optClassNames || [],
-            )} ${className} ${labelStyles}`}
-            data-link-name={`ad slot ${name}`}
-            data-name={name}
-            // {...getOptionalProps()}
-            {...sizeMappings}
-            aria-hidden="true"
-        />
+        <div className={cx(minHeight, 'js-aside-slot-container')}>
+            <div
+                id={`dfp-ad--${optId || name}`}
+                className={`${makeClassNames(
+                    name,
+                    adTypes,
+                    optClassNames || [],
+                )} ${className} ${labelStyles}`}
+                data-link-name={`ad slot ${name}`}
+                data-name={name}
+                // {...getOptionalProps()}
+                {...sizeMappings}
+                aria-hidden="true"
+            />
+        </div>
     );
 };
 
