@@ -199,7 +199,7 @@ export const namedAdSlotParameters = (name: AdSlotType): AdSlotParameters => {
                     adSizeNamesToString([
                         'outOfPage',
                         'empty',
-                        'merchandisingHigh',
+                        'merchandising',
                         'fluid',
                     ]),
                 ],
