@@ -1,6 +1,7 @@
 import React from 'react';
 import { css } from 'emotion';
 import { useApi } from '@root/src/web/lib/api';
+import { isRecurringContributor, lastOneOffContributionDate } from '@root/src/web/lib/contributions';
 
 const wrapperMargins = css`
     margin: 18px 0;
@@ -44,10 +45,19 @@ export const SlotBodyEnd = ({
             isMinuteArticle,
             isPaidContent,
             tags,
+            isRecurringContributor: isRecurringContributor(), // cookie 'gu_recurring_contributor'
+            lastOneOffContributionDate: lastOneOffContributionDate(),
+            // value should be string with miliseconds since epoch;
+            // can come from one of two cookies;
+            // 1) gu.contributions.contrib-timestamp (SUPPORT_ONE_OFF_CONTRIBUTION_COOKIE) as milliseconds since epoch
+            // 2) gu_one_off_contribution_date (ONE_OFF_CONTRIBUTION_DATE_COOKIE) as YYYY-MM-DD
+            // lastOneOffContributionDate: '', // cookie 'gu_one_off_contribution_date' // Date.now().toString();
         },
     };
 
-    const endpointUrl = 'https://contributions.guardianapis.com/epic';
+    // const endpointUrl = 'https://contributions.guardianapis.com/epic';
+    const endpointUrl = 'http://localhost:8081/epic';
+
     const { data: responseBody, error } = useApi(endpointUrl, {
         method: 'POST',
         headers: {
