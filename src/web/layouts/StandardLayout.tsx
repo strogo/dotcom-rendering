@@ -393,7 +393,9 @@ export const StandardLayout = ({ CAPI, NAV }: Props) => {
                     </GridItem>
                 </StandardGrid>
             </Section>
-
+            <Section padded={false}>
+                <div data-island="discussion" />
+            </Section>
             <Section
                 padded={false}
                 showTopBorder={false}

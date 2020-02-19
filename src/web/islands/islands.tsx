@@ -12,6 +12,7 @@ import { CMP } from '@frontend/web/components/CMP';
 import { Onwards } from '@frontend/web/components/Onwards/Onwards';
 import { SlotBodyEnd } from '@frontend/web/components/SlotBodyEnd';
 import { SubNav } from '@frontend/web/components/SubNav/SubNav';
+import { App } from 'discussion-rendering';
 
 type IslandProps =
     | {
@@ -190,6 +191,11 @@ export const hydrateIslands = (CAPI: CAPIType, NAV: NavType) => {
             component: CMP,
             props: {},
             root: 'cmp',
+        },
+        {
+            component: App,
+            props: { shortUrl: '/p/39f5z' },
+            root: 'discussion',
         },
         {
             component: Onwards,
