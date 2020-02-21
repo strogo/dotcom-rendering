@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-
+import { useApi } from '@root/src/web/lib/api';
 import { Nav } from '@frontend/web/components/Nav/Nav';
 import { EditionDropdown } from '@frontend/web/components/EditionDropdown';
 import { MostViewedFooter } from '@frontend/web/components/MostViewed/MostViewedFooter/MostViewedFooter';
@@ -42,10 +42,18 @@ export const hydrateApp = ({ CAPI, NAV }: { CAPI: CAPIType; NAV: NavType }) => {
 
 const App = ({ CAPI, NAV }: Props) => {
     const [isSignedIn, setIsSignedIn] = useState<boolean | null>(null);
-
     useEffect(() => {
         setIsSignedIn(!!getCookie('GU_U'));
     }, []);
+
+    // Fetch geolocation
+    const { data: geoResponse } = useApi(
+        'https://api.nextgen.guardianapps.co.uk/geolocation',
+    );
+    const [countryCode, setCountryCode] = useState<string | null>(null);
+    if (geoResponse && geoResponse.country) {
+        setCountryCode(geoResponse.country);
+    }
 
     const richLinks: {
         element: RichLinkBlockElement;
@@ -129,6 +137,7 @@ const App = ({ CAPI, NAV }: Props) => {
             <Portal root="slot-body-end">
                 <SlotBodyEnd
                     isSignedIn={isSignedIn}
+                    countryCode={countryCode}
                     contentType={CAPI.contentType}
                     sectionName={CAPI.sectionName}
                     shouldHideReaderRevenue={CAPI.shouldHideReaderRevenue}

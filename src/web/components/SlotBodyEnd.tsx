@@ -13,6 +13,7 @@ const wrapperMargins = css`
 
 type Props = {
     isSignedIn: boolean | null;
+    countryCode: string | null;
     contentType: string;
     sectionName?: string;
     shouldHideReaderRevenue: boolean;
@@ -23,6 +24,7 @@ type Props = {
 
 export const SlotBodyEnd = ({
     isSignedIn,
+    countryCode,
     contentType,
     sectionName,
     shouldHideReaderRevenue,
@@ -30,8 +32,8 @@ export const SlotBodyEnd = ({
     isPaidContent,
     tags,
 }: Props) => {
-    // Return early if sign in status hasn't been determined yet
-    if (isSignedIn === null) {
+    // Return early if sign in status  or country code haven't been determined yet
+    if (isSignedIn === null || countryCode === null) {
         return null;
     }
 
@@ -47,7 +49,7 @@ export const SlotBodyEnd = ({
             referrerUrl: window?.location.origin + window?.location.pathname
         },
         localisation: {
-            countryCode: 'GB', // TODO: make this dynamic
+            countryCode,
         },
         targeting: {
             contentType,
