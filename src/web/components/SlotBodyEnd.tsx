@@ -12,6 +12,7 @@ const wrapperMargins = css`
 `;
 
 type Props = {
+    isSignedIn: boolean | null;
     contentType: string;
     sectionName?: string;
     shouldHideReaderRevenue: boolean;
@@ -21,6 +22,7 @@ type Props = {
 };
 
 export const SlotBodyEnd = ({
+    isSignedIn,
     contentType,
     sectionName,
     shouldHideReaderRevenue,
@@ -28,18 +30,21 @@ export const SlotBodyEnd = ({
     isPaidContent,
     tags,
 }: Props) => {
+    // Return early if sign in status hasn't been determined yet
+    if (isSignedIn === null) {
+        return null;
+    }
+
     // Putting together the request payload
     const contributionsPayload = {
         tracking: {
-            // ophanPageId: window?.guardian.config.ophan.pageViewId,
-            ophanPageId: window.guardian.config.ophan.pageViewId,
+            ophanPageId: window?.guardian.config.ophan.pageViewId,
             ophanComponentId: 'ACQUISITIONS_EPIC',
             platformId: 'GUARDIAN_WEB',
             campaignCode: 'gdnwb_copts_memco_remote_epic_test_api',
             abTestName: 'remote_epic_test',
             abTestVariant: 'api',
-            // referrerUrl: window?.location.origin + window?.location.pathname
-            referrerUrl: window.location.origin + window.location.pathname,
+            referrerUrl: window?.location.origin + window?.location.pathname
         },
         localisation: {
             countryCode: 'GB', // TODO: make this dynamic
@@ -52,7 +57,7 @@ export const SlotBodyEnd = ({
             isPaidContent,
             tags,
             showSupportMessaging: getShowSupportMessaging(),
-            isRecurringContributor: getIsRecurringContributor(),
+            isRecurringContributor: getIsRecurringContributor(isSignedIn),
             lastOneOffContributionDate: lastOneOffContributionDate(),
         },
     };

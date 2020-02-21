@@ -11,7 +11,7 @@ import { DropdownLinkType, Dropdown } from '@root/src/web/components/Dropdown';
 import ProfileIcon from '@frontend/static/icons/profile.svg';
 
 type Props = {
-    isSignedIn?: boolean;
+    isSignedIn?: boolean | null;
 };
 
 const search = css`

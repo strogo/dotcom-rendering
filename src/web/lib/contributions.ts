@@ -1,8 +1,5 @@
 import { getCookie } from '@root/src/web/browser/cookie';
 
-// User ID cookie
-const USER_ID_COOKIE = 'GU_U';
-
 // User Atributes API cookies (dropped on sign-in)
 const HIDE_SUPPORT_MESSAGING_COOKIE = 'gu_hide_support_messaging';
 const RECURRING_CONTRIBUTOR_COOKIE = 'gu_recurring_contributor';
@@ -33,10 +30,7 @@ export const getShowSupportMessaging = (): boolean => {
 // We need to look at both User Attributes and Frontend Support cookies
 // as the former might not reflect the latest contributor status, since it's set upon signing in.
 // Frontend Support cookies are set when a contribution is made.
-export const getIsRecurringContributor = (): boolean => {
-    // Cookie holds base64 encoded user data but we only care whether or not it exists
-    const isSignedIn = getCookie(USER_ID_COOKIE) !== null;
-
+export const getIsRecurringContributor = (isSignedIn: boolean): boolean => {
     // Attributes cookie - we want this to have a specific value
     const isRecurringContributor =
         getCookie(RECURRING_CONTRIBUTOR_COOKIE) === 'true';
@@ -91,6 +85,8 @@ export const lastOneOffContributionDate = (): string => {
             ? String(latestOnOffContributionDate)
             : '';
     } catch (e) {
+        // eslint-disable-next-line no-console
+        console.log('Could not parse latestOneOffContribution date');
         return '';
     }
 };

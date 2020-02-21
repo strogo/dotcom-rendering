@@ -14,7 +14,7 @@ const headerStyles = css`
 `;
 
 type Props = {
-    isSignedIn?: boolean;
+    isSignedIn?: boolean | null;
     edition: Edition;
 };
 

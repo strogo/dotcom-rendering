@@ -41,7 +41,7 @@ export const hydrateApp = ({ CAPI, NAV }: { CAPI: CAPIType; NAV: NavType }) => {
 };
 
 const App = ({ CAPI, NAV }: Props) => {
-    const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
+    const [isSignedIn, setIsSignedIn] = useState<boolean | null>(null);
 
     useEffect(() => {
         setIsSignedIn(!!getCookie('GU_U'));
@@ -128,6 +128,7 @@ const App = ({ CAPI, NAV }: Props) => {
             </Portal>
             <Portal root="slot-body-end">
                 <SlotBodyEnd
+                    isSignedIn={isSignedIn}
                     contentType={CAPI.contentType}
                     sectionName={CAPI.sectionName}
                     shouldHideReaderRevenue={CAPI.shouldHideReaderRevenue}
