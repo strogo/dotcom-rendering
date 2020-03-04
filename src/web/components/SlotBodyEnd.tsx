@@ -8,8 +8,9 @@ import {
 } from '@root/src/web/lib/contributions';
 import { useApiFn } from '../lib/api';
 
+type OphanAction = 'INSERT' | 'VIEW';
 const ophanBaseUrl = 'https://ophan.theguardian.com/img/2';
-const sendOphanInsertEvent = (): void => {
+const sendOphanEvent = (action: OphanAction): void => {
     const payload = {
         component: {
             componentType: 'ACQUISITIONS_EPIC',
@@ -21,7 +22,7 @@ const sendOphanInsertEvent = (): void => {
             name: 'remote_epic_test',
             variant: 'api',
         },
-        action: 'INSERT',
+        action,
     };
 
     const { viewId } = window.guardian.ophan;
@@ -105,9 +106,14 @@ export const SlotBodyEnd = ({
     }
 
     if (bodyResponse && bodyResponse.data) {
+        sendOphanEvent('INSERT');
+
+        // TODO: I _think_ we want these to happen when the Epic is visible, not
+        // on DOM insert
         // Add a new entry to the view log when we know an Epic is being rendered
         logView(epicTestName);
-        sendOphanInsertEvent();
+        sendOphanEvent('VIEW');
+
         const { html: epicHtml, css: epicCss } = bodyResponse.data;
         return (
             <div className={wrapperMargins}>
