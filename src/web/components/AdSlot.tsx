@@ -75,7 +75,6 @@ const nativeAdStyles = css`
         color: ${palette.neutral[60]};
         text-align: left;
         box-sizing: border-box;
-        font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
         display: block;
         position: fixed;
         bottom: 0;
