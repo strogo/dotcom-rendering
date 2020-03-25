@@ -57,7 +57,7 @@ const nativeAdStyles = css`
         left: 0;
         bottom: 0;
         z-index: 1;
-        border-bottom: 1px solid #dcdcdc;
+        border-bottom: 1px solid ${palette.neutral[60]};
     }
 
     .ad-slot__label.sticky {
@@ -69,10 +69,10 @@ const nativeAdStyles = css`
         font-size: 0.75rem;
         line-height: 1.25rem;
         height: 1.5rem;
-        background-color: #f6f6f6;
+        background-color: ${neutral[97]};
         padding: 0 0.5rem;
-        border-top: 0.0625rem solid #dcdcdc;
-        color: #767676;
+        border-top: 0.0625rem solid ${palette.neutral[60]};
+        color: ${palette.neutral[60]};
         text-align: left;
         box-sizing: border-box;
         font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
