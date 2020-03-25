@@ -23,6 +23,66 @@ export const labelStyles = css`
         display: none;
     }
 `;
+
+const nativeAdStyles = css`
+    .creative__background-parent-interscroller {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        clip: rect(0, auto, auto, 0);
+    
+        .creative__background {
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+    
+        .creative__background--interscroller {
+            width: 100%;
+            top: 0;
+            left: 0;
+            margin-top: 24px;
+            position: fixed;
+        }
+    }
+    
+    .creative__background-parent-interscroller::before {
+        content: '';
+        width: 100%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        z-index: 1;
+        border-bottom: 1px solid #dcdcdc;
+    }
+
+    .ad-slot__label.sticky {
+        position: sticky;
+        top: 0;
+    }
+    
+    .ad-slot__scroll {
+        font-size: 0.75rem;
+        line-height: 1.25rem;
+        height: 1.5rem;
+        background-color: #f6f6f6;
+        padding: 0 0.5rem;
+        border-top: 0.0625rem solid #dcdcdc;
+        color: #767676;
+        text-align: left;
+        box-sizing: border-box;
+        font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+        display: block;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+`;
+
 const mobileStickyAdStyles = css`
     position: fixed;
     bottom: 0;
@@ -146,7 +206,7 @@ export const AdSlotCore: React.FC<{
                 name,
                 adTypes,
                 optClassNames || [],
-            )} ${localStyles} ${labelStyles}`}
+            )} ${localStyles} ${labelStyles} ${nativeAdStyles}`}
             data-link-name={`ad slot ${name}`}
             data-name={name}
             // {...getOptionalProps()}
