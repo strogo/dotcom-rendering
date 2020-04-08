@@ -27,7 +27,16 @@ export const render = ({ body }: express.Request, res: express.Response) => {
             },
         });
 
-        res.status(200).send(resp);
+        // res.status(200).send(resp);
+
+        res.write(resp.htmlBeginning);
+        resp.stream.pipe(
+            res,
+            { end: false },
+        );
+        resp.stream.on('end', () => {
+            res.end(resp.htmlEnd);
+        });
     } catch (e) {
         res.status(500).send(`<pre>${e.stack}</pre>`);
     }

@@ -15,8 +15,6 @@ export const htmlTemplate = ({
     lowPriorityScripts,
     lowPriorityLegacyScripts,
     lowPriorityNonLegacyScripts,
-    css,
-    html,
     windowGuardian,
     fontFiles = [],
     ampLink,
@@ -33,8 +31,6 @@ export const htmlTemplate = ({
     lowPriorityScripts: string[];
     lowPriorityLegacyScripts: string[];
     lowPriorityNonLegacyScripts: string[];
-    css: string;
-    html: string;
     fontFiles?: string[];
     windowGuardian: string;
     ampLink?: string;
@@ -97,7 +93,8 @@ export const htmlTemplate = ({
 
     const twitterMetaTags = generateMetaTags(twitterData);
 
-    return `<!doctype html>
+    return [
+        `<!doctype html>
         <html lang="en">
             <head>
                 <title>${title}</title>
@@ -170,18 +167,19 @@ export const htmlTemplate = ({
                     ...priorityLegacyScriptTags,
                     ...priorityNonLegacyScriptTags,
                 ].join('\n')}
-                <style>${getFontsCss()}${resetCSS}${css}</style>
+                <style>${getFontsCss()}${resetCSS}</style>
 
             </head>
 
             <body>
-                <div id="react-root"></div>
-                ${html}
+                <div id="react-root"></div>`,
+        `
                 ${[
                     ...lowPriorityScriptTags,
                     ...lowPriorityLegacyScriptTags,
                     ...lowPriorityNonLegacyScriptTags,
                 ].join('\n')}
             </body>
-        </html>`;
+        </html>`,
+    ];
 };

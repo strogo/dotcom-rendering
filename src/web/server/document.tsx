@@ -1,6 +1,6 @@
 import React from 'react';
-import { extractCritical } from 'emotion-server';
-import { renderToString } from 'react-dom/server';
+import { extractCritical, renderStylesToNodeStream } from 'emotion-server';
+import { renderToString, renderToNodeStream } from 'react-dom/server';
 import { cache } from 'emotion';
 import { CacheProvider } from '@emotion/core';
 
@@ -20,14 +20,21 @@ interface RenderToStringResult {
 export const document = ({ data }: Props) => {
     const { CAPI, NAV, linkedData } = data;
     const title = `${CAPI.headline} | ${CAPI.sectionLabel} | The Guardian`;
-    const { html, css, ids: cssIDs }: RenderToStringResult = extractCritical(
-        renderToString(
-            // TODO: CacheProvider can be removed when we've moved over to using @emotion/core
-            <CacheProvider value={cache}>
-                <DecideLayout CAPI={CAPI} NAV={NAV} />
-            </CacheProvider>,
-        ),
-    );
+    // const { html, css, ids: cssIDs }: RenderToStringResult = extractCritical(
+    // renderToString(
+    //     // TODO: CacheProvider can be removed when we've moved over to using @emotion/core
+    //     <CacheProvider value={cache}>
+    //         <DecideLayout CAPI={CAPI} NAV={NAV} />
+    //     </CacheProvider>,
+    // ),
+    // );
+
+    const stream = renderToNodeStream(
+        // TODO: CacheProvider can be removed when we've moved over to using @emotion/core
+        <CacheProvider value={cache}>
+            <DecideLayout CAPI={CAPI} NAV={NAV} />
+        </CacheProvider>,
+    ).pipe(renderStylesToNodeStream());
 
     /**
      * Preload the following woff2 font files
@@ -96,7 +103,7 @@ export const document = ({ data }: Props) => {
      * is placed in a script tag on the page
      */
     const windowGuardian = escapeData(
-        JSON.stringify(makeWindowGuardian(data, cssIDs)),
+        JSON.stringify(makeWindowGuardian(data, ['dontpushtoproduction'])),
     );
 
     const ampLink = `https://amp.theguardian.com/${data.CAPI.pageId}`;
@@ -111,7 +118,7 @@ export const document = ({ data }: Props) => {
             ? ''
             : CAPI.config.keywords;
 
-    return htmlTemplate({
+    const htmlTemplateStrings = htmlTemplate({
         linkedData,
 
         priorityScripts,
@@ -122,8 +129,6 @@ export const document = ({ data }: Props) => {
         lowPriorityLegacyScripts,
         lowPriorityNonLegacyScripts,
 
-        css,
-        html,
         fontFiles,
         title,
         description,
@@ -133,4 +138,10 @@ export const document = ({ data }: Props) => {
         twitterData,
         keywords,
     });
+
+    return {
+        stream,
+        htmlBeginning: htmlTemplateStrings[0],
+        htmlEnd: htmlTemplateStrings[1],
+    };
 };
