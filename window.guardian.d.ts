@@ -25,6 +25,7 @@ declare global {
                 record: ({}) => void;
                 viewId: string;
                 pageViewId: string;
+                browserId: string | null;
             };
             modules: {
                 sentry: {

@@ -30,6 +30,7 @@ const windowGuardian = {
         record: ({  }: {}) => null,
         viewId: '',
         pageViewId: '',
+        browserId: '',
     },
     modules: {
         sentry: {
