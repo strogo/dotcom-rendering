@@ -3,7 +3,7 @@ import { css, cx } from 'emotion';
 
 import { headline, textSans } from '@guardian/src-foundations/typography';
 import { from } from '@guardian/src-foundations/mq';
-import { Button } from '@guardian/src-button';
+import { LinkButton } from '@guardian/src-button';
 
 interface Props {
     signInUrl: string;
@@ -48,31 +48,27 @@ export const SignInGate = ({ signInUrl, guUrl }: Props) => (
             critical source of funding for our future.
         </p>
         <p>
-            Through doing so, you'll help ensure that our reporting remains
+            Through doing so, you&apos;ll help ensure that our reporting remains
             freely available to everyone, and if we recognise you when you come
             back, we can improve your news experience too. You can still control
             your own privacy settings. Thank you
         </p>
-        <Button
+        <LinkButton
             priority="primary"
             size="default"
-            iconSide="left"
-            onClick={() => {
-                alert('Thanks for clicking');
-            }}
+            href={signInUrl}
+            onClick={() => {}}
         >
             Register for free
-        </Button>
-        <Button
-            priority="subdued"
+        </LinkButton>
+        <LinkButton
+            priority="secondary"
             size="default"
-            iconSide="left"
-            onClick={() => {
-                alert(`Thanks for clicking ${signInUrl}`);
-            }}
+            href="#"
+            onClick={() => {}}
         >
             I’ll do it later
-        </Button>
+        </LinkButton>
 
         <div className="signin-gate__buttons">
             <a
