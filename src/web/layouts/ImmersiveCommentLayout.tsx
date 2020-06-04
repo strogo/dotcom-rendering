@@ -224,117 +224,6 @@ export const ImmersiveCommentLayout = ({
 
     return (
         <>
-<<<<<<< Updated upstream
-            <div
-                className={css`
-                    display: flex;
-                    flex-direction: column;
-                    min-height: ${mainMedia && '100vh'};
-                `}
-            >
-                <Section
-                    showSideBorders={false}
-                    showTopBorder={false}
-                    padded={false}
-                    backgroundColour={brandBackground.primary}
-                >
-                    <Nav
-                        pillar={getCurrentPillar(CAPI)}
-                        nav={NAV}
-                        display={display}
-                        subscribeUrl={
-                            CAPI.nav.readerRevenueLinks.header.subscribe
-                        }
-                        edition={CAPI.editionId}
-                    />
-                </Section>
-                <Section
-                    showTopBorder={false}
-                    showSideBorders={false}
-                    backgroundColour={pillarPalette[pillar].main}
-                >
-                    <Flex>
-                        <LeftColumn showRightBorder={false}>
-                            <ArticleTitle
-                                display={display}
-                                // designType={designType}
-                                tags={CAPI.tags}
-                                sectionLabel={CAPI.sectionLabel}
-                                sectionUrl={CAPI.sectionUrl}
-                                guardianBaseURL={CAPI.guardianBaseURL}
-                                pillar={pillar}
-                                badge={CAPI.badge}
-                            />
-                        </LeftColumn>
-                        <div
-                            className={css`
-                                flex-grow: 1;
-                            `}
-                        >
-                            <div className={maxWidth}>
-                                <Hide when="above" breakpoint="leftCol">
-                                    <ArticleTitle
-                                        display={display}
-                                        // designType={designType}
-                                        tags={CAPI.tags}
-                                        sectionLabel={CAPI.sectionLabel}
-                                        sectionUrl={CAPI.sectionUrl}
-                                        guardianBaseURL={CAPI.guardianBaseURL}
-                                        pillar={pillar}
-                                        badge={CAPI.badge}
-                                    />
-                                </Hide>
-                                <ArticleHeadlinePadding designType={designType}>
-                                    <ArticleHeadline
-                                        display={display}
-                                        headlineString={CAPI.headline}
-                                        designType={designType}
-                                        pillar={pillar}
-                                        tags={CAPI.tags}
-                                        byline={CAPI.author.byline}
-                                    />
-                                </ArticleHeadlinePadding>
-                            </div>
-                        </div>
-                        <>
-                            {showAvatar && avatarUrl && (
-                                <div className={avatarPositionStyles}>
-                                    <ContributorAvatar
-                                        imageSrc={avatarUrl}
-                                        imageAlt={CAPI.author.byline || ''}
-                                    />
-                                </div>
-                            )}
-                        </>
-                    </Flex>
-                </Section>
-
-                <GuardianLines pillar={pillar} count={8} effect="straight" />
-
-                {mainMedia && (
-                    <div
-                        className={css`
-                            flex: 1;
-                            min-height: 31.25rem;
-                            position: relative;
-                        `}
-                    >
-                        <MainMedia
-                            display={display}
-                            elements={CAPI.mainMediaElements}
-                            pillar={pillar}
-                            adTargeting={adTargeting}
-                            starRating={
-                                CAPI.designType === 'Review' && CAPI.starRating
-                                    ? CAPI.starRating
-                                    : undefined
-                            }
-                            hideCaption={true}
-                        />
-                    </div>
-                )}
-            </div>
-=======
             <Section
                 showSideBorders={false}
                 showTopBorder={false}
@@ -427,7 +316,6 @@ export const ImmersiveCommentLayout = ({
                     hideCaption={true}
                 />
             )}
->>>>>>> Stashed changes
 
             <Section showTopBorder={false} showSideBorders={false}>
                 <ImmersiveGrid>
