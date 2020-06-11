@@ -24,6 +24,8 @@ import { getUser } from '@root/src/web/lib/getUser';
 import { getCommentContext } from '@root/src/web/lib/getCommentContext';
 import { FocusStyleManager } from '@guardian/src-foundations/utils';
 
+import { AB } from '@frontend/web/lib/AB';
+
 // *******************************
 // ****** Dynamic imports ********
 // *******************************
@@ -192,6 +194,60 @@ export const App = ({ CAPI, NAV }: Props) => {
         setHashCommentId(commentId);
         return false;
     };
+
+    const DummyTest = {
+        id: 'DummyTest',
+        start: '2020-04-07',
+        expiry: '2020-09-01',
+        author: 'Mahesh Makani',
+        description:
+            'Test adding a sign in component on the 2nd pageview of simple article templates, with higher priority over banners and epic, and a much larget audience size. This test does not display a gate, and only used for tracking users who meet our displayer criteria.',
+        audience: 1,
+        audienceOffset: 0,
+        successMeasure: 'Users sign in or create a Guardian account',
+        audienceCriteria:
+            'The contributions epic is not shown, The consent banner is not shown, The contributions banner is not shown, Should only appear on simple article template, Should not show if they are already signed in, Users will not need to go through the marketing consents as part of signup flow',
+        dataLinkNames: 'SignInGateQuartus',
+        idealOutcome: '60% of users sign in, and dismiss rate is below 40%',
+        showForSensitive: false,
+        canRun: () => true,
+        variants: [
+            {
+                id: 'example',
+                test: (): void => {},
+            },
+            {
+                id: 'control',
+                test: (): void => {},
+            },
+        ],
+    };
+
+    const concurrentTests = [DummyTest];
+
+    useEffect(() => {
+        const getSynchronousTestsToRun = () =>
+            AB().core.allRunnableTests(concurrentTests);
+
+        // This excludes epic & banner tests
+        const isInVariantSynchronous = (
+            test: any,
+            variantId: string,
+        ): boolean =>
+            getSynchronousTestsToRun().some(
+                (t: { id: any; variantToRun: { id: string } }) =>
+                    t.id === test.id && t.variantToRun.id === variantId,
+            );
+
+        console.log(
+            'User is in example variant:',
+            isInVariantSynchronous(DummyTest, 'example'),
+        );
+        console.log(
+            'User is in control variant:',
+            isInVariantSynchronous(DummyTest, 'control'),
+        );
+    }, []);
 
     return (
         // Do you need to Hydrate or do you want a Portal?
