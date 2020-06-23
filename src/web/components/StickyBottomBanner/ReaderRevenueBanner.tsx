@@ -115,7 +115,7 @@ const MemoisedInner = ({
             });
         };
 
-        getBanner(bannerPayload, `${contributionsServiceUrl}/banner`)
+        getBanner(bannerPayload, `http://localhost:8082/banner`)
             .then(checkForErrors)
             .then(response => response.json())
             .then(json => {

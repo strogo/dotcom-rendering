@@ -37,7 +37,7 @@ export const StickyBottomBanner = ({
     }
 
     // Temporary flag to toggle RR banner while it is in development
-    const showRRBanner = false;
+    const showRRBanner = true;
 
     return (
         <>
