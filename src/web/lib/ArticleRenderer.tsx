@@ -17,6 +17,7 @@ import { VimeoBlockComponent } from '@root/src/web/components/elements/VimeoBloc
 import { YoutubeBlockComponent } from '@root/src/web/components/elements/YoutubeBlockComponent';
 
 import { ExplainerAtom } from '@guardian/atoms-rendering';
+import { Display } from '@root/src/lib/display';
 
 // This is required for spacefinder to work!
 const commercialPosition = css`

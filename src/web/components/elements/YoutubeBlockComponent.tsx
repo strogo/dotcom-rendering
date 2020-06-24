@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Caption } from '@root/src/web/components/Caption';
 import { YouTubeEmbed } from '@root/src/web/components/YouTubeEmbed';
+import { Display } from '@root/src/lib/display';
 
 type Props = {
     display: Display;
