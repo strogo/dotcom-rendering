@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import fetchMock from 'fetch-mock';
 
-import { data } from '@root/fixtures/article';
+import { makeGuardianBrowserCAPI } from '@root/src/model/window-guardian';
+import { iabVendorList } from '@root/fixtures/CMP/iabVendorList';
+import { Article } from '@root/fixtures/articles/Article';
 
+import { NAV } from '@root/fixtures/NAV';
+
+import { HydrateApp } from '@root/src/web/components/HydrateApp';
+import { mockRESTCalls } from '@root/src/web/lib/mockRESTCalls';
+import { DecideLayout } from '@root/src/web/layouts/DecideLayout';
 import { SignInGate } from './SignInGate';
 
 export default {
@@ -13,17 +20,52 @@ export default {
     },
 };
 
-export const inDefaultArticle = () => {
-    fetchMock.restore().getOnce('*', {
-        status: 200,
-        body: data,
-    });
+export const standalone = () => {
+    fetchMock
+        .restore()
+        .getOnce('https://vendorlist.consensu.org/vendorlist.json', {
+            status: 200,
+            body: iabVendorList,
+        });
 
     return (
-        <SignInGate
-            guUrl="https://gu.com/"
-            signInUrl="https://profile.theguardian.com/"
-        />
+        <div>
+            <SignInGate
+                guUrl="https://theguardian.com/"
+                signInUrl="https://profile.theguardian.com/"
+            />
+        </div>
     );
 };
-inDefaultArticle.story = { name: 'in default article' };
+standalone.story = { name: 'standalone' };
+
+mockRESTCalls();
+
+const convertToStandard = (CAPI: CAPIType) => {
+    return {
+        ...CAPI,
+        pageType: {
+            ...CAPI.pageType,
+            hasShowcaseMainElement: false,
+        },
+        isImmersive: false,
+    };
+};
+
+// HydratedLayout is used here to simulated the hydration that happens after we init react on
+// the client. We need a separate component so that we can make use of useEffect to ensure
+// the hydrate step only runs once the dom has been rendered.
+const HydratedLayout = ({ ServerCAPI }: { ServerCAPI: CAPIType }) => {
+    useEffect(() => {
+        const CAPI = makeGuardianBrowserCAPI(ServerCAPI);
+        HydrateApp({ CAPI, NAV });
+    }, [ServerCAPI]);
+    return <DecideLayout CAPI={ServerCAPI} NAV={NAV} />;
+};
+
+export const ArticleStory = () => {
+    const ServerCAPI = convertToStandard(Article);
+    return <HydratedLayout ServerCAPI={ServerCAPI} />;
+};
+
+ArticleStory.story = { name: 'in default article' };

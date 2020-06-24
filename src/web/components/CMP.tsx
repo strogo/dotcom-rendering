@@ -2,6 +2,12 @@ import React, { useState, useEffect, Suspense } from 'react';
 
 import { initPerf } from '@root/src/web/browser/initPerf';
 
+interface Props {
+    forceShow: boolean;
+    forceModal: boolean;
+    onClose: () => void;
+}
+
 const ConsentManagementPlatform = React.lazy(() => {
     const { start, end } = initPerf('ConsentManagementPlatform');
     start();
@@ -13,8 +19,10 @@ const ConsentManagementPlatform = React.lazy(() => {
     });
 });
 
-export const CMP = () => {
-    const [show, setShow] = useState(false);
+// note there are defaultProps set for CMP below this
+
+export const CMP = ({ forceShow, forceModal, onClose }: Props) => {
+    const [show, setShow] = useState(forceShow);
 
     useEffect(() => {
         const { start, end } = initPerf(
@@ -25,7 +33,7 @@ export const CMP = () => {
             /* webpackChunkName: "consent-management-platform-utilities" */ '@guardian/consent-management-platform'
         ).then(({ shouldShow, setErrorHandler }) => {
             end();
-            if (shouldShow()) {
+            if (shouldShow() || show) {
                 setShow(true);
 
                 // setErrorHandler takes function to be called on errors in the CMP UI
@@ -44,10 +52,20 @@ export const CMP = () => {
                 <Suspense fallback={<></>}>
                     <ConsentManagementPlatform
                         source="dcr"
-                        onClose={() => setShow(false)}
+                        forceModal={forceModal}
+                        onClose={() => {
+                            setShow(false);
+                            onClose();
+                        }}
                     />
                 </Suspense>
             )}
         </>
     );
+};
+
+CMP.defaultProps = {
+    forceShow: false,
+    forceModal: false,
+    onClose: () => {},
 };
