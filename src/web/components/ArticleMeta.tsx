@@ -1,11 +1,12 @@
 import React from 'react';
 import { css, cx } from 'emotion';
 import { border } from '@guardian/src-foundations/palette';
-import { between, until } from '@guardian/src-foundations/mq';
+import { between, from, until } from '@guardian/src-foundations/mq';
 import { Contributor } from '@root/src/web/components/Contributor';
 import { Avatar } from '@root/src/web/components/Avatar';
 
 import { getSharingUrls } from '@root/src/lib/sharing-urls';
+import { Branding } from '@root/src/web/components/Branding';
 import { SharingIcons } from './ShareIcons';
 import { Dateline } from './Dateline';
 
@@ -18,6 +19,7 @@ type Props = {
     author: AuthorType;
     tags: TagType[];
     webPublicationDateDisplay: string;
+    branding?: Branding;
 };
 
 const meta = css`
@@ -70,16 +72,63 @@ const metaNumbers = css`
     }
 `;
 
-const metaContainer = css`
-    ${until.phablet} {
-        margin-left: -20px;
-        margin-right: -20px;
+const metaContainer = ({
+    display,
+    designType,
+}: {
+    display: Display;
+    designType: DesignType;
+}) => {
+    switch (display) {
+        case 'immersive':
+        case 'showcase':
+        case 'standard': {
+            switch (designType) {
+                case 'PhotoEssay':
+                    return css`
+                        ${until.phablet} {
+                            margin-left: -20px;
+                            margin-right: -20px;
+                        }
+                        ${until.mobileLandscape} {
+                            margin-left: -10px;
+                            margin-right: -10px;
+                        }
+                        ${from.wide} {
+                            margin-left: 40px;
+                        }
+                    `;
+                case 'Feature':
+                case 'Review':
+                case 'Recipe':
+                case 'Interview':
+                case 'Live':
+                case 'Media':
+                case 'Analysis':
+                case 'Article':
+                case 'SpecialReport':
+                case 'MatchReport':
+                case 'GuardianView':
+                case 'GuardianLabs':
+                case 'Quiz':
+                case 'AdvertisementFeature':
+                case 'Comment':
+                case 'Immersive':
+                default:
+                    return css`
+                        ${until.phablet} {
+                            margin-left: -20px;
+                            margin-right: -20px;
+                        }
+                        ${until.mobileLandscape} {
+                            margin-left: -10px;
+                            margin-right: -10px;
+                        }
+                    `;
+            }
+        }
     }
-    ${until.mobileLandscape} {
-        margin-left: -10px;
-        margin-right: -10px;
-    }
-`;
+};
 
 const getBylineImageUrl = (tags: TagType[]) => {
     const contributorTag = tags.find(tag => tag.type === 'Contributor');
@@ -92,60 +141,66 @@ const getAuthorName = (tags: TagType[]) => {
 };
 
 const shouldShowAvatar = (designType: DesignType, display: Display) => {
-    if (display === 'immersive') {
-        return false;
-    }
-
-    switch (designType) {
-        case 'Feature':
-        case 'Review':
-        case 'Recipe':
-        case 'Interview':
-            return true;
-        case 'Live':
-        case 'Media':
-        case 'PhotoEssay':
-        case 'Analysis':
-        case 'Article':
-        case 'SpecialReport':
-        case 'MatchReport':
-        case 'GuardianView':
-        case 'GuardianLabs':
-        case 'Quiz':
-        case 'AdvertisementFeature':
-        case 'Comment':
-        case 'Immersive':
-        default:
+    switch (display) {
+        case 'immersive':
             return false;
+        case 'showcase':
+        case 'standard': {
+            switch (designType) {
+                case 'Feature':
+                case 'Review':
+                case 'Recipe':
+                case 'Interview':
+                    return true;
+                case 'Live':
+                case 'Media':
+                case 'PhotoEssay':
+                case 'Analysis':
+                case 'Article':
+                case 'SpecialReport':
+                case 'MatchReport':
+                case 'GuardianView':
+                case 'GuardianLabs':
+                case 'Quiz':
+                case 'AdvertisementFeature':
+                case 'Comment':
+                case 'Immersive':
+                default:
+                    return false;
+            }
+        }
     }
 };
 
 const shouldShowContributor = (designType: DesignType, display: Display) => {
-    if (display === 'immersive') {
-        return false;
-    }
-
-    switch (designType) {
-        case 'Comment':
-        case 'GuardianView':
+    switch (display) {
+        case 'immersive':
             return false;
-        case 'Feature':
-        case 'Review':
-        case 'Live':
-        case 'Media':
-        case 'PhotoEssay':
-        case 'Interview':
-        case 'Analysis':
-        case 'Article':
-        case 'SpecialReport':
-        case 'Recipe':
-        case 'MatchReport':
-        case 'GuardianLabs':
-        case 'Quiz':
-        case 'AdvertisementFeature':
-        case 'Immersive':
-        default:
-            return true;
+        case 'showcase':
+        case 'standard': {
+            switch (designType) {
+                case 'Comment':
+                case 'GuardianView':
+                    return false;
+                case 'Feature':
+                case 'Review':
+                case 'Live':
+                case 'Media':
+                case 'PhotoEssay':
+                case 'Interview':
+                case 'Analysis':
+                case 'Article':
+                case 'SpecialReport':
+                case 'Recipe':
+                case 'MatchReport':
+                case 'GuardianLabs':
+                case 'Quiz':
+                case 'AdvertisementFeature':
+                case 'Immersive':
+                default:
+                    return true;
+            }
+        }
     }
 };
 
@@ -197,6 +252,7 @@ const RowBelowLeftCol = ({
 );
 
 export const ArticleMeta = ({
+    branding,
     display,
     designType,
     pillar,
@@ -215,10 +271,10 @@ export const ArticleMeta = ({
 
     const showAvatar =
         onlyOneContributor && shouldShowAvatar(designType, display);
-
     return (
-        <div className={metaContainer}>
+        <div className={metaContainer({ display, designType })}>
             <div className={cx(meta)}>
+                {branding && <Branding branding={branding} pillar={pillar} />}
                 <RowBelowLeftCol>
                     <>
                         {showAvatar && bylineImageUrl && (

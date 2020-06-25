@@ -33,6 +33,12 @@ interface BlockquoteBlockElement {
     html: string;
 }
 
+interface ChartAtomBlockElement {
+    _type: 'model.dotcomrendering.pageElements.ChartAtomBlockElement';
+    id: string;
+    url: string;
+}
+
 interface CodeBlockElement {
     _type: 'model.dotcomrendering.pageElements.CodeBlockElement';
     isMandatory: boolean;
@@ -82,8 +88,8 @@ interface ExplainerAtomBlockElement {
     body: string;
 }
 
-interface GuideBlockElement {
-    _type: 'model.dotcomrendering.pageElements.GuideBlockElement';
+interface GuideAtomBlockElement {
+    _type: 'model.dotcomrendering.pageElements.GuideAtomBlockElement';
     id: string;
     label: string;
     title: string;
@@ -110,6 +116,7 @@ interface ImageBlockElement {
     imageSources: ImageSource[];
     displayCredit?: boolean;
     role: RoleType;
+    title?: string;
 }
 
 interface InstagramBlockElement {
@@ -134,8 +141,8 @@ interface MultiImageBlockElement {
     caption?: string;
 }
 
-interface ProfileBlockElement {
-    _type: 'model.dotcomrendering.pageElements.ProfileBlockElement';
+interface ProfileAtomBlockElement {
+    _type: 'model.dotcomrendering.pageElements.ProfileAtomBlockElement';
     id: string;
     label: string;
     title: string;
@@ -185,6 +192,7 @@ interface SubheadingBlockElement {
 interface TableBlockElement {
     _type: 'model.dotcomrendering.pageElements.TableBlockElement';
     isMandatory: boolean;
+    html: string;
 }
 
 interface TextBlockElement {
@@ -226,7 +234,9 @@ interface VideoVimeoBlockElement {
     url: string;
     height: number;
     width: number;
-    caption: string;
+    caption?: string;
+    credit?: string;
+    title?: string;
 }
 
 interface VideoYoutubeBlockElement {
@@ -249,12 +259,25 @@ interface YoutubeBlockElement {
     width?: string;
 }
 
+interface CalloutBlockElement {
+    _type: 'model.dotcomrendering.pageElements.CalloutBlockElement';
+    id: string;
+    activeFrom: number;
+    displayOnSensitive: boolean;
+    formId: number;
+    title: string;
+    description: string;
+    tagName: string;
+    formFields: CampaignFieldType[];
+}
+
 type CAPIElement =
     | AtomEmbedMarkupBlockElement
     | AtomEmbedUrlBlockElement
     | AudioAtomElement
     | AudioBlockElement
     | BlockquoteBlockElement
+    | ChartAtomBlockElement
     | CodeBlockElement
     | CommentBlockElement
     | ContentAtomBlockElement
@@ -263,13 +286,13 @@ type CAPIElement =
     | DocumentBlockElement
     | EmbedBlockElement
     | ExplainerAtomBlockElement
-    | GuideBlockElement
+    | GuideAtomBlockElement
     | GuVideoBlockElement
     | ImageBlockElement
     | InstagramBlockElement
     | MapBlockElement
     | MultiImageBlockElement
-    | ProfileBlockElement
+    | ProfileAtomBlockElement
     | PullquoteBlockElement
     | QABlockElement
     | RichLinkBlockElement
@@ -344,4 +367,62 @@ interface TimelineEvent {
 
 interface Switches {
     [key: string]: boolean;
+}
+
+// -------------------------------------
+// Callout Campaign
+// -------------------------------------
+
+type CampaignFieldType =
+    | CampaignFieldText
+    | CampaignFieldTextArea
+    | CampaignFieldFile
+    | CampaignFieldRadio
+    | CampaignFieldCheckbox
+    | CampaignFieldSelect;
+
+interface CampaignField {
+    id: number;
+    name: string;
+    description?: string;
+    required: boolean;
+    textSize?: number;
+    hideLabel: boolean;
+    label: string;
+}
+
+interface CampaignFieldText extends CampaignField {
+    type: 'textarea';
+}
+
+interface CampaignFieldTextArea extends CampaignField {
+    type: 'text';
+}
+
+interface CampaignFieldFile extends CampaignField {
+    type: 'file';
+}
+
+interface CampaignFieldRadio extends CampaignField {
+    type: 'radio';
+    options: {
+        label: string;
+        value: string;
+    }[];
+}
+
+interface CampaignFieldCheckbox extends CampaignField {
+    type: 'checkbox';
+    options: {
+        label: string;
+        value: string;
+    }[];
+}
+
+interface CampaignFieldSelect extends CampaignField {
+    type: 'select';
+    options: {
+        label: string;
+        value: string;
+    }[];
 }

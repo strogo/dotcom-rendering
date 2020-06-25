@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { css, cx } from 'emotion';
 
-import { CMP } from '@frontend/web/components/CMP';
+import { CMP } from '@frontend/web/components/StickyBottomBanner/CMP';
 
 import { headline, textSans } from '@guardian/src-foundations/typography';
 import { from } from '@guardian/src-foundations/mq';

@@ -8,33 +8,13 @@ import { textSans } from '@guardian/src-foundations/typography';
 import { from } from '@guardian/src-foundations/mq';
 
 import { DropdownLinkType, Dropdown } from '@root/src/web/components/Dropdown';
+
 import ProfileIcon from '@frontend/static/icons/profile.svg';
+import { getZIndex } from '@frontend/web/lib/getZIndex';
 
 type Props = {
     userId?: string;
 };
-
-const search = css`
-    :after {
-        content: '';
-        display: inline-block;
-        width: 5px;
-        height: 5px;
-        transform: translateY(-2px) rotate(45deg);
-        border-width: 1px;
-        border-style: solid;
-        border-color: currentColor;
-        border-left: none;
-        border-top: none;
-        margin-left: 5px;
-        vertical-align: middle;
-        backface-visibility: hidden;
-        transition: transform 250ms ease-out;
-    }
-    :hover:after {
-        transform: translateY(0) rotate(45deg);
-    }
-`;
 
 const linkStyles = css`
     ${textSans.medium()};
@@ -110,11 +90,7 @@ const Search = ({
     dataLinkName: string;
     children: JSXElements;
 }) => (
-    <a
-        href={href}
-        className={cx(search, className)}
-        data-link-name={dataLinkName}
-    >
+    <a href={href} className={className} data-link-name={dataLinkName}>
         {children}
     </a>
 );
@@ -140,44 +116,41 @@ const linksStyles = css`
     ${from.wide} {
         right: 342px;
     }
+
+    ${getZIndex('headerLinks')}
 `;
 
 export const Links = ({ userId }: Props) => {
     const identityLinks: DropdownLinkType[] = [
         {
-            url: `https://profile.theguardian.com/user/id/${userId}`,
-            title: 'Comments and replies',
-            dataLinkName: 'nav2 : topbar : comment activity',
+            url: `https://manage.theguardian.com/`,
+            title: 'Account overview',
+            dataLinkName: 'nav2 : topbar : account overview',
         },
         {
-            url: `https://profile.theguardian.com/public/edit`,
-            title: 'Public profile',
+            url: `https://manage.theguardian.com/public-settings`,
+            title: 'Profile',
             dataLinkName: 'nav2 : topbar : edit profile',
         },
         {
-            url: `https://profile.theguardian.com/account/edit`,
-            title: 'Account details',
-            dataLinkName: 'nav2 : topbar : account details',
-        },
-        {
-            url: `https://profile.theguardian.com/email-prefs`,
-            title: 'Emails and marketing',
+            url: `https://manage.theguardian.com/email-prefs`,
+            title: 'Emails & marketing',
             dataLinkName: 'nav2 : topbar : email prefs',
         },
         {
-            url: `https://profile.theguardian.com/membership/edit`,
-            title: 'Membership',
-            dataLinkName: 'nav2 : topbar : membership',
+            url: `https://manage.theguardian.com/account-settings`,
+            title: 'Settings',
+            dataLinkName: 'nav2 : topbar : settings',
         },
         {
-            url: `https://profile.theguardian.com/contribution/recurring/edit`,
-            title: 'Contributions',
-            dataLinkName: 'nav2 : topbar : contributions',
+            url: `https://manage.theguardian.com/help`,
+            title: 'Help',
+            dataLinkName: 'nav2 : topbar : help',
         },
         {
-            url: `https://profile.theguardian.com/digitalpack/edit`,
-            title: 'Digital pack',
-            dataLinkName: 'nav2 : topbar : subscriptions',
+            url: `https://profile.theguardian.com/user/id/${userId}`,
+            title: 'Comments & replies',
+            dataLinkName: 'nav2 : topbar : comment activity',
         },
         {
             url: `https://profile.theguardian.com/signout`,

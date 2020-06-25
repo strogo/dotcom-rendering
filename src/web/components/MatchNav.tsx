@@ -4,15 +4,9 @@ import { css } from 'emotion';
 import { brandYellow, background } from '@guardian/src-foundations/palette';
 import { headline, textSans } from '@guardian/src-foundations/typography';
 import { space } from '@guardian/src-foundations';
+import { until } from '@guardian/src-foundations/mq';
 
 import { Score } from '@frontend/web/components/Score';
-
-type TeamType = {
-    name: string;
-    score: number;
-    crest: string;
-    scorers: string[];
-};
 
 type Props = {
     homeTeam: TeamType;
@@ -31,11 +25,41 @@ const Row = ({ children }: { children: React.ReactNode }) => (
     </div>
 );
 
-const Container = ({ children }: { children: React.ReactNode }) => (
+const CrestRow = ({ children }: { children: React.ReactNode }) => (
     <div
         className={css`
-            background-color: ${brandYellow.main};
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+        `}
+    >
+        {children}
+    </div>
+);
+
+const StretchBackground = ({ children }: { children: React.ReactNode }) => (
+    <div
+        className={css`
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
             padding: ${space[2]}px;
+            background-color: ${brandYellow.main};
+
+            :before {
+                content: '';
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 100vw;
+                left: -100vw;
+                ${until.desktop} {
+                    left: calc((100vw - 46rem) / -2);
+                }
+                background-color: ${brandYellow.main};
+                z-index: -1;
+            }
         `}
     >
         {children}
@@ -130,11 +154,17 @@ const TeamNav = ({
         `}
     >
         <Column>
-            <div>
+            <div
+                className={css`
+                    display: flex;
+                    flex-direction: column;
+                    flex-grow: 1;
+                `}
+            >
                 <TeamName name={name} />
                 <Scorers scorers={scorers} />
             </div>
-            <Row>
+            <CrestRow>
                 <Crest crest={crest} />
                 <div
                     className={css`
@@ -143,7 +173,7 @@ const TeamNav = ({
                 >
                     <Score score={score} />
                 </div>
-            </Row>
+            </CrestRow>
         </Column>
     </div>
 );
@@ -175,7 +205,7 @@ const Border = () => (
 );
 
 export const MatchNav = ({ homeTeam, awayTeam, comments }: Props) => (
-    <Container>
+    <StretchBackground>
         <Row>
             <TeamNav
                 name={homeTeam.name}
@@ -192,5 +222,5 @@ export const MatchNav = ({ homeTeam, awayTeam, comments }: Props) => (
             />
         </Row>
         {comments && <Comments comments={comments} />}
-    </Container>
+    </StretchBackground>
 );

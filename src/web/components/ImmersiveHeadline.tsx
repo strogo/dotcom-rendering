@@ -115,6 +115,7 @@ export const ImmersiveHeadline = ({
                     <LeftColumn showRightBorder={false}>
                         <Caption
                             display={display}
+                            designType={designType}
                             captionText={captionText}
                             pillar={pillar}
                             shouldLimitWidth={true}
@@ -123,6 +124,7 @@ export const ImmersiveHeadline = ({
                     <PositionHeadline>
                         <ArticleTitle
                             display={display}
+                            designType={designType}
                             tags={tags}
                             sectionLabel={sectionLabel}
                             sectionUrl={sectionUrl}

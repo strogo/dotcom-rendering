@@ -2,8 +2,8 @@ import resetCSS from /* preval */ '@root/src/lib/reset-css';
 import { getFontsCss } from '@root/src/lib/fonts-css';
 import { getStatic, CDN } from '@root/src/lib/assets';
 import { prepareCmpString } from '@root/src/web/browser/prepareCmp';
-
 import { brandBackground } from '@guardian/src-foundations/palette';
+import he from 'he';
 
 export const htmlTemplate = ({
     title = 'The Guardian',
@@ -145,7 +145,7 @@ export const htmlTemplate = ({
         <html lang="en">
             <head>
                 <title>${title}</title>
-                <meta name="description" content="${escape(description)}" />
+                <meta name="description" content="${he.encode(description)}" />
                 <meta charset="utf-8">
 
                 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
@@ -205,6 +205,31 @@ export const htmlTemplate = ({
                                 return Math.floor(Math.random() * 36).toString(36);
                             }),
                     };
+                </script>
+
+                <script>
+                    // Set the browserId from the bwid cookie on the ophan object created above
+                    // This will need to be replaced later with an async request to an endpoint
+                    (function (window, document) {
+
+                        function getCookieValue(name) {
+                            var nameEq = name + "=",
+                                cookies = document.cookie.split(';'),
+                                value = null;
+                            cookies.forEach(function (cookie) {
+                                while (cookie.charAt(0) === ' ') {
+                                    cookie = cookie.substring(1, cookie.length);
+                                }
+                                if (cookie.indexOf(nameEq) === 0) {
+                                    value = cookie.substring(nameEq.length, cookie.length);
+                                }
+                            });
+                            return value;
+                        }
+
+                        window.guardian.config.ophan.browserId = getCookieValue("bwid");
+
+                    })(window, document);
                 </script>
 
                 <script>${prepareCmpString}</script>

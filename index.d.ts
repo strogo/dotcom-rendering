@@ -280,6 +280,8 @@ interface CAPIType {
     slotMachineFlags?: string;
 
     pageType: PageTypeType;
+
+    matchUrl?: string;
 }
 
 type CAPIBrowserType = {
@@ -312,6 +314,7 @@ type CAPIBrowserType = {
         discussionD2Uid: string;
         discussionApiClientHeader: string;
         dcrSentryDsn: string;
+        remoteBanner: boolean;
     };
     richLinks: RichLinkBlockElement[];
     editionId: Edition;
@@ -340,6 +343,7 @@ type CAPIBrowserType = {
     contributionsServiceUrl: string;
     isImmersive: boolean;
     isPhotoEssay: boolean;
+    matchUrl?: string;
 };
 
 interface TagType {
@@ -464,6 +468,40 @@ type UserProfile = {
 };
 
 /**
+ * Football
+ */
+type TeamType = {
+    id: string;
+    name: string;
+    players: PlayerType[];
+    possession: number;
+    shotsOn: number;
+    shotsOff: number;
+    corners: number;
+    fouls: number;
+    colours: string;
+    score: number;
+    crest: string;
+    scorers: string[];
+};
+
+type PlayerType = {
+    id: string;
+    name: string;
+    position: string;
+    lastName: string;
+    substitute: boolean;
+    timeOnPitch: string;
+    shirtNumber: string;
+    events: EventType[];
+};
+
+type EventType = {
+    eventTime: string; // minutes
+    eventType: 'substitution' | 'dismissal' | 'booking';
+};
+
+/**
  * Onwards
  */
 type OnwardsType = {
@@ -493,6 +531,7 @@ interface CommercialConfigType {
     section?: string;
     edition?: string;
     series?: string;
+    toneIds?: string;
     contentType: string;
     ampIframeUrl: string;
 }
@@ -534,6 +573,7 @@ interface ConfigType extends CommercialConfigType {
     discussionD2Uid: string;
     discussionApiClientHeader: string;
     isPhotoEssay: boolean;
+    references?: { [key: string]: string }[];
 }
 
 interface GADataType {
@@ -589,15 +629,17 @@ type IslandType =
     | 'most-viewed-footer'
     | 'reader-revenue-links-footer'
     | 'slot-body-end'
-    | 'cmp'
+    | 'bottom-banner'
     | 'onwards-upper-whensignedin'
     | 'onwards-upper-whensignedout'
     | 'onwards-lower-whensignedin'
     | 'onwards-lower-whensignedout'
     | 'rich-link'
     | 'links-root'
-    | 'comments'
-    | 'signingate';
+    | 'match-nav'
+    | 'match-stats'
+    | 'signingate'
+    | 'comments';
 
 interface TrailType {
     designType: DesignType;
@@ -675,6 +717,10 @@ declare module 'minify-css-string' {
 }
 declare module 'storybook-chromatic/isChromatic';
 /* eslint-enable @typescript-eslint/no-explicit-any */
+
+declare module 'dynamic-import-polyfill' {
+    export const initialize: any;
+}
 
 // ------------------------------------- //
 // AMP types                             //

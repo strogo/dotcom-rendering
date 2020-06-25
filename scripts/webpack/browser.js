@@ -44,6 +44,7 @@ module.exports = ({ isLegacyJS }) => ({
         ophan: scriptPath('ophan'),
         react: scriptPath('react'),
         lotame: scriptPath('lotame'),
+        dynamicImport: scriptPath('dynamicImport'),
     },
     output: {
         filename: generateName(isLegacyJS),
@@ -71,14 +72,13 @@ module.exports = ({ isLegacyJS }) => ({
     module: {
         rules: [
             {
-                test: /(\.tsx)|(\.js)|(\.ts)$/,
-                exclude: /node_modules\/(?!(@guardian\/discussion-rendering)\/).*/,
+                test: /(\.tsx)|(\.js)|(\.ts)|(\.mjs)$/,
+                exclude: /node_modules\/(?!(@guardian\/discussion-rendering)|(dynamic-import-polyfill))\/.*/,
                 use: [
                     {
                         loader: 'babel-loader',
                         options: {
                             presets: [
-                                '@babel/preset-typescript',
                                 '@babel/preset-react',
                                 // @babel/preset-env is used for legacy browsers
                                 // @babel/preset-modules is used for modern browsers
@@ -97,6 +97,10 @@ module.exports = ({ isLegacyJS }) => ({
                             ],
                         },
                     },
+                    {
+                        loader: 'ts-loader',
+                        options: { configFile: 'tsconfig.build.json', transpileOnly: true },
+                    }
                 ],
             },
             {

@@ -57,6 +57,8 @@ export const Elements = (
                         pillar={pillar}
                     />
                 );
+            case 'model.dotcomrendering.pageElements.ChartAtomBlockElement':
+                return <AtomEmbedUrlBlockComponent url={element.url} />;
             case 'model.dotcomrendering.pageElements.CommentBlockElement':
                 return <CommentBlockComponent key={i} element={element} />;
             case 'model.dotcomrendering.pageElements.ContentAtomBlockElement':
@@ -71,7 +73,7 @@ export const Elements = (
                 );
             case 'model.dotcomrendering.pageElements.EmbedBlockElement':
                 return <EmbedBlockComponent key={i} element={element} />;
-            case 'model.dotcomrendering.pageElements.GuideBlockElement':
+            case 'model.dotcomrendering.pageElements.GuideAtomBlockElement':
                 return (
                     <Expandable
                         id={element.id}
@@ -109,7 +111,7 @@ export const Elements = (
                         pillar={pillar}
                     />
                 );
-            case 'model.dotcomrendering.pageElements.ProfileBlockElement':
+            case 'model.dotcomrendering.pageElements.ProfileAtomBlockElement':
                 return (
                     <Expandable
                         id={element.id}
