@@ -61,7 +61,7 @@ export const document = ({ data }: Props) => {
      */
     const priorityScripts = [
         polyfillIO,
-        CAPI.config && CAPI.config.commercialBundleUrl,
+        CAPI.config && CAPI.config.commercialBundlesUrls.javascripts,
     ];
     const priorityLegacyScripts = [
         getDist({ path: 'sentry.js', legacy: true }),

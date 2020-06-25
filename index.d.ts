@@ -554,7 +554,7 @@ interface ConfigType extends CommercialConfigType {
     switches: { [key: string]: boolean };
     abTests: { [key: string]: string };
     dfpAccountId: string;
-    commercialBundleUrl: string;
+    commercialBundlesUrls: { [key: string]: string };
     revisionNumber: string;
     shortUrlId: string;
     isDev?: boolean;

@@ -2841,8 +2841,10 @@ export const CAPI: CAPIType = modifyDCRJsonResponse({
         contributorBio: '',
         pageCode: '3275216',
         pillar: 'Lifestyle',
-        commercialBundleUrl:
-            'https://assets.guim.co.uk/javascripts/cb04b59461a2e131f0cf/graun.dotcom-rendering-commercial.js',
+        commercialBundlesUrls: {
+            stylesheets:
+                'https://assets.guim.co.uk/javascripts/cb04b59461a2e131f0cf/graun.dotcom-rendering-commercial.js',
+        },
         discussionApiClientHeader: 'nextgen',
         membershipUrl: 'https://membership.theguardian.com',
         cardStyle: 'news',
