@@ -30,6 +30,9 @@
                         "$ref": "#/definitions/BlockquoteBlockElement"
                     },
                     {
+                        "$ref": "#/definitions/CaptionBlockElement"
+                    },
+                    {
                         "$ref": "#/definitions/ChartAtomBlockElement"
                     },
                     {
@@ -478,6 +481,91 @@
                 "html"
             ]
         },
+        "CaptionBlockElement": {
+            "type": "object",
+            "properties": {
+                "_type": {
+                    "type": "string",
+                    "enum": [
+                        "model.dotcomrendering.pageElements.CaptionBlockElement"
+                    ]
+                },
+                "display": {
+                    "$ref": "#/definitions/Display"
+                },
+                "designType": {
+                    "$ref": "#/definitions/DesignType"
+                },
+                "captionText": {
+                    "type": "string"
+                },
+                "pillar": {
+                    "$ref": "#/definitions/Pillar"
+                },
+                "padCaption": {
+                    "type": "boolean"
+                },
+                "credit": {
+                    "type": "string"
+                },
+                "displayCredit": {
+                    "type": "boolean"
+                },
+                "shouldLimitWidth": {
+                    "type": "boolean"
+                },
+                "isOverlayed": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "_type",
+                "designType",
+                "display",
+                "pillar"
+            ]
+        },
+        "Display": {
+            "type": "number",
+            "enum": [
+                0,
+                1,
+                2
+            ]
+        },
+        "DesignType": {
+            "enum": [
+                "AdvertisementFeature",
+                "Analysis",
+                "Article",
+                "Comment",
+                "Feature",
+                "GuardianLabs",
+                "GuardianView",
+                "Immersive",
+                "Interview",
+                "Live",
+                "MatchReport",
+                "Media",
+                "PhotoEssay",
+                "Quiz",
+                "Recipe",
+                "Review",
+                "SpecialReport"
+            ],
+            "type": "string"
+        },
+        "Pillar": {
+            "enum": [
+                "culture",
+                "labs",
+                "lifestyle",
+                "news",
+                "opinion",
+                "sport"
+            ],
+            "type": "string"
+        },
         "ChartAtomBlockElement": {
             "type": "object",
             "properties": {
@@ -824,6 +912,9 @@
                 },
                 "role": {
                     "$ref": "#/definitions/RoleType"
+                },
+                "title": {
+                    "type": "string"
                 }
             },
             "required": [
@@ -1496,6 +1587,9 @@
                                 "$ref": "#/definitions/BlockquoteBlockElement"
                             },
                             {
+                                "$ref": "#/definitions/CaptionBlockElement"
+                            },
+                            {
                                 "$ref": "#/definitions/ChartAtomBlockElement"
                             },
                             {
@@ -1696,17 +1790,6 @@
                 "type"
             ]
         },
-        "Pillar": {
-            "enum": [
-                "culture",
-                "labs",
-                "lifestyle",
-                "news",
-                "opinion",
-                "sport"
-            ],
-            "type": "string"
-        },
         "SimpleLinkType": {
             "type": "object",
             "properties": {
@@ -1897,28 +1980,6 @@
                 "switches",
                 "videoDuration"
             ]
-        },
-        "DesignType": {
-            "enum": [
-                "AdvertisementFeature",
-                "Analysis",
-                "Article",
-                "Comment",
-                "Feature",
-                "GuardianLabs",
-                "GuardianView",
-                "Immersive",
-                "Interview",
-                "Live",
-                "MatchReport",
-                "Media",
-                "PhotoEssay",
-                "Quiz",
-                "Recipe",
-                "Review",
-                "SpecialReport"
-            ],
-            "type": "string"
         },
         "CommercialProperties": {
             "type": "object",

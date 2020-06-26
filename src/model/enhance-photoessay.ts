@@ -1,5 +1,7 @@
 import { JSDOM } from 'jsdom';
 
+// import { Display } from '@root/src/lib/display';
+
 const getCaption = (element?: TextBlockElement): string => {
     if (!element) return '';
     // An essay caption: <ul><li><Caption text</li></ul>
@@ -161,6 +163,19 @@ const enhanceImages = (elements: CAPIElement[]): CAPIElement[] => {
                     // If this text block isn't a caption and there are no images
                     // in the buffer, pass it through
                     enhanced.push(element);
+                    break;
+                }
+
+                if (buffer.length === 0 && getCaption(element)) {
+                    // If there are no images in the buffer but this is a caption
+                    // then just add a standalone CaptionBlockElement
+                    // enhanced.push({
+                    //     _type: 'model.dotcomrendering.pageElements.CaptionBlockElement',
+                    //     display: Display.Immersive,
+                    //     designType: 'PhotoEssay',
+                    //     pillar: 'news',
+                    //     captionText: getCaption(element),
+                    // });
                     break;
                 }
 
