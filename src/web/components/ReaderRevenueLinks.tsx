@@ -137,12 +137,80 @@ export const ReaderRevenueLinks: React.FC<Props> = ({
         false,
     );
 
+    const myEdition = 'AU'
+
     useEffect(() => {
         // Is paying member?
         setIsPayingMember(getCookie('gu_paying_member') === 'true');
         // Is recent contributor?
         setIsRecentContributor(decideIfRecentContributor());
     }, []);
+
+
+    const ausMomentLinks = () => {
+        return (
+            <div className={cx(inHeader && paddingStyles)}>
+                <div
+                    className={cx({
+                        [hiddenUntilTablet]: inHeader,
+                    })}
+                >
+                    <div className={messageStyles}>
+                        {!isPayingMember && !isRecentContributor ?
+                            'Welcome back' :
+                            'Support The&nbsp;Guardian'
+                        }
+                    </div>
+                    <div className={subMessageStyles}>
+                        We're funded by readers across Australia
+                    </div>
+                    {!isPayingMember && !isRecentContributor &&
+                        (<>
+                            <a
+                                className={linkStyles}
+                                href={urls.contribute}
+                                data-link-name={`${dataLinkNamePrefix}contribute-cta`}
+                            >
+                                Contribute <ArrowRightIcon/>
+                            </a>
+                            < a
+                                className = {linkStyles}
+                                href={urls.subscribe}
+                                data-link-name={`${dataLinkNamePrefix}subscribe-cta`}
+                                >
+                                Subscribe <ArrowRightIcon />
+                            </a>
+                        </>)
+                    }
+                </div>
+
+                <div
+                    className={cx({
+                        [hiddenFromTablet]: inHeader,
+                        [hidden]: !inHeader,
+                    })}
+                >
+                    {myEdition === 'UK' ? (
+                        <a
+                            className={linkStyles}
+                            href={urls.contribute}
+                            data-link-name={`${dataLinkNamePrefix}contribute-cta`}
+                        >
+                            Contribute <ArrowRightIcon />
+                        </a>
+                    ) : (
+                        <a
+                            className={linkStyles}
+                            href={urls.support}
+                            data-link-name={`${dataLinkNamePrefix}support-cta`}
+                        >
+                            Support us <ArrowRightIcon />
+                        </a>
+                    )}
+                </div>
+            </div>
+        )
+    }
 
     if (!isPayingMember && !isRecentContributor) {
         return (
@@ -180,7 +248,7 @@ export const ReaderRevenueLinks: React.FC<Props> = ({
                         [hidden]: !inHeader,
                     })}
                 >
-                    {edition === 'UK' ? (
+                    {myEdition === 'UK' ? (
                         <a
                             className={linkStyles}
                             href={urls.contribute}
