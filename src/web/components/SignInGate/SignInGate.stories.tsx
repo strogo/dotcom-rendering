@@ -35,6 +35,7 @@ export const standalone = () => {
                 guUrl="https://theguardian.com/"
                 signInUrl="https://profile.theguardian.com/"
                 dismissGate={() => {}}
+                component="test"
             />
             ,
         </div>
