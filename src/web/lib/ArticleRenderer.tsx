@@ -118,15 +118,19 @@ export const ArticleRenderer: React.FC<{
                     return <TableBlockComponent element={element} />;
                 case 'model.dotcomrendering.pageElements.TextBlockElement':
                     return (
-                        <TextBlockComponent
-                            key={i}
-                            isFirstParagraph={i === 0}
-                            html={element.html}
-                            pillar={pillar}
-                            display={display}
-                            designType={designType}
-                            forceDropCap={element.dropCap}
-                        />
+                        <>
+                            <TextBlockComponent
+                                key={i}
+                                isFirstParagraph={i === 0}
+                                html={element.html}
+                                pillar={pillar}
+                                display={display}
+                                designType={designType}
+                                forceDropCap={element.dropCap}
+                            />
+                            {/* Insert the palceholder for the sign in gate on the 2nd paragrah */}
+                            {i === 1 && <span id="sign-in-gate" />}
+                        </>
                     );
                 case 'model.dotcomrendering.pageElements.TweetBlockElement':
                     return <TweetBlockComponent key={i} element={element} />;
@@ -180,7 +184,7 @@ export const ArticleRenderer: React.FC<{
                     return null;
             }
         })
-        .filter(_ => _ != null);
+        .filter((_) => _ != null);
 
     return (
         <div

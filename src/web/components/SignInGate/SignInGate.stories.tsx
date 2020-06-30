@@ -10,10 +10,11 @@ import { NAV } from '@root/fixtures/NAV';
 import { HydrateApp } from '@root/src/web/components/HydrateApp';
 import { mockRESTCalls } from '@root/src/web/lib/mockRESTCalls';
 import { DecideLayout } from '@root/src/web/layouts/DecideLayout';
+import { SignInGateSelector } from './SignInGateSelector';
 import { SignInGate } from './SignInGate';
 
 export default {
-    component: SignInGate,
+    component: SignInGateSelector,
     title: 'Components/SignInGate',
     parameters: {
         chromatic: { diffThreshold: 0.2 },
@@ -33,7 +34,9 @@ export const standalone = () => {
             <SignInGate
                 guUrl="https://theguardian.com/"
                 signInUrl="https://profile.theguardian.com/"
+                dismissGate={() => {}}
             />
+            ,
         </div>
     );
 };

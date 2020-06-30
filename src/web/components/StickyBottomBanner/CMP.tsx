@@ -5,22 +5,10 @@ import {
     setErrorHandler,
 } from '@guardian/consent-management-platform';
 
-interface Props {
-    forceShow: boolean;
-    forceModal: boolean;
-    onClose: () => void;
-}
-
-const defaultProps: Props = {
-    forceShow: false,
-    forceModal: false,
-    onClose: () => {},
-};
-
 export const shouldShow = shouldShow_;
 
-export const CMP = ({ forceShow, forceModal, onClose }: Props) => {
-    const [show, setShow] = useState(forceShow);
+export const CMP = () => {
+    const [show, setShow] = useState(false);
 
     useEffect(() => {
         setShow(true);
@@ -39,16 +27,10 @@ export const CMP = ({ forceShow, forceModal, onClose }: Props) => {
                 <Suspense fallback={<></>}>
                     <ConsentManagementPlatform
                         source="dcr"
-                        forceModal={forceModal}
-                        onClose={() => {
-                            setShow(false);
-                            onClose();
-                        }}
+                        onClose={() => setShow(false)}
                     />
                 </Suspense>
             )}
         </>
     );
 };
-
-CMP.defaultProps = defaultProps;

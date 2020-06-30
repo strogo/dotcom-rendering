@@ -1,17 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import { css, cx } from 'emotion';
-
-import { CMP } from '@frontend/web/components/StickyBottomBanner/CMP';
 
 import { headline, textSans } from '@guardian/src-foundations/typography';
 import { from } from '@guardian/src-foundations/mq';
 import { space, palette } from '@guardian/src-foundations';
 import { LinkButton } from '@guardian/src-button';
 import { Link } from '@guardian/src-link';
+import { ConsentManagementPlatform } from '@guardian/consent-management-platform/dist/ConsentManagementPlatform';
+import { submitClickEventTracking } from './ComponentEventTracking';
+import { OphanComponent } from '../../browser/ophan/ophan';
+
+export type CurrentABTest = {
+    name: string;
+    variant: string;
+};
 
 interface Props {
     signInUrl: string;
     guUrl: string;
+    dismissGate: () => void;
+    component: string;
+    abTest?: CurrentABTest;
 }
 
 const signinGate = css`
@@ -89,16 +98,73 @@ const privacyLink = css`
     cursor: pointer;
 `;
 
+const firstParagraphOverlay = css`
+    margin-top: -250px;
+    width: 100%;
+    height: 250px;
+    position: absolute;
+
+    /* "transparent" only works here because == rgba(0,0,0,0) */
+    background-image: linear-gradient(
+        0deg,
+        ${palette.background.primary},
+        70%,
+        rgba(255, 255, 255, 0)
+    );
+`;
+
+// const firstParagraphOverlayComment = css`
+//     background-image: linear-gradient(
+//         0deg,
+//         $opinion-faded,
+//         70%,
+//         rgba(255, 255, 255, 0)
+//     );
+// `;
+
 // TODO: Click handlers
-// TODO: Tracking
+// - [x] CMP hanler
+// - [x] dismiss button
+// - [ ] how do we keep it dimissed ...
+// - [x] sign in button
+// - [x] other links
+// TODO: Tracking -[x]
 // TODO: Tests
 // TODO: Embed in article on storybook
 
-export const SignInGate = ({ signInUrl, guUrl }: Props) => {
+// set the ophan component tracking vars
+export const withComponentId: (id: string) => OphanComponent = (
+    id: string = '',
+) => ({
+    componentType: 'SIGN_IN_GATE',
+    id,
+});
+
+const trackLink = (
+    componentId: string,
+    value: string,
+    abTest?: CurrentABTest,
+): void => {
+    const component = withComponentId(componentId);
+    submitClickEventTracking({
+        component,
+        abTest,
+        value,
+    });
+};
+
+export const SignInGate = ({
+    signInUrl,
+    guUrl,
+    dismissGate,
+    abTest,
+    component,
+}: Props): JSX.Element => {
     const [showCpmUi, setShowCmpUi] = useState(false);
 
     return (
         <div className={cx(signinGate)}>
+            <div className={cx(firstParagraphOverlay)} />
             <h1 className={cx(headingStyles)}>
                 Register for free and continue reading
             </h1>
@@ -120,6 +186,7 @@ export const SignInGate = ({ signInUrl, guUrl }: Props) => {
                     className={cx(privacyLink)}
                     onClick={() => {
                         setShowCmpUi(!showCpmUi);
+                        trackLink(component, 'privacy', abTest);
                     }}
                 >
                     privacy settings
@@ -131,7 +198,9 @@ export const SignInGate = ({ signInUrl, guUrl }: Props) => {
                     priority="primary"
                     size="small"
                     href={signInUrl}
-                    onClick={() => {}}
+                    onClick={() => {
+                        trackLink(component, 'register-link', abTest);
+                    }}
                 >
                     Register for free
                 </LinkButton>
@@ -139,8 +208,10 @@ export const SignInGate = ({ signInUrl, guUrl }: Props) => {
                 <LinkButton
                     priority="subdued"
                     size="small"
-                    href="#"
-                    onClick={() => {}}
+                    onClick={() => {
+                        dismissGate();
+                        trackLink(component, 'not-now', abTest);
+                    }}
                 >
                     I’ll do it later
                 </LinkButton>
@@ -150,33 +221,51 @@ export const SignInGate = ({ signInUrl, guUrl }: Props) => {
                 Have a subscription? Made a contribution? Already registered?
             </h2>
 
-            <Link href={signInUrl}>Sign In</Link>
+            <Link
+                href={signInUrl}
+                onClick={() => {
+                    trackLink(component, 'sign-in-link', abTest);
+                }}
+            >
+                Sign In
+            </Link>
 
             <div className={cx(faq)}>
                 <Link
                     href={`${guUrl}membership/2019/dec/20/signing-in-to-the-guardian`}
+                    onClick={() => {
+                        trackLink(component, 'how-link', abTest);
+                    }}
                 >
                     Why register & how does it help?
                 </Link>
 
                 <Link
                     href={`${guUrl}info/2014/nov/03/why-your-data-matters-to-us-full-text`}
+                    onClick={() => {
+                        trackLink(component, 'why-link', abTest);
+                    }}
                 >
                     How will my information & data be used?
                 </Link>
 
-                <Link href={`${guUrl}help/identity-faq`}>
+                <Link
+                    href={`${guUrl}help/identity-faq`}
+                    onClick={() => {
+                        trackLink(component, 'help-link', abTest);
+                    }}
+                >
                     Get help with registering or signing in
                 </Link>
             </div>
             {showCpmUi && (
-                <CMP
-                    forceShow={true}
-                    forceModal={true}
-                    onClose={() => {
-                        setShowCmpUi(false);
-                    }}
-                />
+                <Suspense fallback={<></>}>
+                    <ConsentManagementPlatform
+                        source="dcr"
+                        forceModal={true}
+                        onClose={() => setShowCmpUi(false)}
+                    />
+                </Suspense>
             )}
         </div>
     );

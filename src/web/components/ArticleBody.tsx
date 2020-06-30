@@ -16,7 +16,7 @@ type Props = {
 };
 
 const pillarColours = pillarMap(
-    pillar =>
+    (pillar) =>
         css`
             color: ${pillar === 'opinion' || pillar === 'culture'
                 ? pillarPalette[pillar].dark
@@ -46,8 +46,8 @@ const bodyStyle = (display: Display) => css`
 `;
 
 const linkColour = pillarMap(
-    pillar => css`
-        a {
+    (pillar) => css`
+        p > a {
             text-decoration: none;
             border-bottom: 1px solid ${border.secondary};
             ${pillarColours[pillar]};
