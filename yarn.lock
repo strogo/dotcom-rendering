@@ -2079,6 +2079,18 @@
     reflect-metadata "^0.1.12"
     tslib "^1.8.1"
 
+"@guardian/ab-core@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@guardian/ab-core/-/ab-core-0.3.0.tgz#a68951614f46ca1e2bee8b255b1044eba1f4ae77"
+  integrity sha512-M2YAPAKhX60QLFVgk7FkyrvvAYgw/Ul8VUFQdxNJuEzMxIYL13jmWqDFW+06mcSup2ihVo3S8V1ZV+nSH74UmA==
+
+"@guardian/ab-react@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@guardian/ab-react/-/ab-react-0.3.0.tgz#aa26695dc2443728b4bc69266c6e1e1c041f7b8b"
+  integrity sha512-D6PRB1+wC9bMBmeM8dRFv3Ny9jq2wm2RTA0oKYoP3CywG8uYto4u5JKPZ52QB8qpNlOOwMzy8SxHc/uaRaMkSQ==
+  dependencies:
+    "@guardian/ab-core" "^0.3.0"
+
 "@guardian/atoms-rendering@^1.3.3":
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/@guardian/atoms-rendering/-/atoms-rendering-1.3.3.tgz#5142fc6bfb8cf90024edad09c3aee039c3e75f38"

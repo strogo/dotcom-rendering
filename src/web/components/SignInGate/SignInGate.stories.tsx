@@ -11,7 +11,7 @@ import { HydrateApp } from '@root/src/web/components/HydrateApp';
 import { mockRESTCalls } from '@root/src/web/lib/mockRESTCalls';
 import { DecideLayout } from '@root/src/web/layouts/DecideLayout';
 import { SignInGateSelector } from './SignInGateSelector';
-import { SignInGate } from './SignInGate';
+import { SignInGate } from './gates/SignInGate';
 
 export default {
     component: SignInGateSelector,
@@ -37,7 +37,6 @@ export const standalone = () => {
                 dismissGate={() => {}}
                 component="test"
             />
-            ,
         </div>
     );
 };

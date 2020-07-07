@@ -1,19 +1,23 @@
-import React, { useState, useEffect } from 'react';
-// import { css } from 'emotion';
-import { SignInGate } from './SignInGate';
-
-const signInGateStylesID = 'sign-in-gate-styles';
+import React, { useState } from 'react';
+import { useAB } from '@guardian/ab-react';
+import { ABTest } from '@guardian/ab-core';
+import { signInGateComponent } from './gates/SignInGate';
+import { setUserDismissedGate, hasUserDismissedGate } from './dismissGate';
+import { signInGateTest1Component } from './gates/SignInGateTest1';
+import { SignInGateComponent, CurrentABTest } from './gates/types';
+import { signInGatePatientia } from '../../experiments/tests/sign-in-gate-patientia';
+import { signInGateCentesimus } from '../../experiments/tests/sign-in-gate-centesimus';
+import { signInGateVii } from '../../experiments/tests/sign-in-gate-vii';
 
 // component name, should always be sign-in-gate
-const componentName = 'sign-in-gate';
+export const componentName = 'sign-in-gate';
 
-const dismissGate = (setShowGate: (show: boolean) => void) => {
+const dismissGate = (
+    setShowGate: React.Dispatch<React.SetStateAction<boolean>>,
+    currentAbTestValue: CurrentABTest,
+) => {
     setShowGate(false);
-
-    // change the DOM back by removing the style block we added when first rendering
-    const gateStyle = document.getElementById(signInGateStylesID);
-
-    gateStyle?.parentNode?.removeChild(gateStyle);
+    setUserDismissedGate(currentAbTestValue.variant, currentAbTestValue.name);
 
     // When the user closes the sign in gate, we scroll them back to the main content
     const articleBody =
@@ -23,51 +27,84 @@ const dismissGate = (setShowGate: (show: boolean) => void) => {
     articleBody?.parentElement?.scrollIntoView(true);
 
     // mediator emit ??
-
-    // Store the fact that they have closed the gate somewhere ...
 };
 
-export const setupGateOnPage = (): void => {
-    const signInGate = document.querySelector('#sign-in-gate');
+// TODO: viewing criteria
+// TODO: url handling
 
-    // Create our stylesheet
-    const style = document.createElement('style');
-    style.id = signInGateStylesID;
+type GateTestMap = { [name: string]: SignInGateComponent };
 
-    // Hide all elements after the #sign-in-gate using the
-    // General Sibilings combinator https://developer.mozilla.org/en-US/docs/Web/CSS/General_sibling_combinator
-    style.innerHTML = `
-        #sign-in-gate ~ p, #sign-in-gate ~ div, #sign-in-gate ~ span {
-            display:none;
-        }
-    `;
+/* When adding a new test, you need to add the test name to the tests array below,
+   and add a entry for each variant that maps it to a SignInGateComponent in testVariantToGateMapping
+   */
+const tests: ReadonlyArray<ABTest> = [
+    signInGatePatientia,
+    signInGateCentesimus,
+    signInGateVii,
+];
 
-    // check if sign in gate exists, then insert the style block
-    if (signInGate) {
-        signInGate.insertAdjacentElement('beforebegin', style);
+const testVariantToGateMapping: GateTestMap = {
+    'patientia-control-1': signInGateComponent,
+    'patientia-variant-1': signInGateComponent,
+    'centesimus-control-2': signInGateTest1Component,
+    'vii-variant': signInGateTest1Component,
+};
+
+/*
+signInGateFilter takes:
+ - all the active sign in gate components
+ - filters gates by running their canShow function and checking if user has dismissed this gate
+ - creates an instance of the gate
+ - at this stage their should only be one gate available, this is returned
+ */
+
+const signInGateFilter = (
+    setShowGate: React.Dispatch<React.SetStateAction<boolean>>,
+    abTest: CurrentABTest,
+): JSX.Element | undefined => {
+    const gateVariant: SignInGateComponent | null =
+        testVariantToGateMapping?.[abTest.variant];
+
+    // eslint-disable-next-line no-console
+    console.log(gateVariant, abTest);
+    if (
+        gateVariant.canShow() &&
+        !hasUserDismissedGate(abTest.variant, abTest.name)
+    ) {
+        return gateVariant.gate({
+            guUrl: 'https://theguardian.com/',
+            signInUrl: 'https://profile.theguardian.com/',
+            dismissGate: () => {
+                dismissGate(setShowGate, abTest);
+            },
+            abTest,
+            component: componentName,
+        });
     }
 };
 
 export const SignInGateSelector = () => {
     const [showGate, setShowGate] = useState(true);
 
-    useEffect(() => {
-        setupGateOnPage();
-    }, []);
+    // wow this whole thing is tightly coupled to the AB test framework ...
+    const ab = useAB();
+    // const abTest = tests.map((test) =>
+    //     ab.isUserInVariant(test.id, 'centesimus-control-2'),
+    // );
+
+    const test = ab.firstRunnableTest(tests);
+    // eslint-disable-next-line no-console
+    console.log(test);
+    const currentTestId = test?.id || '';
+    const currentVariantId = test?.variantToRun.id || '';
 
     return (
         <>
-            {showGate && (
-                <SignInGate
-                    guUrl="https://theguardian.com/"
-                    signInUrl="https://profile.theguardian.com/"
-                    dismissGate={() => {
-                        dismissGate(setShowGate);
-                    }}
-                    abTest={{ name: 'asd', variant: 'asd' }}
-                    component={componentName}
-                />
-            )}
+            {showGate &&
+                signInGateFilter(setShowGate, {
+                    name: currentTestId,
+                    variant: currentVariantId,
+                })}
         </>
     );
 };

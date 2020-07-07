@@ -7,21 +7,10 @@ import { space, palette } from '@guardian/src-foundations';
 import { LinkButton } from '@guardian/src-button';
 import { Link } from '@guardian/src-link';
 import { ConsentManagementPlatform } from '@guardian/consent-management-platform/dist/ConsentManagementPlatform';
-import { submitClickEventTracking } from './ComponentEventTracking';
-import { OphanComponent } from '../../browser/ophan/ophan';
+import { submitClickEventTracking } from '../ComponentEventTracking';
+import { OphanComponent } from '../../../browser/ophan/ophan';
 
-export type CurrentABTest = {
-    name: string;
-    variant: string;
-};
-
-interface Props {
-    signInUrl: string;
-    guUrl: string;
-    dismissGate: () => void;
-    component: string;
-    abTest?: CurrentABTest;
-}
+import { CurrentABTest, SignInGateComponent, SignInGateProps } from './types';
 
 const signinGate = css`
     max-width: 617px;
@@ -113,22 +102,17 @@ const firstParagraphOverlay = css`
     );
 `;
 
-// const firstParagraphOverlayComment = css`
-//     background-image: linear-gradient(
-//         0deg,
-//         $opinion-faded,
-//         70%,
-//         rgba(255, 255, 255, 0)
-//     );
-// `;
+// This css hides all the elements in the article after the #sign-in-gate
+// using the General sibling combinator https://developer.mozilla.org/en-US/docs/Web/CSS/General_sibling_combinator
+const hideElementsCss = `
+    #sign-in-gate ~ * {
+        display: none;
+    }
+    `;
 
-// TODO: Click handlers
-// - [x] CMP hanler
-// - [x] dismiss button
-// - [ ] how do we keep it dimissed ...
-// - [x] sign in button
-// - [x] other links
 // TODO: Tracking -[x]
+// - [] Tone support ?
+// -
 // TODO: Tests
 // TODO: Embed in article on storybook
 
@@ -153,17 +137,22 @@ const trackLink = (
     });
 };
 
+const canShow = (): boolean => {
+    return false;
+};
+
 export const SignInGate = ({
     signInUrl,
     guUrl,
     dismissGate,
     abTest,
     component,
-}: Props): JSX.Element => {
+}: SignInGateProps): JSX.Element => {
     const [showCpmUi, setShowCmpUi] = useState(false);
 
     return (
         <div className={cx(signinGate)}>
+            <style>{hideElementsCss}</style>
             <div className={cx(firstParagraphOverlay)} />
             <h1 className={cx(headingStyles)}>
                 Register for free and continue reading
@@ -269,4 +258,9 @@ export const SignInGate = ({
             )}
         </div>
     );
+};
+
+export const signInGateComponent: SignInGateComponent = {
+    gate: SignInGate,
+    canShow,
 };
