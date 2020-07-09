@@ -50,7 +50,7 @@ export const isInvalidArticleType = (
         .filter((el) => !include.includes(el)) // This allows you to override the default invalid types by removing them from the array
         .reduce((isArticleInvalid: boolean, type: string): boolean => {
             if (isArticleInvalid) return true;
-            return !!CAPI.config.page[type];
+            return !!CAPI.config.page?.[type];
         }, false);
 };
 
@@ -74,6 +74,6 @@ export const isInvalidSection = (
             if (isSectionInvalid) return true;
 
             // looks up window.guardian.config object in the browser console
-            return CAPI.config.page.section === section;
+            return CAPI.config.page?.section === section;
         }, false);
 };
