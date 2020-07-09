@@ -315,7 +315,7 @@ type CAPIBrowserType = {
         discussionApiClientHeader: string;
         dcrSentryDsn: string;
         remoteBanner: boolean;
-        page: {
+        page?: {
             isColumn: boolean;
             isFront: boolean;
             isHosted: boolean;
