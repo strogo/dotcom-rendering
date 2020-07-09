@@ -315,6 +315,21 @@ type CAPIBrowserType = {
         discussionApiClientHeader: string;
         dcrSentryDsn: string;
         remoteBanner: boolean;
+        page: {
+            isColumn: boolean;
+            isFront: boolean;
+            isHosted: boolean;
+            isImmersive: boolean;
+            isLive: boolean;
+            isLiveBlog: boolean;
+            isNumberedList: boolean;
+            isPaidContent: boolean;
+            isPhotoEssay: boolean;
+            isSensitive: boolean;
+            isSplash: boolean;
+            section: string;
+            [key: string]: boolean | string;
+        };
     } & ConfigType;
     richLinks: RichLinkBlockElement[];
     editionId: Edition;

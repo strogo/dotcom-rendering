@@ -2,6 +2,7 @@ import {
     OphanComponent,
     OphanComponentEvent,
 } from '@root/src/web/browser/ophan/ophan';
+import { CurrentABTest } from './gateDesigns/types';
 
 type ABTestVariant = {
     name: string;
@@ -39,3 +40,23 @@ export const submitClickEventTracking = (
         ...componentEvent,
         action: 'CLICK',
     });
+
+export const withComponentId: (id: string) => OphanComponent = (
+    id: string = '',
+) => ({
+    componentType: 'SIGN_IN_GATE',
+    id,
+});
+
+export const trackLink = (
+    componentId: string,
+    value: string,
+    abTest?: CurrentABTest,
+): void => {
+    const component = withComponentId(componentId);
+    submitClickEventTracking({
+        component,
+        abTest,
+        value,
+    });
+};

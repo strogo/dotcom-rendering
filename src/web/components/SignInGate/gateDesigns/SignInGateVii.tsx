@@ -7,10 +7,10 @@ import { space, palette } from '@guardian/src-foundations';
 import { LinkButton } from '@guardian/src-button';
 import { Link } from '@guardian/src-link';
 import { ConsentManagementPlatform } from '@guardian/consent-management-platform/dist/ConsentManagementPlatform';
-import { submitClickEventTracking } from '../ComponentEventTracking';
+import { trackLink } from '../ComponentEventTracking';
 import { OphanComponent } from '../../../browser/ophan/ophan';
 
-import { CurrentABTest, SignInGateComponent, SignInGateProps } from './types';
+import { SignInGateProps } from './types';
 
 const signinGate = css`
     max-width: 617px;
@@ -124,24 +124,7 @@ export const withComponentId: (id: string) => OphanComponent = (
     id,
 });
 
-const trackLink = (
-    componentId: string,
-    value: string,
-    abTest?: CurrentABTest,
-): void => {
-    const component = withComponentId(componentId);
-    submitClickEventTracking({
-        component,
-        abTest,
-        value,
-    });
-};
-
-const canShow = (): boolean => {
-    return false;
-};
-
-export const SignInGate = ({
+export const SignInGateVii = ({
     signInUrl,
     guUrl,
     dismissGate,
@@ -186,7 +169,7 @@ export const SignInGate = ({
                 <LinkButton
                     priority="primary"
                     size="small"
-                    href={signInUrl}
+                    href={signInUrl} // This needs the queryParams attached for tracking !
                     onClick={() => {
                         trackLink(component, 'register-link', abTest);
                     }}
@@ -258,9 +241,4 @@ export const SignInGate = ({
             )}
         </div>
     );
-};
-
-export const signInGateComponent: SignInGateComponent = {
-    gate: SignInGate,
-    canShow,
 };

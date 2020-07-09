@@ -360,7 +360,7 @@ export const App = ({ CAPI, NAV }: Props) => {
                 </Lazy>
             </Portal>
             <Portal root="sign-in-gate">
-                <SignInGateSelector />
+                <SignInGateSelector isSignedIn={isSignedIn} CAPI={CAPI} />
             </Portal>
 
             {/* Don't lazy render comments if we have a comment id in the url or the comments hash. In

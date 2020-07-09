@@ -1,6 +1,6 @@
 export type SignInGateComponent = {
     gate: (props: SignInGateProps) => JSX.Element;
-    canShow: () => boolean;
+    canShow: (CAPI: CAPIBrowserType) => boolean;
 };
 
 export interface SignInGateProps {

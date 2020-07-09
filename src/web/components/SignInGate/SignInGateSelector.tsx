@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
-import { useAB } from '@guardian/ab-react';
-import { ABTest } from '@guardian/ab-core';
-import { signInGateComponent } from './gates/SignInGate';
+// import { useAB } from '@guardian/ab-react';
+// import { ABTest } from '@guardian/ab-core';
+// import { Runnable } from '@guardian/ab-core/dist/types';
 import { setUserDismissedGate, hasUserDismissedGate } from './dismissGate';
-import { signInGateTest1Component } from './gates/SignInGateTest1';
-import { SignInGateComponent, CurrentABTest } from './gates/types';
-import { signInGatePatientia } from '../../experiments/tests/sign-in-gate-patientia';
+import { SignInGateComponent, CurrentABTest } from './gateDesigns/types';
+// import { signInGatePatientia } from '../../experiments/tests/sign-in-gate-patientia';
 import { signInGateCentesimus } from '../../experiments/tests/sign-in-gate-centesimus';
-import { signInGateVii } from '../../experiments/tests/sign-in-gate-vii';
+import { signInGateComponentCentesimusControl2 } from './gates/centesimus-control-2';
+// import { signInGateVii } from '../../experiments/tests/sign-in-gate-vii';
 
 // component name, should always be sign-in-gate
 export const componentName = 'sign-in-gate';
+
+interface SignInGateSelectorProps {
+    isSignedIn?: boolean;
+    CAPI: CAPIBrowserType;
+}
 
 const dismissGate = (
     setShowGate: React.Dispatch<React.SetStateAction<boolean>>,
@@ -30,24 +35,27 @@ const dismissGate = (
 };
 
 // TODO: viewing criteria
-// TODO: url handling
+// TODO: url handling including encoding the tracking params!
 
 type GateTestMap = { [name: string]: SignInGateComponent };
 
 /* When adding a new test, you need to add the test name to the tests array below,
    and add a entry for each variant that maps it to a SignInGateComponent in testVariantToGateMapping
    */
-const tests: ReadonlyArray<ABTest> = [
-    signInGatePatientia,
-    signInGateCentesimus,
-    signInGateVii,
-];
+
+// This should be added when the ab test framework is setup
+
+// const tests: ReadonlyArray<ABTest> = [
+//     signInGatePatientia,
+//     signInGateCentesimus,
+//     signInGateVii,
+// ];
 
 const testVariantToGateMapping: GateTestMap = {
-    'patientia-control-1': signInGateComponent,
-    'patientia-variant-1': signInGateComponent,
-    'centesimus-control-2': signInGateTest1Component,
-    'vii-variant': signInGateTest1Component,
+    'patientia-control-1': signInGateComponentCentesimusControl2,
+    'patientia-variant-1': signInGateComponentCentesimusControl2,
+    'centesimus-control-2': signInGateComponentCentesimusControl2,
+    'vii-variant': signInGateComponentCentesimusControl2,
 };
 
 /*
@@ -61,14 +69,15 @@ signInGateFilter takes:
 const signInGateFilter = (
     setShowGate: React.Dispatch<React.SetStateAction<boolean>>,
     abTest: CurrentABTest,
+    CAPI: CAPIBrowserType,
+    isSignedIn?: boolean,
 ): JSX.Element | undefined => {
     const gateVariant: SignInGateComponent | null =
         testVariantToGateMapping?.[abTest.variant];
 
-    // eslint-disable-next-line no-console
-    console.log(gateVariant, abTest);
     if (
-        gateVariant.canShow() &&
+        gateVariant?.canShow(CAPI) &&
+        !!isSignedIn &&
         !hasUserDismissedGate(abTest.variant, abTest.name)
     ) {
         return gateVariant.gate({
@@ -83,28 +92,39 @@ const signInGateFilter = (
     }
 };
 
-export const SignInGateSelector = () => {
+export const SignInGateSelector = ({
+    isSignedIn,
+    CAPI,
+}: SignInGateSelectorProps) => {
     const [showGate, setShowGate] = useState(true);
 
     // wow this whole thing is tightly coupled to the AB test framework ...
-    const ab = useAB();
-    // const abTest = tests.map((test) =>
-    //     ab.isUserInVariant(test.id, 'centesimus-control-2'),
-    // );
+    // const ab = useAB();
 
-    const test = ab.firstRunnableTest(tests);
-    // eslint-disable-next-line no-console
-    console.log(test);
+    const test = {
+        ...signInGateCentesimus,
+        variantToRun: {
+            id: 'centesimus-control-2',
+            test: (): void => {},
+        },
+    };
+    // const test:Runnable<ABTest> = ab.firstRunnableTest(tests);
+
     const currentTestId = test?.id || '';
     const currentVariantId = test?.variantToRun.id || '';
 
     return (
         <>
             {showGate &&
-                signInGateFilter(setShowGate, {
-                    name: currentTestId,
-                    variant: currentVariantId,
-                })}
+                signInGateFilter(
+                    setShowGate,
+                    {
+                        name: currentTestId,
+                        variant: currentVariantId,
+                    },
+                    CAPI,
+                    isSignedIn,
+                )}
         </>
     );
 };
