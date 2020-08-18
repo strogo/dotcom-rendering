@@ -31,6 +31,15 @@ const canShow = (
     currentTest: CurrentABTest,
 ): boolean => {
     unsetUserDismissedGate(currentTest.variant, currentTest.name); // clears gate dismissal from local storage
+    console.log('test - ', currentTest.variant, currentTest.name);
+    console.log(
+        'canShow test: ',
+        !isSignedIn &&
+            isNPageOrHigherPageView(3) &&
+            isValidContentType(CAPI) &&
+            isValidSection(CAPI) &&
+            !isIOS9(),
+    );
 
     return (
         // do not check for gate dismissal as gate should show on every article

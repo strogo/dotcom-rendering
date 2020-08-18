@@ -132,6 +132,7 @@ const ShowSignInGate = ({
 }: ShowSignInGateProps) => {
     // use effect hook to fire view event tracking only on initial render
     useEffect(() => {
+        console.log('using event:', abTest);
         submitViewEventTracking({
             component: withComponentId(testIdToComponentId[abTest.id]),
             abTest,
