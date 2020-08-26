@@ -217,6 +217,12 @@ interface QABlockElement {
     qandaIndex?: number;
 }
 
+interface QuizAtomBlockElement {
+    _type: 'model.dotcomrendering.pageElements.QuizAtomBlockElement';
+    id: string;
+    questions: Question[];
+}
+
 interface RichLinkBlockElement {
     _type: 'model.dotcomrendering.pageElements.RichLinkBlockElement';
     url: string;
@@ -353,6 +359,7 @@ type CAPIElement =
     | ProfileAtomBlockElement
     | PullquoteBlockElement
     | QABlockElement
+    | QuizAtomBlockElement
     | RichLinkBlockElement
     | SoundcloudBlockElement
     | SpotifyBlockElement
@@ -484,4 +491,22 @@ interface CampaignFieldSelect extends CampaignField {
         label: string;
         value: string;
     }[];
+}
+
+// -------------------------------------
+// Quiz Atom
+// -------------------------------------
+
+interface Question {
+    id: string;
+    text: string;
+    answers: Answer[];
+    imageUrl?: string;
+}
+
+interface Answer {
+    id: string;
+    text: string;
+    revealText?: string;
+    isCorrect: boolean;
 }

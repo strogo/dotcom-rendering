@@ -1,6 +1,6 @@
 ## Content Atoms
 
-Content Atoms (atoms) are a mechanism to specify content in a more structured way than just text and in a way that make then reuseable across articles. Here are are documenting the progress made as part of supporting them in DCR.
+Content Atoms (atoms) are a mechanism to specify content in a more structured way than just text and in a way that make then reuseable across articles. Here we are documenting the progress made as part of supporting them in DCR.
 
 This is a work in progress.
 
@@ -17,7 +17,7 @@ List of atoms (source: [frontend] common/app/model/content/Atom.scala)
 -   MediaAtom
 -   ProfileAtom
 -   QandaAtom
--   Quiz
+-   QuizAtom
 -   RecipeAtom
 -   ReviewAtom
 -   TimelineAtom
@@ -56,7 +56,8 @@ ProfileAtom
 QandaAtom
     -> QABlockElement
 
-Quiz
+QuizAtom
+    -> QuizAtomBlockElement
 
 RecipeAtom
 

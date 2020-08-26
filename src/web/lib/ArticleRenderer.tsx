@@ -29,6 +29,7 @@ import {
     ExplainerAtom,
     InteractiveAtom,
     QandaAtom,
+    QuizAtom,
     GuideAtom,
     ProfileAtom,
     TimelineAtom,
@@ -247,6 +248,15 @@ export const ArticleRenderer: React.FC<{
                                 likeHandler={() => {}}
                                 dislikeHandler={() => {}}
                                 expandCallback={() => {}}
+                            />
+                        </div>
+                    );
+                case 'model.dotcomrendering.pageElements.QuizAtomBlockElement':
+                    return (
+                        <div id={`quiz-atom-${i}`}>
+                            <QuizAtom
+                                id={element.id}
+                                questions={element.questions}
                             />
                         </div>
                     );
