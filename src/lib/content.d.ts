@@ -221,6 +221,7 @@ interface QuizAtomBlockElement {
     _type: 'model.dotcomrendering.pageElements.QuizAtomBlockElement';
     id: string;
     questions: Question[];
+    quizIndex?: number;
 }
 
 interface RichLinkBlockElement {

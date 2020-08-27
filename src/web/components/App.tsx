@@ -19,6 +19,7 @@ import { SignInGateSelector } from '@root/src/web/components/SignInGate/SignInGa
 import { incrementWeeklyArticleCount } from '@guardian/automat-client';
 import {
     QandaAtom,
+    QuizAtom,
     GuideAtom,
     ProfileAtom,
     TimelineAtom,
@@ -410,6 +411,11 @@ export const App = ({ CAPI, NAV }: Props) => {
                             'EXPAND',
                         )}
                     />
+                </Hydrate>
+            ))}
+            {CAPI.quizAtoms.map((quizAtom) => (
+                <Hydrate root="quiz-atom" index={quizAtom.quizIndex}>
+                    <QuizAtom id={quizAtom.id} questions={quizAtom.questions} />
                 </Hydrate>
             ))}
             {CAPI.guideAtoms.map((guideAtom) => (

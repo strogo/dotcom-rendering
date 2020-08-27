@@ -356,7 +356,7 @@ type CAPIBrowserType = {
     matchUrl?: string;
     callouts: CalloutBlockElement[];
     qandaAtoms: QABlockElement[];
-    quizAtom: QuizAtomBlockElement[];
+    quizAtoms: QuizAtomBlockElement[];
     guideAtoms: GuideAtomBlockElement[];
     profileAtoms: ProfileAtomBlockElement[];
     timelineAtoms: TimelineBlockElement[];
@@ -659,6 +659,7 @@ type IslandType =
     | 'callout'
     | 'comments'
     | 'qanda-atom'
+    | 'quiz-atom'
     | 'guide-atom'
     | 'profile-atom'
     | 'timeline-atom'
