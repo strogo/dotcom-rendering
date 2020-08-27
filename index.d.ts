@@ -356,6 +356,7 @@ type CAPIBrowserType = {
     matchUrl?: string;
     callouts: CalloutBlockElement[];
     qandaAtoms: QABlockElement[];
+    quizAtom: QuizAtomBlockElement[];
     guideAtoms: GuideAtomBlockElement[];
     profileAtoms: ProfileAtomBlockElement[];
     timelineAtoms: TimelineBlockElement[];
