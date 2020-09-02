@@ -32,7 +32,7 @@ describe('E2E Page rendering', function () {
 
                 cy.scrollTo('bottom', { duration: 500 });
                 cy.wait('@getShareCount').then((xhr) => {
-                    expect(xhr.status).to.be.equal(265);
+                    expect(xhr.status).to.be.equal(200);
                     expect(xhr.response.body).to.have.property('path');
                     expect(xhr.response.body).to.have.property('refreshStatus');
                     expect(xhr.response.body)
