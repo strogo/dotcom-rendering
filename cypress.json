@@ -3,6 +3,5 @@
     "viewportHeight": 860,
     "baseUrl": "http://localhost:3030/",
     "video": false,
-    "chromeWebSecurity": false,
-    "retries": 2
+    "chromeWebSecurity": false
 }

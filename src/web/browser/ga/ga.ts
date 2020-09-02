@@ -156,10 +156,6 @@ export const sendPageView = (): void => {
     // Only send for roughly 5% of users
     // We want all or nothing on the corevitals so that they can be easily compared for a single pageview
     // so we do this here rather than in the sendCoreVital function
-    const randomPerc = Math.random() * 100;
-    const coreVitalsSampleRate = 5;
-
-    if (coreVitalsSampleRate >= randomPerc) {
         // CLS and LCP are captured when the page lifecycle changes to 'hidden'.
         // https://developers.google.com/web/updates/2018/07/page-lifecycle-api#advice-hidden
         getCLS(sendCoreVital); // https://github.com/GoogleChrome/web-vitals#getcls (This is actually DCLS, as doesn't track CLS in iframes, see https://github.com/WICG/layout-instability#cumulative-scores)
@@ -167,7 +163,6 @@ export const sendPageView = (): void => {
 
         // FID is captured when a user interacts with the page
         getFID(sendCoreVital); // https://github.com/GoogleChrome/web-vitals#getfid
-    }
 };
 
 export const trackNonClickInteraction = (actionName: string): void => {
