@@ -60,7 +60,7 @@ const makeSource = (
         hidpi,
         minWidth,
         width: srcSet.width,
-        srcset: `${srcSet.src} ${hidpi ? srcSet.width * 2 : srcSet.width}w`,
+        srcset: `${srcSet.src} ${srcSet.width}w`,
     };
 };
 
@@ -71,12 +71,10 @@ const makeSources = (
     const inlineSrcSets = getSrcSetsForWeighting(imageSources, role);
     const sources: PictureSource[] = [];
 
-    // TODO: ideally the imageSources array will come from frontend with prebaked URLs for
-    // hidpi images.
-    // Until that happens, here we're manually injecting (inadequate) <source> elements for
-    // those images, albeit without the necessary query params for hidpi images :(
     widths.forEach((width) => {
-        sources.push(makeSource(true, width, bestFor(width, inlineSrcSets)));
+        sources.push(
+            makeSource(true, width, bestFor(width * 2, inlineSrcSets)),
+        );
         sources.push(makeSource(false, width, bestFor(width, inlineSrcSets)));
     });
 
