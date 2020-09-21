@@ -213,6 +213,7 @@ export const ArticleHeadline = ({
                         return (
                             // Immersive headlines have two versions, with main media, and (this one) without
                             <h1
+                                itemProp="headline"
                                 className={cx(
                                     jumboFont,
                                     maxWidth,
@@ -227,7 +228,10 @@ export const ArticleHeadline = ({
                     return (
                         // Immersive headlines with main media present, are large and inverted with
                         // a black background
-                        <h1 className={cx(invertedWrapper, blackBackground)}>
+                        <h1
+                            itemProp="headline"
+                            className={cx(invertedWrapper, blackBackground)}
+                        >
                             <span
                                 className={cx(
                                     jumboFont,
@@ -253,6 +257,7 @@ export const ArticleHeadline = ({
                 case 'Feature':
                     return (
                         <h1
+                            itemProp="headline"
                             className={cx(
                                 boldFont,
                                 colourStyles(pillarPalette[pillar].dark),
@@ -265,7 +270,7 @@ export const ArticleHeadline = ({
                 case 'GuardianView':
                     return (
                         <>
-                            <h1 className={lightFont}>
+                            <h1 itemProp="headline" className={lightFont}>
                                 {curly(headlineString)}
                             </h1>
                             {byline && (
@@ -281,7 +286,10 @@ export const ArticleHeadline = ({
                     );
                 case 'Analysis':
                     return (
-                        <h1 className={cx(standardFont, underlinedStyles)}>
+                        <h1
+                            itemProp="headline"
+                            className={cx(standardFont, underlinedStyles)}
+                        >
                             {curly(headlineString)}
                         </h1>
                     );
@@ -294,6 +302,7 @@ export const ArticleHeadline = ({
                         >
                             <HeadlineTag tagText="Interview" pillar={pillar} />
                             <h1
+                                itemProp="headline"
                                 className={cx(
                                     invertedFont,
                                     invertedWrapper,
@@ -333,7 +342,7 @@ export const ArticleHeadline = ({
                 case 'Immersive':
                 default:
                     return (
-                        <h1 className={standardFont}>
+                        <h1 itemProp="headline" className={standardFont}>
                             {curly(headlineString)}
                         </h1>
                     );

@@ -130,7 +130,7 @@ export const SignInGatePatientia = ({
         <div className={signinGate} data-cy="sign-in-gate-patientia">
             <style>{hideElementsCss}</style>
             <div className={firstParagraphOverlay(!!isComment)} />
-            <h1 className={headingStyles}>
+            <h1 itemProp="headline" className={headingStyles}>
                 Register for free and continue reading
             </h1>
             <h2 className={subHeader}>

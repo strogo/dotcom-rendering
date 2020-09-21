@@ -78,7 +78,11 @@ const PaidForByLogo: React.FC<{
 
 const Headline: React.FC<{
     headlineText: string;
-}> = ({ headlineText }) => <h1 className={headerStyle}>{headlineText}</h1>;
+}> = ({ headlineText }) => (
+    <h1 itemProp="headline" className={headerStyle}>
+        {headlineText}
+    </h1>
+);
 
 export const TopMetaPaidContent: React.FC<{
     articleData: ArticleModel;

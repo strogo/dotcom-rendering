@@ -121,7 +121,9 @@ export const TopMetaOpinion: React.FC<{
                 fallbackToSection={false}
             />
 
-            <h1 className={headerStyle}>{articleData.headline}</h1>
+            <h1 itemProp="headline" className={headerStyle}>
+                {articleData.headline}
+            </h1>
 
             {branding && <Branding branding={branding} pillar={pillar} />}
 

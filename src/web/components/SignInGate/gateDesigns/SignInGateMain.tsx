@@ -146,7 +146,7 @@ export const SignInGateMain = ({
         <div className={signinGate} data-cy="sign-in-gate-main">
             <style>{hideElementsCss}</style>
             <div className={firstParagraphOverlay(!!isComment)} />
-            <h1 className={headingStyles}>
+            <h1 itemProp="headline" className={headingStyles}>
                 Register for free and continue reading
             </h1>
             <p className={bodyBold}>

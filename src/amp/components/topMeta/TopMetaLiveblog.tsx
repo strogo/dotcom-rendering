@@ -68,7 +68,9 @@ const Headline: React.FC<{
 }> = ({ headlineText, pillar, standfirst }) => {
     return (
         <div className={fullWidth}>
-            <h1 className={headerStyle(pillar)}>{curly(headlineText)}</h1>
+            <h1 itemProp="headline" className={headerStyle(pillar)}>
+                {curly(headlineText)}
+            </h1>
             <div
                 className={standfirstStyle(pillar)}
                 dangerouslySetInnerHTML={{
