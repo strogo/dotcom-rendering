@@ -31,10 +31,31 @@ export const hasRequiredConsents = (): Promise<boolean> =>
         });
     });
 
+type PreCheckArgs = {
+    brazeSwitch: boolean;
+    apiKey?: string;
+    isDigitalSubscriber?: boolean;
+    pageConfig: { [key: string]: any };
+};
+
+export const canShowPreChecks = ({
+    brazeSwitch,
+    apiKey,
+    isDigitalSubscriber,
+    pageConfig,
+}: PreCheckArgs) =>
+    Boolean(
+        brazeSwitch &&
+            apiKey &&
+            isDigitalSubscriber &&
+            !pageConfig.isPaidContent,
+    );
+
 // We can show a Braze banner if:
 // - The Braze switch is on
 // - We have a Braze API key
 // - The user is a digital subscriber
+// - We're not on a Glabs paid content page
 // - We've got a Braze UUID from the API, given a user's ID Creds
 // - The user has given Consent via CCPA or TCFV2
 // - The Braze websdk appboy initialisation does not throw an error
@@ -46,11 +67,14 @@ export const canShow = async (
     const { brazeSwitch } = window.guardian.config.switches;
     const apiKey = window.guardian.config.page.brazeApiKey;
 
-    if (!(brazeSwitch && apiKey)) {
-        return { result: false };
-    }
-
-    if (!isDigitalSubscriber) {
+    if (
+        !canShowPreChecks({
+            brazeSwitch,
+            apiKey,
+            isDigitalSubscriber,
+            pageConfig: window.guardian.config.page,
+        })
+    ) {
         return { result: false };
     }
 
@@ -68,7 +92,8 @@ export const canShow = async (
             /* webpackChunkName: "braze-web-sdk-core" */ '@braze/web-sdk-core'
         );
 
-        appboy.initialize(apiKey, {
+        appboy.initialize(apiKey as string, {
+            enableLogging: false,
             noCookies: true,
             baseUrl: 'https://sdk.fra-01.braze.eu/api/v3',
             sessionTimeoutInSeconds: 1,
@@ -76,30 +101,79 @@ export const canShow = async (
         });
 
         return new Promise((resolve) => {
-            appboy.subscribeToInAppMessage((message) => {
-                const meta = (message as any).extras;
+            appboy.subscribeToInAppMessage((message: any) => {
+                const meta = message.extras;
+
+                const buttonHandler = (buttonId: number) => {
+                    const thisButton = new appboy.InAppMessageButton(
+                        `Button: ID ${buttonId}`,
+                        undefined,
+                        undefined,
+                        undefined,
+                        undefined,
+                        undefined,
+                        buttonId,
+                    );
+                    appboy.logInAppMessageButtonClick(thisButton, message);
+                };
+
+                const logImpression = () => {
+                    // Log the impression with Braze
+                    appboy.logInAppMessageImpression(message);
+                };
 
                 if (meta) {
-                    resolve({ result: true, meta });
+                    const newMeta = {
+                        ...meta,
+                        logImpression,
+                        buttonHandler,
+                    };
+                    resolve({ result: true, meta: newMeta });
                 }
+
                 resolve({ result: false });
             });
 
             appboy.changeUser(brazeUuid);
             appboy.openSession();
         });
-    } catch {
+    } catch (e) {
         return { result: false };
     }
 };
 
+type InnerProps = {
+    meta: any;
+    BrazeComponent: React.FC<BrazeBannerProps>;
+};
+
+const BrazeBannerWithSatisfiedDependencies = ({
+    BrazeComponent,
+    meta,
+}: InnerProps) => {
+    useEffect(() => {
+        meta.logImpression();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    return (
+        <div className={containerStyles}>
+            <BrazeComponent
+                onButtonClick={meta.buttonHandler}
+                header={meta.header}
+                body={meta.body}
+            />
+        </div>
+    );
+};
+
 export const BrazeBanner = ({ meta }: Props) => {
-    const [ExampleComponent, setExampleComponent] = useState<
+    const [BrazeComponent, setBrazeComponent] = useState<
         React.FC<BrazeBannerProps>
     >();
 
     useEffect(() => {
-        if (meta && meta['test-key']) {
+        if (meta) {
             // TODO: unify the way we handle sharing these deps (this is
             // duplicated in SlotBodyEnd). Probably via the automat client
             // library.
@@ -115,7 +189,7 @@ export const BrazeBanner = ({ meta }: Props) => {
                 /* webpackChunkName: "guardian-braze-components" */ '@guardian/braze-components'
             )
                 .then((module) => {
-                    setExampleComponent(() => module.ExampleComponent);
+                    setBrazeComponent(() => module.DigitalSubscriberAppBanner);
                 })
                 .catch((error) =>
                     window.guardian.modules.sentry.reportError(
@@ -126,15 +200,12 @@ export const BrazeBanner = ({ meta }: Props) => {
         }
     }, [meta]);
 
-    if (ExampleComponent && meta && meta['test-key']) {
+    if (BrazeComponent && meta) {
         return (
-            <div className={containerStyles}>
-                <ExampleComponent
-                    message={meta['test-key']}
-                    onButtonClick={() => {}}
-                />
-                ;
-            </div>
+            <BrazeBannerWithSatisfiedDependencies
+                BrazeComponent={BrazeComponent}
+                meta={meta}
+            />
         );
     }
 
