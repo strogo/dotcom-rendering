@@ -9,7 +9,7 @@ import {
     brandLine,
     brandBorder,
 } from '@guardian/src-foundations/palette';
-import { from, until } from '@guardian/src-foundations/mq';
+import { until } from '@guardian/src-foundations/mq';
 import { GuardianLines } from '@root/src/lofi/components/GuardianLines';
 
 import { StarRating } from '@root/src/lofi/components/StarRating/StarRating';
@@ -39,53 +39,7 @@ import {
     getCurrentPillar,
 } from '@root/src/lofi/lib/layoutHelpers';
 
-const gridTemplateWide = css`
-    grid-template-areas:
-        'title  border  headline     right-column'
-        '.      border  standfirst   right-column'
-        'lines  border  media        right-column'
-        'meta   border  media        right-column'
-        'meta   border  body         right-column'
-        '.      border  .            right-column';
-`;
-
-const gridTemplateWidePreFurnished = css`
-    grid-template-areas:
-        'title  border  preFurniture right-column'
-        '.      border  headline     right-column'
-        '.      border  standfirst   right-column'
-        'lines  border  media        right-column'
-        'meta   border  media        right-column'
-        'meta   border  body         right-column'
-        '.      border  .            right-column';
-`;
-
-const gridTemplateLeftCol = css`
-    grid-template-areas:
-        'preFurniture  right-column'
-        'title         right-column'
-        'headline      right-column'
-        'standfirst    right-column'
-        'media         right-column'
-        'lines         right-column'
-        'meta          right-column'
-        'body          right-column'
-        '.             right-column';
-`;
-
-const gridTemplateLeftColPreFurnished = css`
-    grid-template-areas:
-        'title         right-column'
-        'headline      right-column'
-        'standfirst    right-column'
-        'media         right-column'
-        'lines         right-column'
-        'meta          right-column'
-        'body          right-column'
-        '.             right-column';
-`;
-
-const gridTemplateDesktop = css`
+const gridTemplate = css`
     grid-template-areas:
         'title'
         'headline'
@@ -95,140 +49,31 @@ const gridTemplateDesktop = css`
         'meta'
         'body';
 `;
-const gridTemplateDesktopPreFurnished = css`
-    grid-template-areas:
-        'preFurniture'
-        'title'
-        'headline'
-        'standfirst'
-        'media'
-        'lines'
-        'meta'
-        'body';
+
+const layoutGrid = css`
+    /* IE Fallback */
+    display: flex;
+    flex-direction: column;
+
+    @supports (display: grid) {
+        display: grid;
+        width: 100%;
+        margin-left: 0;
+
+        grid-column-gap: 10px;
+
+
+            grid-template-columns: 1fr; /* Main content */
+            ${gridTemplate}
+        }
+    }
 `;
-
-const gridTemplateTablet = css`
-    grid-template-areas:
-        'media'
-        'title'
-        'headline'
-        'standfirst'
-        'lines'
-        'meta'
-        'body';
-`;
-const gridTemplateTabletPreFurnished = css`
-    grid-template-areas:
-        'preFurniture'
-        'media'
-        'title'
-        'headline'
-        'standfirst'
-        'lines'
-        'meta'
-        'body';
-`;
-
-const layoutGrid = (hasPreFurniture?: boolean) =>
-    css`
-        /* IE Fallback */
-        display: flex;
-        flex-direction: column;
-        ${until.leftCol} {
-            margin-left: 0px;
-        }
-        ${from.leftCol} {
-            margin-left: 151px;
-        }
-        ${from.wide} {
-            margin-left: 230px;
-        }
-
-        @supports (display: grid) {
-            display: grid;
-            width: 100%;
-            margin-left: 0;
-
-            grid-column-gap: 10px;
-
-            ${from.wide} {
-                grid-template-columns:
-                    219px /* Left Column (220 - 1px border) */
-                    1px /* Vertical grey border */
-                    1fr /* Main content */
-                    300px; /* Right Column */
-
-                ${hasPreFurniture
-                    ? gridTemplateWidePreFurnished
-                    : gridTemplateWide}
-            }
-
-            ${until.wide} {
-                grid-template-columns:
-                    140px /* Left Column */
-                    1px /* Vertical grey border */
-                    1fr /* Main content */
-                    300px; /* Right Column */
-
-                ${hasPreFurniture
-                    ? gridTemplateWidePreFurnished
-                    : gridTemplateWide}
-            }
-
-            ${until.leftCol} {
-                grid-template-columns:
-                    1fr /* Main content */
-                    300px; /* Right Column */
-                ${hasPreFurniture
-                    ? gridTemplateLeftColPreFurnished
-                    : gridTemplateLeftCol}
-            }
-
-            ${until.desktop} {
-                grid-template-columns: 1fr; /* Main content */
-                ${hasPreFurniture
-                    ? gridTemplateDesktopPreFurnished
-                    : gridTemplateDesktop}
-            }
-
-            ${until.tablet} {
-                grid-column-gap: 0px;
-
-                grid-template-columns: 1fr; /* Main content */
-                ${hasPreFurniture
-                    ? gridTemplateTabletPreFurnished
-                    : gridTemplateTablet}
-            }
-        }
-    `;
 
 const StandardGrid = ({
     children,
-    designType,
-    CAPI,
 }: {
     children: JSX.Element | JSX.Element[];
-    designType: DesignType;
-    CAPI: CAPIType;
-}) => (
-    <div
-        className={layoutGrid(designType === 'MatchReport' && !!CAPI.matchUrl)}
-    >
-        {children}
-    </div>
-);
-
-const maxWidth = css`
-    ${from.desktop} {
-        max-width: 620px;
-    }
-`;
-
-const articleWidth = css`
-    ${from.desktop} {
-        width: 620px;
-    }
-`;
+}) => <div className={layoutGrid}>{children}</div>;
 
 const stretchLines = css`
     ${until.phablet} {
@@ -251,10 +96,6 @@ const starWrapper = css`
         padding-left: 20px;
         margin-left: -20px;
     }
-    ${until.leftCol} {
-        padding-left: 0px;
-        margin-left: -0px;
-    }
 
     padding-left: 10px;
     margin-left: -10px;
@@ -264,15 +105,6 @@ const ageWarningMargins = css`
     margin-top: 12px;
     margin-left: -10px;
     margin-bottom: 6px;
-
-    ${from.tablet} {
-        margin-left: -20px;
-    }
-
-    ${from.leftCol} {
-        margin-left: -10px;
-        margin-top: 0;
-    }
 `;
 
 interface Props {
@@ -330,7 +162,7 @@ export const LofiLayout = ({ CAPI, NAV, designType, pillar }: Props) => {
             </div>
 
             <Section showTopBorder={false}>
-                <StandardGrid designType={designType} CAPI={CAPI}>
+                <StandardGrid>
                     <GridItem area="title">
                         <ArticleTitle
                             designType={designType}
@@ -347,7 +179,7 @@ export const LofiLayout = ({ CAPI, NAV, designType, pillar }: Props) => {
                     </GridItem>
 
                     <GridItem area="headline">
-                        <div className={maxWidth}>
+                        <div>
                             <ArticleHeadlinePadding designType={designType}>
                                 {age && (
                                     <div className={ageWarningMargins}>
@@ -384,7 +216,7 @@ export const LofiLayout = ({ CAPI, NAV, designType, pillar }: Props) => {
                         />
                     </GridItem>
                     <GridItem area="media">
-                        <div className={maxWidth}>
+                        <div>
                             <MainMedia
                                 elements={CAPI.mainMediaElements}
                                 pillar={pillar}
@@ -393,7 +225,7 @@ export const LofiLayout = ({ CAPI, NAV, designType, pillar }: Props) => {
                         </div>
                     </GridItem>
                     <GridItem area="lines">
-                        <div className={maxWidth}>
+                        <div>
                             <div className={stretchLines}>
                                 <GuardianLines
                                     count={decideLineCount(designType)}
@@ -407,7 +239,7 @@ export const LofiLayout = ({ CAPI, NAV, designType, pillar }: Props) => {
                         </div>
                     </GridItem>
                     <GridItem area="meta">
-                        <div className={maxWidth}>
+                        <div>
                             <ArticleMeta
                                 pillar={pillar}
                                 author={CAPI.author}
@@ -421,7 +253,7 @@ export const LofiLayout = ({ CAPI, NAV, designType, pillar }: Props) => {
                     </GridItem>
                     <GridItem area="body">
                         <ArticleContainer>
-                            <main className={articleWidth}>
+                            <main>
                                 <ArticleBody
                                     pillar={pillar}
                                     blocks={CAPI.blocks}
