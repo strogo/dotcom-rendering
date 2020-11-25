@@ -16,8 +16,6 @@ import { TextBlockComponent } from '@root/src/lofi/components/elements/TextBlock
 import { TimelineAtom } from '@guardian/atoms-rendering';
 import { Display } from '@root/src/lib/display';
 
-import { RichLink } from '../components/RichLink';
-
 export const ArticleRenderer: React.FC<{
     elements: CAPIElement[];
     pillar: Pillar;
@@ -184,12 +182,7 @@ export const ArticleRenderer: React.FC<{
                 case 'model.dotcomrendering.pageElements.QABlockElement':
                     return null;
                 case 'model.dotcomrendering.pageElements.RichLinkBlockElement':
-                    return (
-                        <RichLink
-                            headlineText={element.text}
-                            url={element.url}
-                        />
-                    );
+                    return null;
                 case 'model.dotcomrendering.pageElements.SoundcloudBlockElement':
                     return (
                         <LofiTextAlternative elementTypeShownToUser="Soundcloud" />
