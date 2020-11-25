@@ -9,10 +9,7 @@ type Props = {
 };
 
 const standardFont = css`
-    ${headline.medium()};
-    ${until.tablet} {
-        ${headline.small()};
-    }
+    ${headline.small()};
 `;
 
 export const ArticleHeadline = ({ headlineString }: Props) => (
