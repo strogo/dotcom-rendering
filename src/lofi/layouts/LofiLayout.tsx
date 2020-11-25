@@ -32,7 +32,6 @@ import { GridItem } from '@root/src/lofi/components/GridItem';
 import { AgeWarning } from '@root/src/lofi/components/AgeWarning';
 
 import { buildAdTargeting } from '@root/src/lib/ad-targeting';
-import { parse } from '@frontend/lib/slot-machine-flags';
 import { getAgeWarning } from '@root/src/lib/age-warning';
 import {
     decideLineCount,
@@ -290,23 +289,8 @@ export const LofiLayout = ({ CAPI, NAV, designType, pillar }: Props) => {
 
     const adTargeting: AdTargeting = buildAdTargeting(CAPI.config);
 
-    const showBodyEndSlot =
-        parse(CAPI.slotMachineFlags || '').showBodyEnd ||
-        CAPI.config.switches.slotBodyEnd;
-
-    // TODO:
-    // 1) Read 'forceEpic' value from URL parameter and use it to force the slot to render
-    // 2) Otherwise, ensure slot only renders if `CAPI.config.shouldHideReaderRevenue` equals false.
-
-    const seriesTag = CAPI.tags.find(
-        (tag) => tag.type === 'Series' || tag.type === 'Blog',
-    );
-
-    const showMatchStats = designType === 'MatchReport' && CAPI.matchUrl;
-
     const age = getAgeWarning(CAPI.tags, CAPI.webPublicationDate);
 
-    const { branding } = CAPI.commercialProperties[CAPI.editionId];
     return (
         <>
             <div>
@@ -402,7 +386,6 @@ export const LofiLayout = ({ CAPI, NAV, designType, pillar }: Props) => {
                     <GridItem area="media">
                         <div className={maxWidth}>
                             <MainMedia
-                                designType={designType}
                                 elements={CAPI.mainMediaElements}
                                 pillar={pillar}
                                 adTargeting={adTargeting}
@@ -426,11 +409,7 @@ export const LofiLayout = ({ CAPI, NAV, designType, pillar }: Props) => {
                     <GridItem area="meta">
                         <div className={maxWidth}>
                             <ArticleMeta
-                                branding={branding}
-                                designType={designType}
                                 pillar={pillar}
-                                pageId={CAPI.pageId}
-                                webTitle={CAPI.webTitle}
                                 author={CAPI.author}
                                 tags={CAPI.tags}
                                 primaryDateline={CAPI.blocks[0].primaryDateLine}
@@ -450,9 +429,6 @@ export const LofiLayout = ({ CAPI, NAV, designType, pillar }: Props) => {
                                     adTargeting={adTargeting}
                                     host={host}
                                 />
-                                {showMatchStats && <div id="match-stats" />}
-
-                                {showBodyEndSlot && <div id="slot-body-end" />}
                                 <GuardianLines count={4} pillar={pillar} />
                                 <SubMeta
                                     pillar={pillar}
@@ -462,13 +438,6 @@ export const LofiLayout = ({ CAPI, NAV, designType, pillar }: Props) => {
                                     subMetaSectionLinks={
                                         CAPI.subMetaSectionLinks
                                     }
-                                    pageId={CAPI.pageId}
-                                    webUrl={CAPI.webURL}
-                                    webTitle={CAPI.webTitle}
-                                    showBottomSocialButtons={
-                                        CAPI.showBottomSocialButtons
-                                    }
-                                    badge={CAPI.badge}
                                 />
                             </main>
                         </ArticleContainer>

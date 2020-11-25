@@ -1,28 +1,15 @@
 import React from 'react';
 import { css } from 'emotion';
-
 import { textSans } from '@guardian/src-foundations/typography';
 import { neutral } from '@guardian/src-foundations/palette';
-
-import { SharingIcons } from '@root/src/lofi/components/ShareIcons';
 import { SubMetaLinksList } from '@root/src/lofi/components/SubMetaLinksList';
-import { SyndicationButton } from '@root/src/lofi/components/SyndicationButton';
 import { Badge } from '@root/src/lofi/components/Badge';
-import { getSharingUrls } from '@frontend/lib/sharing-urls';
 import { until } from '@guardian/src-foundations/mq';
 
 const subMetaLabel = css`
     ${textSans.xsmall()};
     display: block;
     color: ${neutral[60]};
-`;
-
-const subMetaSharingIcons = css`
-    :after {
-        content: '';
-        display: block;
-        clear: left;
-    }
 `;
 
 const badgeWrapper = css`
@@ -41,36 +28,17 @@ type Props = {
     pillar: Pillar;
     subMetaSectionLinks: SimpleLinkType[];
     subMetaKeywordLinks: SimpleLinkType[];
-    pageId: string;
-    webUrl: string;
-    webTitle: string;
-    showBottomSocialButtons: boolean;
-    badge?: BadgeType;
 };
 
 export const SubMeta = ({
     pillar,
     subMetaKeywordLinks,
     subMetaSectionLinks,
-    pageId,
-    webUrl,
-    webTitle,
-    showBottomSocialButtons,
-    badge,
 }: Props) => {
     const hasSubMetaSectionLinks = subMetaSectionLinks.length > 0;
     const hasSubMetaKeywordLinks = subMetaKeywordLinks.length > 0;
-    const sharingUrls = getSharingUrls(pageId, webTitle);
     return (
         <div className={bottomPadding}>
-            {badge && (
-                <div className={badgeWrapper}>
-                    <Badge
-                        imageUrl={badge.imageUrl}
-                        seriesTag={badge.seriesTag}
-                    />
-                </div>
-            )}
             {(hasSubMetaSectionLinks || hasSubMetaKeywordLinks) && (
                 <span className={subMetaLabel}>Topics</span>
             )}
@@ -87,25 +55,6 @@ export const SubMeta = ({
                     isSectionLinkList={false}
                     pillar={pillar}
                 />
-            )}
-            {showBottomSocialButtons && (
-                <SharingIcons
-                    className={subMetaSharingIcons}
-                    sharingUrls={sharingUrls}
-                    pillar={pillar}
-                    displayIcons={[
-                        'facebook',
-                        'twitter',
-                        'email',
-                        'linkedIn',
-                        'pinterest',
-                        'whatsApp',
-                        'messenger',
-                    ]}
-                />
-            )}
-            {showBottomSocialButtons && (
-                <SyndicationButton webUrl={webUrl} internalPageCode={pageId} />
             )}
         </div>
     );
