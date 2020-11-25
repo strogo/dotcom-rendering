@@ -1,167 +1,238 @@
 import React from 'react';
-import { css, cx } from 'emotion';
+import { css } from 'emotion';
 
 import {
     neutral,
-    brandBorder,
+    background,
+    brandAltBackground,
     brandBackground,
     brandLine,
-    opinion,
+    brandBorder,
 } from '@guardian/src-foundations/palette';
 import { from, until } from '@guardian/src-foundations/mq';
-import { GuardianLines } from '@root/src/web/components/GuardianLines';
+import { GuardianLines } from '@root/src/lofi/components/GuardianLines';
 
 import { namedAdSlotParameters } from '@root/src/model/advertisement';
-import { StickyAd } from '@root/src/web/components/StickyAd';
-import { ArticleBody } from '@root/src/web/components/ArticleBody';
-import { RightColumn } from '@root/src/web/components/RightColumn';
-import { ArticleTitle } from '@root/src/web/components/ArticleTitle';
-import { ArticleContainer } from '@root/src/web/components/ArticleContainer';
-import { ArticleMeta } from '@root/src/web/components/ArticleMeta';
-import { MostViewedRightIsland } from '@root/src/web/components/MostViewedRightIsland';
-import { SubMeta } from '@root/src/web/components/SubMeta';
-import { MainMedia } from '@root/src/web/components/MainMedia';
-import { ArticleHeadline } from '@root/src/web/components/ArticleHeadline';
-import { ContributorAvatar } from '@root/src/web/components/ContributorAvatar';
-import { ArticleStandfirst } from '@root/src/web/components/ArticleStandfirst';
-import { Header } from '@root/src/web/components/Header';
-import { Footer } from '@root/src/web/components/Footer';
-import { SubNav } from '@root/src/web/components/SubNav/SubNav';
-import { Section } from '@root/src/web/components/Section';
-import { Nav } from '@root/src/web/components/Nav/Nav';
-import { HeaderAdSlot } from '@root/src/web/components/HeaderAdSlot';
-import { MobileStickyContainer, AdSlot } from '@root/src/web/components/AdSlot';
-import { Border } from '@root/src/web/components/Border';
-import { GridItem } from '@root/src/web/components/GridItem';
-import { AgeWarning } from '@root/src/web/components/AgeWarning';
+import { StarRating } from '@root/src/lofi/components/StarRating/StarRating';
+import { StickyAd } from '@root/src/lofi/components/StickyAd';
+import { ArticleBody } from '@root/src/lofi/components/ArticleBody';
+import { RightColumn } from '@root/src/lofi/components/RightColumn';
+import { ArticleTitle } from '@root/src/lofi/components/ArticleTitle';
+import { ArticleContainer } from '@root/src/lofi/components/ArticleContainer';
+import { ArticleMeta } from '@root/src/lofi/components/ArticleMeta';
+import { MostViewedRightIsland } from '@root/src/lofi/components/MostViewedRightIsland';
+import { SubMeta } from '@root/src/lofi/components/SubMeta';
+import { MainMedia } from '@root/src/lofi/components/MainMedia';
+import { ArticleHeadline } from '@root/src/lofi/components/ArticleHeadline';
+import { ArticleHeadlinePadding } from '@root/src/lofi/components/ArticleHeadlinePadding';
+import { ArticleStandfirst } from '@root/src/lofi/components/ArticleStandfirst';
+import { Header } from '@root/src/lofi/components/Header';
+import { Footer } from '@root/src/lofi/components/Footer';
+import { SubNav } from '@root/src/lofi/components/SubNav/SubNav';
+import { Section } from '@root/src/lofi/components/Section';
+import { Nav } from '@root/src/lofi/components/Nav/Nav';
+import { HeaderAdSlot } from '@root/src/lofi/components/HeaderAdSlot';
+import {
+    MobileStickyContainer,
+    AdSlot,
+} from '@root/src/lofi/components/AdSlot';
+import { Border } from '@root/src/lofi/components/Border';
+import { GridItem } from '@root/src/lofi/components/GridItem';
+import { AgeWarning } from '@root/src/lofi/components/AgeWarning';
 import { CommentsLayout } from '@frontend/web/components/CommentsLayout';
+import { Placeholder } from '@frontend/web/components/Placeholder';
 
 import { buildAdTargeting } from '@root/src/lib/ad-targeting';
 import { parse } from '@frontend/lib/slot-machine-flags';
 import { getAgeWarning } from '@root/src/lib/age-warning';
-import { getCurrentPillar } from '@root/src/web/lib/layoutHelpers';
+import {
+    decideLineCount,
+    decideLineEffect,
+    getCurrentPillar,
+} from '@root/src/lofi/lib/layoutHelpers';
 import {
     Stuck,
     SendToBack,
     BannerWrapper,
-} from '@root/src/web/layouts/lib/stickiness';
+} from '@root/src/lofi/layouts/lib/stickiness';
 import { Display } from '@root/src/lib/display';
 
 const MOSTVIEWED_STICKY_HEIGHT = 1059;
 
-const gridWide = css`
+const gridTemplateWide = css`
     grid-template-areas:
-        'title      border  headline    right-column'
-        'lines      border  headline    right-column'
-        'meta       border  standfirst  right-column'
-        'meta       border  media       right-column'
-        '.          border  body        right-column'
-        '.          border  .           right-column';
+        'title  border  headline     right-column'
+        '.      border  standfirst   right-column'
+        'lines  border  media        right-column'
+        'meta   border  media        right-column'
+        'meta   border  body         right-column'
+        '.      border  .            right-column';
 `;
 
-const showcaseGridWide = css`
+const gridTemplateWidePreFurnished = css`
     grid-template-areas:
-        'title      border  headline    headline'
-        'lines      border  headline    headline'
-        'meta       border  standfirst  standfirst'
-        'meta       border  media       media'
-        '.          border  body        right-column'
-        '.          border  .           right-column';
+        'title  border  preFurniture right-column'
+        '.      border  headline     right-column'
+        '.      border  standfirst   right-column'
+        'lines  border  media        right-column'
+        'meta   border  media        right-column'
+        'meta   border  body         right-column'
+        '.      border  .            right-column';
 `;
+
+const gridTemplateLeftCol = css`
+    grid-template-areas:
+        'preFurniture  right-column'
+        'title         right-column'
+        'headline      right-column'
+        'standfirst    right-column'
+        'media         right-column'
+        'lines         right-column'
+        'meta          right-column'
+        'body          right-column'
+        '.             right-column';
+`;
+
+const gridTemplateLeftColPreFurnished = css`
+    grid-template-areas:
+        'title         right-column'
+        'headline      right-column'
+        'standfirst    right-column'
+        'media         right-column'
+        'lines         right-column'
+        'meta          right-column'
+        'body          right-column'
+        '.             right-column';
+`;
+
+const gridTemplateDesktop = css`
+    grid-template-areas:
+        'title'
+        'headline'
+        'standfirst'
+        'media'
+        'lines'
+        'meta'
+        'body';
+`;
+const gridTemplateDesktopPreFurnished = css`
+    grid-template-areas:
+        'preFurniture'
+        'title'
+        'headline'
+        'standfirst'
+        'media'
+        'lines'
+        'meta'
+        'body';
+`;
+
+const gridTemplateTablet = css`
+    grid-template-areas:
+        'media'
+        'title'
+        'headline'
+        'standfirst'
+        'lines'
+        'meta'
+        'body';
+`;
+const gridTemplateTabletPreFurnished = css`
+    grid-template-areas:
+        'preFurniture'
+        'media'
+        'title'
+        'headline'
+        'standfirst'
+        'lines'
+        'meta'
+        'body';
+`;
+
+const layoutGrid = (hasPreFurniture?: boolean) =>
+    css`
+        /* IE Fallback */
+        display: flex;
+        flex-direction: column;
+        ${until.leftCol} {
+            margin-left: 0px;
+        }
+        ${from.leftCol} {
+            margin-left: 151px;
+        }
+        ${from.wide} {
+            margin-left: 230px;
+        }
+
+        @supports (display: grid) {
+            display: grid;
+            width: 100%;
+            margin-left: 0;
+
+            grid-column-gap: 10px;
+
+            ${from.wide} {
+                grid-template-columns:
+                    219px /* Left Column (220 - 1px border) */
+                    1px /* Vertical grey border */
+                    1fr /* Main content */
+                    300px; /* Right Column */
+
+                ${hasPreFurniture
+                    ? gridTemplateWidePreFurnished
+                    : gridTemplateWide}
+            }
+
+            ${until.wide} {
+                grid-template-columns:
+                    140px /* Left Column */
+                    1px /* Vertical grey border */
+                    1fr /* Main content */
+                    300px; /* Right Column */
+
+                ${hasPreFurniture
+                    ? gridTemplateWidePreFurnished
+                    : gridTemplateWide}
+            }
+
+            ${until.leftCol} {
+                grid-template-columns:
+                    1fr /* Main content */
+                    300px; /* Right Column */
+                ${hasPreFurniture
+                    ? gridTemplateLeftColPreFurnished
+                    : gridTemplateLeftCol}
+            }
+
+            ${until.desktop} {
+                grid-template-columns: 1fr; /* Main content */
+                ${hasPreFurniture
+                    ? gridTemplateDesktopPreFurnished
+                    : gridTemplateDesktop}
+            }
+
+            ${until.tablet} {
+                grid-column-gap: 0px;
+
+                grid-template-columns: 1fr; /* Main content */
+                ${hasPreFurniture
+                    ? gridTemplateTabletPreFurnished
+                    : gridTemplateTablet}
+            }
+        }
+    `;
 
 const StandardGrid = ({
     children,
-    display,
+    designType,
+    CAPI,
 }: {
     children: JSX.Element | JSX.Element[];
-    display: Display;
+    designType: DesignType;
+    CAPI: CAPIType;
 }) => (
     <div
-        className={css`
-            /* IE Fallback */
-            display: flex;
-            flex-direction: column;
-            ${until.leftCol} {
-                margin-left: 0px;
-            }
-            ${from.leftCol} {
-                margin-left: 151px;
-            }
-            ${from.wide} {
-                margin-left: 230px;
-            }
-
-            @supports (display: grid) {
-                display: grid;
-                width: 100%;
-                margin-left: 0;
-
-                grid-column-gap: 10px;
-
-                ${from.wide} {
-                    grid-template-columns:
-                        219px /* Left Column (220 - 1px border) */
-                        1px /* Vertical grey border */
-                        1fr /* Main content */
-                        300px; /* Right Column */
-
-                    ${display === Display.Showcase
-                        ? showcaseGridWide
-                        : gridWide}
-                }
-
-                ${until.wide} {
-                    grid-template-columns:
-                        140px /* Left Column (220 - 1px border) */
-                        1px /* Vertical grey border */
-                        1fr /* Main content */
-                        300px; /* Right Column */
-
-                    ${display === Display.Showcase
-                        ? showcaseGridWide
-                        : gridWide}
-                }
-
-                ${until.leftCol} {
-                    grid-template-columns:
-                        1fr /* Main content */
-                        300px; /* Right Column */
-                    grid-template-areas:
-                        'title      right-column'
-                        'headline   right-column'
-                        'standfirst right-column'
-                        'meta       right-column'
-                        'media      right-column'
-                        'body       right-column'
-                        '.          right-column';
-                }
-
-                ${until.desktop} {
-                    grid-column-gap: 0px;
-                    grid-template-columns: 1fr; /* Main content */
-                    grid-template-areas:
-                        'title'
-                        'headline'
-                        'standfirst'
-                        'meta'
-                        'media'
-                        'body';
-                }
-
-                ${until.tablet} {
-                    grid-column-gap: 0px;
-
-                    grid-template-columns: 1fr; /* Main content */
-                    grid-template-areas:
-                        'title'
-                        'headline'
-                        'standfirst'
-                        'meta'
-                        'media'
-                        'body';
-                }
-            }
-        `}
+        className={layoutGrid(designType === 'MatchReport' && !!CAPI.matchUrl)}
     >
         {children}
     </div>
@@ -173,61 +244,40 @@ const maxWidth = css`
     }
 `;
 
-const avatarHeadlineWrapper = css`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-`;
-
-const minHeightWithAvatar = css`
-    min-height: 259px;
-`;
-
-// If in mobile increase the margin top and margin right deficit
-const avatarPositionStyles = css`
-    display: flex;
-    justify-content: flex-end;
-    overflow: hidden;
-    margin-bottom: -29px;
-    margin-top: -50px;
-    pointer-events: none;
-
-    /*  Why target img element?
-
-        Because only in this context, where we have overflow: hidden
-        and the margin-bottom and margin-top of avatarPositionStyles
-        do we also want to apply our margin-right. These styles
-        are tightly coupled in this context, and so it does not
-        make sense to move them to the avatar component.
-
-        It's imperfect from the perspective of DCR, the alternative is to bust
-        the combined elements into a separate component (with the
-        relevant stories) and couple them that way, which might be what
-        you want to do if you find yourself adding more styles
-        to this section. For now, this works without making me 🤢.
-    */
-
-    ${from.mobile} {
-        img {
-            margin-right: -1.85rem;
-        }
-    }
-    ${from.mobileLandscape} {
-        img {
-            margin-right: -1.25rem;
-        }
+const articleWidth = css`
+    ${from.desktop} {
+        width: 620px;
     }
 `;
 
-const pushToBottom = css`
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-    justify-content: flex-end;
+const stretchLines = css`
+    ${until.phablet} {
+        margin-left: -20px;
+        margin-right: -20px;
+    }
+    ${until.mobileLandscape} {
+        margin-left: -10px;
+        margin-right: -10px;
+    }
 `;
 
-const headlinePadding = css`
-    padding-bottom: 43px;
+const starWrapper = css`
+    margin-bottom: 18px;
+    margin-top: 6px;
+    background-color: ${brandAltBackground.primary};
+    display: inline-block;
+
+    ${until.phablet} {
+        padding-left: 20px;
+        margin-left: -20px;
+    }
+    ${until.leftCol} {
+        padding-left: 0px;
+        margin-left: -0px;
+    }
+
+    padding-left: 10px;
+    margin-left: -10px;
 `;
 
 const ageWarningMargins = css`
@@ -245,25 +295,14 @@ const ageWarningMargins = css`
     }
 `;
 
-const mainMediaWrapper = css`
-    position: relative;
-`;
-
 interface Props {
     CAPI: CAPIType;
     NAV: NavType;
-    display: Display;
     designType: DesignType;
     pillar: Pillar;
 }
 
-export const CommentLayout = ({
-    CAPI,
-    NAV,
-    display,
-    designType,
-    pillar,
-}: Props) => {
+export const LofiLayout = ({ CAPI, NAV, designType, pillar }: Props) => {
     const {
         config: { isPaidContent, host },
     } = CAPI;
@@ -281,21 +320,16 @@ export const CommentLayout = ({
     const seriesTag = CAPI.tags.find(
         (tag) => tag.type === 'Series' || tag.type === 'Blog',
     );
+
     const showOnwardsLower = seriesTag && CAPI.hasStoryPackage;
 
+    const showMatchStats = designType === 'MatchReport' && CAPI.matchUrl;
+
     const showComments = CAPI.isCommentable;
-
-    const contributorTag = CAPI.tags.find((tag) => tag.type === 'Contributor');
-    const avatarUrl = contributorTag && contributorTag.bylineImageUrl;
-    const onlyOneContributor: boolean =
-        CAPI.tags.filter((tag) => tag.type === 'Contributor').length === 1;
-
-    const showAvatar = avatarUrl && onlyOneContributor;
 
     const age = getAgeWarning(CAPI.tags, CAPI.webPublicationDate);
 
     const { branding } = CAPI.commercialProperties[CAPI.editionId];
-
     return (
         <>
             <div>
@@ -304,6 +338,7 @@ export const CommentLayout = ({
                         showTopBorder={false}
                         showSideBorders={false}
                         padded={false}
+                        shouldCenter={false}
                     >
                         <HeaderAdSlot
                             isAdFreeUser={CAPI.isAdFreeUser}
@@ -318,7 +353,7 @@ export const CommentLayout = ({
                         padded={false}
                         backgroundColour={brandBackground.primary}
                     >
-                        <Header edition={CAPI.editionId} />
+                        <Header />
                     </Section>
 
                     <Section
@@ -331,7 +366,6 @@ export const CommentLayout = ({
                         <Nav
                             pillar={getCurrentPillar(CAPI)}
                             nav={NAV}
-                            display={display}
                             subscribeUrl={
                                 CAPI.nav.readerRevenueLinks.header.subscribe
                             }
@@ -341,7 +375,7 @@ export const CommentLayout = ({
 
                     {NAV.subNavSections && (
                         <Section
-                            backgroundColour={opinion[800]}
+                            backgroundColour={background.primary}
                             padded={false}
                             sectionId="sub-nav-root"
                         >
@@ -354,7 +388,7 @@ export const CommentLayout = ({
                     )}
 
                     <Section
-                        backgroundColour={opinion[800]}
+                        backgroundColour={background.primary}
                         padded={false}
                         showTopBorder={false}
                     >
@@ -363,11 +397,10 @@ export const CommentLayout = ({
                 </SendToBack>
             </div>
 
-            <Section showTopBorder={false} backgroundColour={opinion[800]}>
-                <StandardGrid display={display}>
+            <Section showTopBorder={false}>
+                <StandardGrid designType={designType} CAPI={CAPI}>
                     <GridItem area="title">
                         <ArticleTitle
-                            display={display}
                             designType={designType}
                             tags={CAPI.tags}
                             sectionLabel={CAPI.sectionLabel}
@@ -380,105 +413,89 @@ export const CommentLayout = ({
                     <GridItem area="border">
                         <Border />
                     </GridItem>
-                    <GridItem area="headline">
+                    <GridItem area="preFurniture">
                         <div className={maxWidth}>
-                            <div
-                                className={cx(
-                                    avatarHeadlineWrapper,
-                                    showAvatar && minHeightWithAvatar,
-                                )}
-                            >
-                                {/* TOP - we use divs here to position content in groups using flex */}
-                                <div
-                                    className={cx(
-                                        !showAvatar && headlinePadding,
-                                    )}
-                                >
-                                    {age && (
-                                        <div className={ageWarningMargins}>
-                                            <AgeWarning age={age} />
-                                        </div>
-                                    )}
-                                    <ArticleHeadline
-                                        display={display}
-                                        headlineString={CAPI.headline}
-                                        designType={designType}
-                                        pillar={pillar}
-                                        tags={CAPI.tags}
-                                        byline={CAPI.author.byline}
-                                    />
-                                    {age && (
-                                        <AgeWarning
-                                            age={age}
-                                            isScreenReader={true}
-                                        />
-                                    )}
-                                </div>
-                                {/* BOTTOM */}
-                                <div>
-                                    {showAvatar && avatarUrl && (
-                                        <div className={avatarPositionStyles}>
-                                            <ContributorAvatar
-                                                imageSrc={avatarUrl}
-                                                imageAlt={
-                                                    CAPI.author.byline || ''
-                                                }
-                                            />
-                                        </div>
-                                    )}
-                                    <GuardianLines count={8} pillar={pillar} />
-                                </div>
-                            </div>
+                            {designType === 'MatchReport' && CAPI.matchUrl && (
+                                <Placeholder rootId="match-nav" height={230} />
+                            )}
                         </div>
                     </GridItem>
-                    <GridItem area="lines">
-                        <div className={pushToBottom}>
-                            <GuardianLines count={8} pillar={pillar} />
+                    <GridItem area="headline">
+                        <div className={maxWidth}>
+                            <ArticleHeadlinePadding designType={designType}>
+                                {age && (
+                                    <div className={ageWarningMargins}>
+                                        <AgeWarning age={age} />
+                                    </div>
+                                )}
+                                <ArticleHeadline
+                                    headlineString={CAPI.headline}
+                                    designType={designType}
+                                    pillar={pillar}
+                                    tags={CAPI.tags}
+                                    byline={CAPI.author.byline}
+                                />
+                                {age && (
+                                    <AgeWarning
+                                        age={age}
+                                        isScreenReader={true}
+                                    />
+                                )}
+                            </ArticleHeadlinePadding>
                         </div>
+                        {CAPI.starRating || CAPI.starRating === 0 ? (
+                            <div className={starWrapper}>
+                                <StarRating
+                                    rating={CAPI.starRating}
+                                    size="large"
+                                />
+                            </div>
+                        ) : (
+                            <></>
+                        )}
                     </GridItem>
                     <GridItem area="standfirst">
                         <ArticleStandfirst
-                            display={display}
                             designType={designType}
                             pillar={pillar}
                             standfirst={CAPI.standfirst}
                         />
                     </GridItem>
                     <GridItem area="media">
-                        <div
-                            className={
-                                display === Display.Showcase &&
-                                CAPI.pageType.hasShowcaseMainElement
-                                    ? mainMediaWrapper
-                                    : maxWidth
-                            }
-                        >
+                        <div className={maxWidth}>
                             <MainMedia
-                                display={display}
                                 designType={designType}
                                 elements={CAPI.mainMediaElements}
                                 pillar={pillar}
                                 adTargeting={adTargeting}
-                                starRating={
-                                    designType === 'Review' && CAPI.starRating
-                                        ? CAPI.starRating
-                                        : undefined
-                                }
                             />
+                        </div>
+                    </GridItem>
+                    <GridItem area="lines">
+                        <div className={maxWidth}>
+                            <div className={stretchLines}>
+                                <GuardianLines
+                                    count={decideLineCount(designType)}
+                                    pillar={pillar}
+                                    effect={decideLineEffect(
+                                        designType,
+                                        pillar,
+                                    )}
+                                />
+                            </div>
                         </div>
                     </GridItem>
                     <GridItem area="meta">
                         <div className={maxWidth}>
                             <ArticleMeta
                                 branding={branding}
-                                display={display}
                                 designType={designType}
                                 pillar={pillar}
                                 pageId={CAPI.pageId}
                                 webTitle={CAPI.webTitle}
                                 author={CAPI.author}
                                 tags={CAPI.tags}
-                                primaryDateline={CAPI.webPublicationDateDisplay}
+                                primaryDateline={CAPI.blocks[0].primaryDateLine}
                                 secondaryDateline={
                                     CAPI.blocks[0].secondaryDateLine
                                 }
@@ -487,15 +504,16 @@ export const CommentLayout = ({
                     </GridItem>
                     <GridItem area="body">
                         <ArticleContainer>
-                            <main className={maxWidth}>
+                            <main className={articleWidth}>
                                 <ArticleBody
                                     pillar={pillar}
                                     blocks={CAPI.blocks}
-                                    display={display}
                                     designType={designType}
                                     adTargeting={adTargeting}
                                     host={host}
                                 />
+                                {showMatchStats && <div id="match-stats" />}
+
                                 {showBodyEndSlot && <div id="slot-body-end" />}
                                 <GuardianLines count={4} pillar={pillar} />
                                 <SubMeta
