@@ -13,6 +13,24 @@ interface RenderToStringResult {
     ids: string[];
 }
 
+const replaceStrings = (html: string) => {
+    const replacementPairs = [
+        {
+            old: `font-family:GuardianTextSans,Guardian Text Sans Web,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;`,
+            new: `font-family:Helvetica Neue,Arial,sans-serif;`,
+        },
+        {
+            old: `font-family:GH Guardian Headline,Guardian Egyptian Web,Georgia,serif;`,
+            new: `font-family:Georgia,serif;`,
+        },
+    ];
+
+    return replacementPairs.reduce(
+        (prev, pair) => prev.split(pair.old).join(pair.new),
+        html,
+    );
+};
+
 export const document = ({ data }: Props) => {
     const { CAPI, NAV, linkedData } = data;
     const { designType } = CAPI;
@@ -42,13 +60,15 @@ export const document = ({ data }: Props) => {
             ? ''
             : CAPI.config.keywords;
 
-    return htmlTemplate({
-        title,
-        description: CAPI.trailText,
-        linkedData,
-        css,
-        html,
-        openGraphData,
-        keywords,
-    });
+    return replaceStrings(
+        htmlTemplate({
+            title,
+            description: CAPI.trailText,
+            linkedData,
+            css,
+            html,
+            openGraphData,
+            keywords,
+        }),
+    );
 };
