@@ -1,5 +1,5 @@
 import '../webpackPublicPath';
-import { startup } from '@root/src/web/browser/startup';
+import { startup } from '@root/src/lofi/browser/startup';
 
 const shouldServeLotame = (window: Window) => {
     const geo = window.localStorage.getItem('gu.geolocation');

@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from 'emotion';
-import { Caption } from '@root/src/web/components/Caption';
+import { Caption } from '@root/src/lofi/components/Caption';
 import { Display } from '@root/src/lib/display';
 
 const responsiveAspectRatio = (height: number, width: number) => css`

@@ -1,7 +1,7 @@
 import {
     OphanComponent,
     OphanComponentEvent,
-} from '@root/src/web/browser/ophan/ophan';
+} from '@root/src/lofi/browser/ophan/ophan';
 import { CurrentABTest } from '@frontend/web/components/SignInGate/gateDesigns/types';
 
 type ABTestVariant = {

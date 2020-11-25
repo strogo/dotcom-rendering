@@ -1,7 +1,7 @@
 import express from 'express';
 import { extract as extractNAV } from '@root/src/model/extract-nav';
 
-import { document } from '@root/src/web/server/document';
+import { document } from '@root/src/lofi/server/document';
 import { validateAsCAPIType } from '@root/src/model/validate';
 import { addDropCaps } from '@root/src/model/add-dropcaps';
 import { setIsDev } from '@root/src/model/set-is-dev';

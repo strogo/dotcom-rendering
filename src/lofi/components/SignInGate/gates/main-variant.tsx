@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { Lazy } from '@root/src/web/components/Lazy';
+import { Lazy } from '@root/src/lofi/components/Lazy';
 
 import {
     SignInGateComponent,
@@ -12,7 +12,7 @@ import {
     isValidTag,
     isIOS9,
 } from '@frontend/web/components/SignInGate/displayRule';
-import { initPerf } from '@root/src/web/browser/initPerf';
+import { initPerf } from '@root/src/lofi/browser/initPerf';
 import { hasUserDismissedGateMoreThanCount } from '../dismissGate';
 
 const SignInGateMain = React.lazy(() => {

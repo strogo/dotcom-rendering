@@ -7,7 +7,7 @@ import { from } from '@guardian/src-foundations/mq';
 import { sanitise } from '@frontend/lib/sanitise-html';
 
 import { unwrapHtml } from '@root/src/model/unwrapHtml';
-import { RewrappedComponent } from '@root/src/web/components/elements/RewrappedComponent';
+import { RewrappedComponent } from '@root/src/lofi/components/elements/RewrappedComponent';
 
 import { DropCap } from '@frontend/web/components/DropCap';
 import { Display } from '@root/src/lib/display';

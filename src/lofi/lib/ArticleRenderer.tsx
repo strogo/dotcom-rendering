@@ -1,31 +1,31 @@
 import React from 'react';
 import { css } from 'emotion';
 
-import { BlockquoteBlockComponent } from '@root/src/web/components/elements/BlockquoteBlockComponent';
-import { CalloutBlockComponent } from '@root/src/web/components/elements/CalloutBlockComponent';
-import { CaptionBlockComponent } from '@root/src/web/components/elements/CaptionBlockComponent';
-import { CommentBlockComponent } from '@root/src/web/components/elements/CommentBlockComponent';
-import { DocumentBlockComponent } from '@root/src/web/components/elements/DocumentBlockComponent';
-import { DisclaimerBlockComponent } from '@root/src/web/components/elements/DisclaimerBlockComponent';
-import { DividerBlockComponent } from '@root/src/web/components/elements/DividerBlockComponent';
-import { EmbedBlockComponent } from '@root/src/web/components/elements/EmbedBlockComponent';
-import { UnsafeEmbedBlockComponent } from '@root/src/web/components/elements/UnsafeEmbedBlockComponent';
-import { HighlightBlockComponent } from '@root/src/web/components/elements/HighlightBlockComponent';
-import { ImageBlockComponent } from '@root/src/web/components/elements/ImageBlockComponent';
-import { InstagramBlockComponent } from '@root/src/web/components/elements/InstagramBlockComponent';
-import { MapEmbedBlockComponent } from '@root/src/web/components/elements/MapEmbedBlockComponent';
-import { MultiImageBlockComponent } from '@root/src/web/components/elements/MultiImageBlockComponent';
-import { PullQuoteBlockComponent } from '@root/src/web/components/elements/PullQuoteBlockComponent';
-import { SoundcloudBlockComponent } from '@root/src/web/components/elements/SoundcloudBlockComponent';
-import { SpotifyBlockComponent } from '@root/src/web/components/elements/SpotifyBlockComponent';
-import { SubheadingBlockComponent } from '@root/src/web/components/elements/SubheadingBlockComponent';
-import { TableBlockComponent } from '@root/src/web/components/elements/TableBlockComponent';
-import { TextBlockComponent } from '@root/src/web/components/elements/TextBlockComponent';
-import { TweetBlockComponent } from '@root/src/web/components/elements/TweetBlockComponent';
-import { VideoFacebookBlockComponent } from '@root/src/web/components/elements/VideoFacebookBlockComponent';
-import { VimeoBlockComponent } from '@root/src/web/components/elements/VimeoBlockComponent';
-import { YoutubeEmbedBlockComponent } from '@root/src/web/components/elements/YoutubeEmbedBlockComponent';
-import { YoutubeBlockComponent } from '@root/src/web/components/elements/YoutubeBlockComponent';
+import { BlockquoteBlockComponent } from '@root/src/lofi/components/elements/BlockquoteBlockComponent';
+import { CalloutBlockComponent } from '@root/src/lofi/components/elements/CalloutBlockComponent';
+import { CaptionBlockComponent } from '@root/src/lofi/components/elements/CaptionBlockComponent';
+import { CommentBlockComponent } from '@root/src/lofi/components/elements/CommentBlockComponent';
+import { DocumentBlockComponent } from '@root/src/lofi/components/elements/DocumentBlockComponent';
+import { DisclaimerBlockComponent } from '@root/src/lofi/components/elements/DisclaimerBlockComponent';
+import { DividerBlockComponent } from '@root/src/lofi/components/elements/DividerBlockComponent';
+import { EmbedBlockComponent } from '@root/src/lofi/components/elements/EmbedBlockComponent';
+import { UnsafeEmbedBlockComponent } from '@root/src/lofi/components/elements/UnsafeEmbedBlockComponent';
+import { HighlightBlockComponent } from '@root/src/lofi/components/elements/HighlightBlockComponent';
+import { ImageBlockComponent } from '@root/src/lofi/components/elements/ImageBlockComponent';
+import { InstagramBlockComponent } from '@root/src/lofi/components/elements/InstagramBlockComponent';
+import { MapEmbedBlockComponent } from '@root/src/lofi/components/elements/MapEmbedBlockComponent';
+import { MultiImageBlockComponent } from '@root/src/lofi/components/elements/MultiImageBlockComponent';
+import { PullQuoteBlockComponent } from '@root/src/lofi/components/elements/PullQuoteBlockComponent';
+import { SoundcloudBlockComponent } from '@root/src/lofi/components/elements/SoundcloudBlockComponent';
+import { SpotifyBlockComponent } from '@root/src/lofi/components/elements/SpotifyBlockComponent';
+import { SubheadingBlockComponent } from '@root/src/lofi/components/elements/SubheadingBlockComponent';
+import { TableBlockComponent } from '@root/src/lofi/components/elements/TableBlockComponent';
+import { TextBlockComponent } from '@root/src/lofi/components/elements/TextBlockComponent';
+import { TweetBlockComponent } from '@root/src/lofi/components/elements/TweetBlockComponent';
+import { VideoFacebookBlockComponent } from '@root/src/lofi/components/elements/VideoFacebookBlockComponent';
+import { VimeoBlockComponent } from '@root/src/lofi/components/elements/VimeoBlockComponent';
+import { YoutubeEmbedBlockComponent } from '@root/src/lofi/components/elements/YoutubeEmbedBlockComponent';
+import { YoutubeBlockComponent } from '@root/src/lofi/components/elements/YoutubeBlockComponent';
 
 import {
     AudioAtom,
@@ -39,8 +39,8 @@ import {
     VideoAtom,
 } from '@guardian/atoms-rendering';
 import { Display } from '@root/src/lib/display';
-import { withSignInGateSlot } from '@root/src/web/lib/withSignInGateSlot';
-import { GuVideoBlockComponent } from '@root/src/web/components/elements/GuVideoBlockComponent';
+import { withSignInGateSlot } from '@root/src/lofi/lib/withSignInGateSlot';
+import { GuVideoBlockComponent } from '@root/src/lofi/components/elements/GuVideoBlockComponent';
 import { toTypesPillar } from '@root/src/lib/format';
 import { DefaultRichLink } from '../components/RichLink';
 

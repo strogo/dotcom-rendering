@@ -1,10 +1,10 @@
 import React from 'react';
 import fetchMock from 'fetch-mock';
 
-import { Flex } from '@root/src/web/components/Flex';
-import { RightColumn } from '@root/src/web/components/RightColumn';
-import { LeftColumn } from '@root/src/web/components/LeftColumn';
-import { ArticleContainer } from '@root/src/web/components/ArticleContainer';
+import { Flex } from '@root/src/lofi/components/Flex';
+import { RightColumn } from '@root/src/lofi/components/RightColumn';
+import { LeftColumn } from '@root/src/lofi/components/LeftColumn';
+import { ArticleContainer } from '@root/src/lofi/components/ArticleContainer';
 import { Section } from '@frontend/web/components/Section';
 
 import { mockTab1 } from '@root/fixtures/mostViewed';

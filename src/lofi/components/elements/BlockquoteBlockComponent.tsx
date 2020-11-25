@@ -3,10 +3,10 @@ import { css } from 'emotion';
 
 import { body } from '@guardian/src-foundations/typography';
 import { unwrapHtml } from '@root/src/model/unwrapHtml';
-import { RewrappedComponent } from '@root/src/web/components/elements/RewrappedComponent';
+import { RewrappedComponent } from '@root/src/lofi/components/elements/RewrappedComponent';
 import { pillarPalette } from '@root/src/lib/pillars';
 import { neutral } from '@guardian/src-foundations/palette';
-import { QuoteIcon } from '@root/src/web/components/QuoteIcon';
+import { QuoteIcon } from '@root/src/lofi/components/QuoteIcon';
 
 type Props = {
     html: string;

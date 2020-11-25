@@ -2,11 +2,11 @@ import React from 'react';
 import { css, cx } from 'emotion';
 import { border } from '@guardian/src-foundations/palette';
 import { between, from, until } from '@guardian/src-foundations/mq';
-import { Contributor } from '@root/src/web/components/Contributor';
-import { Avatar } from '@root/src/web/components/Avatar';
+import { Contributor } from '@root/src/lofi/components/Contributor';
+import { Avatar } from '@root/src/lofi/components/Avatar';
 
 import { getSharingUrls } from '@root/src/lib/sharing-urls';
-import { Branding } from '@root/src/web/components/Branding';
+import { Branding } from '@root/src/lofi/components/Branding';
 import { Display } from '@root/src/lib/display';
 import { SharingIcons } from './ShareIcons';
 import { Dateline } from './Dateline';
@@ -133,12 +133,12 @@ const metaContainer = ({
 };
 
 const getBylineImageUrl = (tags: TagType[]) => {
-    const contributorTag = tags.find(tag => tag.type === 'Contributor');
+    const contributorTag = tags.find((tag) => tag.type === 'Contributor');
     return contributorTag && contributorTag.bylineImageUrl;
 };
 
 const getAuthorName = (tags: TagType[]) => {
-    const contributorTag = tags.find(tag => tag.type === 'Contributor');
+    const contributorTag = tags.find((tag) => tag.type === 'Contributor');
     return contributorTag && contributorTag.title;
 };
 
@@ -270,7 +270,7 @@ export const ArticleMeta = ({
     const authorName = getAuthorName(tags);
 
     const onlyOneContributor: boolean =
-        tags.filter(tag => tag.type === 'Contributor').length === 1;
+        tags.filter((tag) => tag.type === 'Contributor').length === 1;
 
     const showAvatar =
         onlyOneContributor && shouldShowAvatar(designType, display);

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { App } from '@root/src/web/components/App';
+import { App } from '@root/src/lofi/components/App';
 import { ABProvider } from '@guardian/ab-react';
 import { tests } from '@frontend/web/experiments/ab-tests';
 import { getCookie } from '@frontend/web/browser/cookie';

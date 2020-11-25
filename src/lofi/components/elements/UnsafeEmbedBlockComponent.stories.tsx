@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { css } from 'emotion';
 
-import { embedIframe } from '@root/src/web/browser/embedIframe/embedIframe';
+import { embedIframe } from '@root/src/lofi/browser/embedIframe/embedIframe';
 
 import { UnsafeEmbedBlockComponent } from './UnsafeEmbedBlockComponent';
 

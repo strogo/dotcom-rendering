@@ -3,7 +3,7 @@ import { css, cx } from 'emotion';
 
 import { until } from '@guardian/src-foundations/mq';
 
-import { verticalDivider } from '@root/src/web/lib/verticalDivider';
+import { verticalDivider } from '@root/src/lofi/lib/verticalDivider';
 
 const ulStyles = (direction?: 'row' | 'column') => css`
     position: relative;

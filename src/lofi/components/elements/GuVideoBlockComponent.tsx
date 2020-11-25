@@ -2,7 +2,7 @@
 import React from 'react';
 import { css } from 'emotion';
 import { unescapeData } from '@root/src/lib/escapeData';
-import { Caption } from '@root/src/web/components/Caption';
+import { Caption } from '@root/src/lofi/components/Caption';
 import { Display } from '@root/src/lib/display';
 
 export const GuVideoBlockComponent: React.FC<{

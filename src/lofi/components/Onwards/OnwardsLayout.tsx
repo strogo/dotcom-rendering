@@ -4,7 +4,7 @@ import { Flex } from '@frontend/web/components/Flex';
 import { LeftColumn } from '@frontend/web/components/LeftColumn';
 import { Hide } from '@frontend/web/components/Hide';
 
-import { useComments } from '@root/src/web/lib/useComments';
+import { useComments } from '@root/src/lofi/lib/useComments';
 import { formatAttrString } from '@frontend/web/lib/formatAttrString';
 
 import { OnwardsTitle } from './OnwardsTitle';

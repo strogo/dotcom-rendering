@@ -1,4 +1,4 @@
-import { useApi } from '@root/src/web/lib/api';
+import { useApi } from '@root/src/lofi/lib/api';
 import React from 'react';
 
 type Props = {

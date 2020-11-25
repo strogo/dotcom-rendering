@@ -2,8 +2,8 @@ import React from 'react';
 import { css, cx } from 'emotion';
 
 import { visuallyHidden } from '@guardian/src-foundations/accessibility';
-import { Pillars } from '@root/src/web/components/Pillars';
-import { GuardianRoundel } from '@root/src/web/components/GuardianRoundel';
+import { Pillars } from '@root/src/lofi/components/Pillars';
+import { GuardianRoundel } from '@root/src/lofi/components/GuardianRoundel';
 import { space } from '@guardian/src-foundations';
 import { until } from '@guardian/src-foundations/mq';
 import { ThemeProvider } from 'emotion-theming';

@@ -4,7 +4,7 @@ import { brandAltBackground } from '@guardian/src-foundations/palette';
 import { headline } from '@guardian/src-foundations/typography';
 import { space } from '@guardian/src-foundations';
 
-import { BylineLink } from '@root/src/web/components/BylineLink';
+import { BylineLink } from '@root/src/lofi/components/BylineLink';
 import { pillarPalette } from '@frontend/lib/pillars';
 import { Display } from '@root/src/lib/display';
 

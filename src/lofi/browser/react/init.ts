@@ -1,9 +1,9 @@
 import '../webpackPublicPath';
 import { hydrate as hydrateCSS } from 'emotion';
 
-import { startup } from '@root/src/web/browser/startup';
+import { startup } from '@root/src/lofi/browser/startup';
 
-import { HydrateApp } from '@root/src/web/components/HydrateApp';
+import { HydrateApp } from '@root/src/lofi/components/HydrateApp';
 
 const init = (): Promise<void> => {
     const {

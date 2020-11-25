@@ -1,9 +1,9 @@
 import React from 'react';
 import { css, cx } from 'emotion';
 
-import { PulsingDot } from '@root/src/web/components/PulsingDot';
+import { PulsingDot } from '@root/src/lofi/components/PulsingDot';
 
-import { decidePillarLight } from '@root/src/web/lib/decidePillarLight';
+import { decidePillarLight } from '@root/src/lofi/lib/decidePillarLight';
 import { pillarPalette } from '@frontend/lib/pillars';
 
 const kickerStyles = (colour: string) => css`

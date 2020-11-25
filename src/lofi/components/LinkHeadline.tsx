@@ -3,9 +3,9 @@ import { css, cx } from 'emotion';
 
 import { headline } from '@guardian/src-foundations/typography';
 
-import { QuoteIcon } from '@root/src/web/components/QuoteIcon';
-import { Kicker } from '@root/src/web/components/Kicker';
-import { Byline } from '@root/src/web/components/Byline';
+import { QuoteIcon } from '@root/src/lofi/components/QuoteIcon';
+import { Kicker } from '@root/src/lofi/components/Kicker';
+import { Byline } from '@root/src/lofi/components/Byline';
 import { pillarPalette } from '@frontend/lib/pillars';
 
 const fontStyles = (size: SmallHeadlineSize) => {

@@ -3,7 +3,7 @@ import { css } from 'emotion';
 
 import { brandAltBackground } from '@guardian/src-foundations/palette';
 
-import { StarRating } from '@root/src/web/components/StarRating/StarRating';
+import { StarRating } from '@root/src/lofi/components/StarRating/StarRating';
 import { CardHeadline } from '@frontend/web/components/CardHeadline';
 import { Avatar } from '@frontend/web/components/Avatar';
 import { Flex } from '@frontend/web/components/Flex';
@@ -12,7 +12,7 @@ import { MediaMeta } from '@frontend/web/components/MediaMeta';
 import { CardCommentCount } from '@frontend/web/components/CardCommentCount';
 import { pillarPalette } from '@frontend/lib/pillars';
 
-import { formatCount } from '@root/src/web/lib/formatCount';
+import { formatCount } from '@root/src/lofi/lib/formatCount';
 
 import { ContentWrapper } from './components/ContentWrapper';
 import { HeadlineWrapper } from './components/HeadlineWrapper';

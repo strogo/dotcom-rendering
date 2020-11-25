@@ -5,10 +5,10 @@ import { border, neutral, text } from '@guardian/src-foundations/palette';
 import { headline } from '@guardian/src-foundations/typography';
 import { from } from '@guardian/src-foundations/mq';
 
-import { AgeWarning } from '@root/src/web/components/AgeWarning';
-import { Avatar } from '@root/src/web/components/Avatar';
-import { LinkHeadline } from '@root/src/web/components/LinkHeadline';
-import { Flex } from '@root/src/web/components/Flex';
+import { AgeWarning } from '@root/src/lofi/components/AgeWarning';
+import { Avatar } from '@root/src/lofi/components/Avatar';
+import { LinkHeadline } from '@root/src/lofi/components/LinkHeadline';
+import { Flex } from '@root/src/lofi/components/Flex';
 
 const itemStyles = (showRightBorder?: boolean) => css`
     position: relative;

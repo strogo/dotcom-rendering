@@ -1,8 +1,8 @@
 import React from 'react';
-import { joinUrl } from '@root/src/web/lib/joinUrl';
+import { joinUrl } from '@root/src/lofi/lib/joinUrl';
 import { useAB } from '@guardian/ab-react';
 import { css } from 'emotion';
-import { Section } from '@root/src/web/components/Section';
+import { Section } from '@root/src/lofi/components/Section';
 import { OnwardsData } from './OnwardsData';
 import { Carousel } from './Carousel/Carousel';
 import { OnwardsLayout } from './OnwardsLayout';
@@ -136,35 +136,50 @@ const lifestyleContainer = (edition: Edition): string => {
     }
 };
 
-const getContainerDataUrl = (pillar:Pillar, edition: Edition, ajaxUrl: string)=>{
-    switch(pillar){
-        case 'sport': return joinUrl([
-            ajaxUrl,
-            'container/data',
-            `${sportContainer(edition)}.json`,]);
-        case 'news': return joinUrl([
-            ajaxUrl,
-            'container/data',
-            `${headlinesContainer(edition)}.json`,]);
-        case 'culture': return joinUrl([
-            ajaxUrl,
-            'container/data',
-            `${cultureContainer(edition)}.json`,]);
-        case 'lifestyle': return joinUrl([
-            ajaxUrl,
-            'container/data',
-            `${lifestyleContainer(edition)}.json`,]);
-        case 'opinion': return joinUrl([
-            ajaxUrl,
-            'container/data',
-            `${opinionContainer(edition)}.json`,]);
-        default: return joinUrl([
-            ajaxUrl,
-            'container/data',
-            `${headlinesContainer(edition)}.json`,]);
+const getContainerDataUrl = (
+    pillar: Pillar,
+    edition: Edition,
+    ajaxUrl: string,
+) => {
+    switch (pillar) {
+        case 'sport':
+            return joinUrl([
+                ajaxUrl,
+                'container/data',
+                `${sportContainer(edition)}.json`,
+            ]);
+        case 'news':
+            return joinUrl([
+                ajaxUrl,
+                'container/data',
+                `${headlinesContainer(edition)}.json`,
+            ]);
+        case 'culture':
+            return joinUrl([
+                ajaxUrl,
+                'container/data',
+                `${cultureContainer(edition)}.json`,
+            ]);
+        case 'lifestyle':
+            return joinUrl([
+                ajaxUrl,
+                'container/data',
+                `${lifestyleContainer(edition)}.json`,
+            ]);
+        case 'opinion':
+            return joinUrl([
+                ajaxUrl,
+                'container/data',
+                `${opinionContainer(edition)}.json`,
+            ]);
+        default:
+            return joinUrl([
+                ajaxUrl,
+                'container/data',
+                `${headlinesContainer(edition)}.json`,
+            ]);
     }
 };
-
 
 type Props = {
     ajaxUrl: string;
@@ -178,7 +193,7 @@ type Props = {
     contentType: string;
     tags: TagType[];
     edition: Edition;
-    pillar:Pillar;
+    pillar: Pillar;
 };
 
 export const OnwardsUpper = ({
@@ -193,7 +208,7 @@ export const OnwardsUpper = ({
     contentType,
     tags,
     edition,
-    pillar
+    pillar,
 }: Props) => {
     const dontShowRelatedContent = !showRelatedContent || !hasRelated;
 

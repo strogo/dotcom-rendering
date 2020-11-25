@@ -7,11 +7,11 @@ import { brand, brandText, brandAlt } from '@guardian/src-foundations/palette';
 import { textSans } from '@guardian/src-foundations/typography';
 import { from } from '@guardian/src-foundations/mq';
 
-import { DropdownLinkType, Dropdown } from '@root/src/web/components/Dropdown';
+import { DropdownLinkType, Dropdown } from '@root/src/lofi/components/Dropdown';
 
 import ProfileIcon from '@frontend/static/icons/profile.svg';
 import { getZIndex } from '@frontend/web/lib/getZIndex';
-import { createAuthenticationEventParams } from "@root/src/lib/identity-component-event";
+import { createAuthenticationEventParams } from '@root/src/lib/identity-component-event';
 
 type Props = {
     userId?: string;
@@ -184,7 +184,9 @@ export const Links = ({ userId }: Props) => {
             ) : (
                 <a
                     className={linkStyles}
-                    href={`https://profile.theguardian.com/signin?INTCMP=DOTCOM_NEWHEADER_SIGNIN&ABCMP=ab-sign-in&${createAuthenticationEventParams('guardian_signin_header')}`}
+                    href={`https://profile.theguardian.com/signin?INTCMP=DOTCOM_NEWHEADER_SIGNIN&ABCMP=ab-sign-in&${createAuthenticationEventParams(
+                        'guardian_signin_header',
+                    )}`}
                     data-link-name="nav2 : topbar : signin"
                 >
                     <ProfileIcon /> Sign in

@@ -6,16 +6,16 @@ import { EditionDropdown } from '@frontend/web/components/EditionDropdown';
 import { MostViewedFooter } from '@frontend/web/components/MostViewed/MostViewedFooter/MostViewedFooter';
 import { Counts } from '@frontend/web/components/Counts';
 import { RichLinkComponent } from '@frontend/web/components/elements/RichLinkComponent';
-import { CalloutBlockComponent } from '@root/src/web/components/elements/CalloutBlockComponent';
-import { YoutubeBlockComponent } from '@root/src/web/components/elements/YoutubeBlockComponent';
+import { CalloutBlockComponent } from '@root/src/lofi/components/elements/CalloutBlockComponent';
+import { YoutubeBlockComponent } from '@root/src/lofi/components/elements/YoutubeBlockComponent';
 import { ReaderRevenueLinks } from '@frontend/web/components/ReaderRevenueLinks';
 import { SlotBodyEnd } from '@frontend/web/components/SlotBodyEnd';
 import { Links } from '@frontend/web/components/Links';
 import { SubNav } from '@frontend/web/components/SubNav/SubNav';
 import { GetMatchNav } from '@frontend/web/components/GetMatchNav';
 import { CommentsLayout } from '@frontend/web/components/CommentsLayout';
-import { StickyBottomBanner } from '@root/src/web/components/StickyBottomBanner/StickyBottomBanner';
-import { SignInGateSelector } from '@root/src/web/components/SignInGate/SignInGateSelector';
+import { StickyBottomBanner } from '@root/src/lofi/components/StickyBottomBanner/StickyBottomBanner';
+import { SignInGateSelector } from '@root/src/lofi/components/SignInGate/SignInGateSelector';
 
 import { incrementWeeklyArticleCount } from '@guardian/automat-client';
 import {
@@ -30,23 +30,23 @@ import {
 import { Portal } from '@frontend/web/components/Portal';
 import { Hydrate } from '@frontend/web/components/Hydrate';
 import { Lazy } from '@frontend/web/components/Lazy';
-import { Placeholder } from '@root/src/web/components/Placeholder';
+import { Placeholder } from '@root/src/lofi/components/Placeholder';
 
-import { decidePillar } from '@root/src/web/lib/decidePillar';
-import { decideDisplay } from '@root/src/web/lib/decideDisplay';
+import { decidePillar } from '@root/src/lofi/lib/decidePillar';
+import { decideDisplay } from '@root/src/lofi/lib/decideDisplay';
 import { toTypesPillar } from '@root/src/lib/format';
-import { initPerf } from '@root/src/web/browser/initPerf';
-import { getCookie } from '@root/src/web/browser/cookie';
+import { initPerf } from '@root/src/lofi/browser/initPerf';
+import { getCookie } from '@root/src/lofi/browser/cookie';
 import { getCountryCode } from '@frontend/web/lib/getCountryCode';
-import { getDiscussion } from '@root/src/web/lib/getDiscussion';
-import { getUser } from '@root/src/web/lib/getUser';
-import { getBrazeUuid } from '@root/src/web/lib/getBrazeUuid';
-import { getCommentContext } from '@root/src/web/lib/getCommentContext';
+import { getDiscussion } from '@root/src/lofi/lib/getDiscussion';
+import { getUser } from '@root/src/lofi/lib/getUser';
+import { getBrazeUuid } from '@root/src/lofi/lib/getBrazeUuid';
+import { getCommentContext } from '@root/src/lofi/lib/getCommentContext';
 import { FocusStyleManager } from '@guardian/src-foundations/utils';
-import { incrementAlreadyVisited } from '@root/src/web/lib/alreadyVisited';
+import { incrementAlreadyVisited } from '@root/src/lofi/lib/alreadyVisited';
 import { incrementDailyArticleCount } from '@frontend/web/lib/dailyArticleCount';
 import { getArticleCountConsent } from '@frontend/web/lib/contributions';
-import { ReaderRevenueDevUtils } from '@root/src/web/lib/readerRevenueDevUtils';
+import { ReaderRevenueDevUtils } from '@root/src/lofi/lib/readerRevenueDevUtils';
 import { Display } from '@root/src/lib/display';
 import { buildAdTargeting } from '@root/src/lib/ad-targeting';
 
@@ -55,7 +55,7 @@ import {
     onConsentChange,
     getConsentFor,
 } from '@guardian/consent-management-platform';
-import { injectPrivacySettingsLink } from '@root/src/web/lib/injectPrivacySettingsLink';
+import { injectPrivacySettingsLink } from '@root/src/lofi/lib/injectPrivacySettingsLink';
 import {
     submitComponentEvent,
     OphanComponentEvent,

@@ -9,10 +9,10 @@ import {
 } from '@guardian/src-foundations/palette';
 import { textSans, headline } from '@guardian/src-foundations/typography';
 import { from, until } from '@guardian/src-foundations/mq';
-import { LinkButton , buttonBrand } from '@guardian/src-button';
+import { LinkButton, buttonBrand } from '@guardian/src-button';
 
-import { shouldHideSupportMessaging } from '@root/src/web/lib/contributions';
-import {ThemeProvider} from "@root/node_modules/emotion-theming";
+import { shouldHideSupportMessaging } from '@root/src/lofi/lib/contributions';
+import { ThemeProvider } from '@root/node_modules/emotion-theming';
 
 type Props = {
     edition: Edition;

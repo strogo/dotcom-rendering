@@ -3,8 +3,8 @@ import { css } from 'emotion';
 
 import { headline } from '@guardian/src-foundations/typography';
 
-import { useApi } from '@root/src/web/lib/api';
-import { GuardianLines } from '@root/src/web/components/GuardianLines';
+import { useApi } from '@root/src/lofi/lib/api';
+import { GuardianLines } from '@root/src/lofi/components/GuardianLines';
 import { MostViewedRightItem } from './MostViewedRightItem';
 
 const wrapperStyles = css`

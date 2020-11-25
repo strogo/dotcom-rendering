@@ -3,10 +3,10 @@ import { css } from 'emotion';
 
 import { neutral, border, text } from '@guardian/src-foundations/palette';
 import { headline } from '@guardian/src-foundations/typography';
-import { AgeWarning } from '@root/src/web/components/AgeWarning';
-import { Avatar } from '@root/src/web/components/Avatar';
-import { LinkHeadline } from '@root/src/web/components/LinkHeadline';
-import { useHover } from '@root/src/web/lib/useHover';
+import { AgeWarning } from '@root/src/lofi/components/AgeWarning';
+import { Avatar } from '@root/src/lofi/components/Avatar';
+import { LinkHeadline } from '@root/src/lofi/components/LinkHeadline';
+import { useHover } from '@root/src/lofi/lib/useHover';
 
 const listItemStyles = css`
     list-style: none;

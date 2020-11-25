@@ -5,10 +5,10 @@ import { text } from '@guardian/src-foundations/palette';
 import { headline } from '@guardian/src-foundations/typography';
 import { from, between, Breakpoint } from '@guardian/src-foundations/mq';
 
-import { initPerf } from '@root/src/web/browser/initPerf';
+import { initPerf } from '@root/src/lofi/browser/initPerf';
 import { namedAdSlotParameters } from '@root/src/model/advertisement';
-import { AdSlot, labelStyles } from '@root/src/web/components/AdSlot';
-import { Lazy } from '@root/src/web/components/Lazy';
+import { AdSlot, labelStyles } from '@root/src/lofi/components/AdSlot';
+import { Lazy } from '@root/src/lofi/components/Lazy';
 
 import { useAB } from '@guardian/ab-react';
 import { abTestTest } from '@frontend/web/experiments/tests/ab-test-test';
@@ -110,7 +110,6 @@ export const MostViewedFooter = ({ sectionName, pillar, ajaxUrl }: Props) => {
     const runnableTest = ABTestAPI.runnableTest(abTestTest);
     const variantFromRunnable =
         (runnableTest && runnableTest.variantToRun.id) || 'not-runnable';
-
 
     return (
         <div className={`content-footer ${cx(adSlotUnspecifiedWidth)}`}>

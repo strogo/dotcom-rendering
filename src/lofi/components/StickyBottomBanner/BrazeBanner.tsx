@@ -6,13 +6,13 @@ import {
     getConsentFor,
     onConsentChange,
 } from '@guardian/consent-management-platform';
-import { getZIndex } from '@root/src/web/lib/getZIndex';
+import { getZIndex } from '@root/src/lofi/lib/getZIndex';
 import { Props as BrazeBannerProps } from '@guardian/braze-components';
 import {
     submitComponentEvent,
     record,
-} from '@root/src/web/browser/ophan/ophan';
-import { initPerf } from '@root/src/web/browser/initPerf';
+} from '@root/src/lofi/browser/ophan/ophan';
+import { initPerf } from '@root/src/lofi/browser/initPerf';
 import { CanShowResult } from './bannerPicker';
 
 type Meta = {

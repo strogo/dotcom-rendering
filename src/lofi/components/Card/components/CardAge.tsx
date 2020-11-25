@@ -6,8 +6,8 @@ import { textSans } from '@guardian/src-foundations/typography';
 
 import ClockIcon from '@frontend/static/icons/clock.svg';
 
-import { makeRelativeDate } from '@root/src/web/lib/dateTime';
-import { decidePillarLight } from '@root/src/web/lib/decidePillarLight';
+import { makeRelativeDate } from '@root/src/lofi/lib/dateTime';
+import { decidePillarLight } from '@root/src/lofi/lib/decidePillarLight';
 
 const ageStyles = (designType: DesignType, pillar: Pillar) => css`
     ${textSans.xsmall()};

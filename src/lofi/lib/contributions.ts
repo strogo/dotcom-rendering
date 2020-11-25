@@ -1,4 +1,4 @@
-import { getCookie } from '@root/src/web/browser/cookie';
+import { getCookie } from '@root/src/lofi/browser/cookie';
 import { onConsentChange } from '@guardian/consent-management-platform';
 
 // User Atributes API cookies (dropped on sign-in)

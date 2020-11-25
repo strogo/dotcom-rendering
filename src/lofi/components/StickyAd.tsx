@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from 'emotion';
 
-import { AdSlot } from '@root/src/web/components/AdSlot';
+import { AdSlot } from '@root/src/lofi/components/AdSlot';
 import { namedAdSlotParameters } from '@root/src/model/advertisement';
 
 type Props = {

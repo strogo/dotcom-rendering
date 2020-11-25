@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { useApi } from '@root/src/web/lib/api';
+import { useApi } from '@root/src/lofi/lib/api';
 
-import { Placeholder } from '@root/src/web/components/Placeholder';
+import { Placeholder } from '@root/src/lofi/components/Placeholder';
 
 import { MatchNav } from './MatchNav';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { css, cx } from 'emotion';
 import { from, until } from '@guardian/src-foundations/mq';
-import { labelStyles } from '@root/src/web/components/AdSlot';
+import { labelStyles } from '@root/src/lofi/components/AdSlot';
 
 const articleContainer = css`
     ${until.leftCol} {

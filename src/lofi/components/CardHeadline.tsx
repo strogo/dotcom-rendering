@@ -5,9 +5,9 @@ import { headline } from '@guardian/src-foundations/typography';
 import { neutral } from '@guardian/src-foundations/palette';
 import { until } from '@guardian/src-foundations/mq';
 
-import { QuoteIcon } from '@root/src/web/components/QuoteIcon';
-import { Kicker } from '@root/src/web/components/Kicker';
-import { Byline } from '@root/src/web/components/Byline';
+import { QuoteIcon } from '@root/src/lofi/components/QuoteIcon';
+import { Kicker } from '@root/src/lofi/components/Kicker';
+import { Byline } from '@root/src/lofi/components/Byline';
 import { pillarPalette } from '@frontend/lib/pillars';
 
 const fontStyles = (size: SmallHeadlineSize) => {

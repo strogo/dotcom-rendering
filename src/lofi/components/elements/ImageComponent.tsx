@@ -6,10 +6,10 @@ import { headline } from '@guardian/src-foundations/typography';
 import { pillarPalette } from '@root/src/lib/pillars';
 import { brandAltBackground, neutral } from '@guardian/src-foundations/palette';
 
-import { Picture, PictureSource } from '@root/src/web/components/Picture';
-import { Caption } from '@root/src/web/components/Caption';
-import { Hide } from '@root/src/web/components/Hide';
-import { StarRating } from '@root/src/web/components/StarRating/StarRating';
+import { Picture, PictureSource } from '@root/src/lofi/components/Picture';
+import { Caption } from '@root/src/lofi/components/Caption';
+import { Hide } from '@root/src/lofi/components/Hide';
+import { StarRating } from '@root/src/lofi/components/StarRating/StarRating';
 import { Display } from '@root/src/lib/display';
 
 type Props = {

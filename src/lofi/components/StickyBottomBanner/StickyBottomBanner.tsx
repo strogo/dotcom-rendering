@@ -3,8 +3,8 @@ import { cmp } from '@guardian/consent-management-platform';
 import {
     canShow as canShowRRBanner,
     ReaderRevenueBanner,
-} from '@root/src/web/components/StickyBottomBanner/ReaderRevenueBanner';
-import { getAlreadyVisitedCount } from '@root/src/web/lib/alreadyVisited';
+} from '@root/src/lofi/components/StickyBottomBanner/ReaderRevenueBanner';
+import { getAlreadyVisitedCount } from '@root/src/lofi/lib/alreadyVisited';
 import { pickBanner, BannerConfig, MaybeFC, Banner } from './bannerPicker';
 import { BrazeBanner, canShow as canShowBrazeBanner } from './BrazeBanner';
 

@@ -12,9 +12,9 @@ import { from, until, between } from '@guardian/src-foundations/mq';
 import ArrowInCircle from '@frontend/static/icons/arrow-in-circle.svg';
 
 import { pillarPalette } from '@frontend/lib/pillars';
-import { StarRating } from '@root/src/web/components/StarRating/StarRating';
-import { QuoteIcon } from '@root/src/web/components/QuoteIcon';
-import { Hide } from '@root/src/web/components/Hide';
+import { StarRating } from '@root/src/lofi/components/StarRating/StarRating';
+import { QuoteIcon } from '@root/src/lofi/components/QuoteIcon';
+import { Hide } from '@root/src/lofi/components/Hide';
 import { Avatar } from '@frontend/web/components/Avatar';
 
 type CardStyle =

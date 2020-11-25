@@ -3,7 +3,7 @@ import { css } from 'emotion';
 
 import { body } from '@guardian/src-foundations/typography';
 import { unwrapHtml } from '@root/src/model/unwrapHtml';
-import { RewrappedComponent } from '@root/src/web/components/elements/RewrappedComponent';
+import { RewrappedComponent } from '@root/src/lofi/components/elements/RewrappedComponent';
 import { background } from '@guardian/src-foundations/palette';
 
 type Props = {

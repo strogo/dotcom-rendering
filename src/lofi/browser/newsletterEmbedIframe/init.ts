@@ -1,5 +1,5 @@
 import '../webpackPublicPath';
-import { startup } from '@root/src/web/browser/startup';
+import { startup } from '@root/src/lofi/browser/startup';
 
 const init = (): Promise<void> => {
     const allIframes: HTMLIFrameElement[] = [].slice.call(

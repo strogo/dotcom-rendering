@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from 'emotion';
 
-import { Dropdown } from '@root/src/web/components/Dropdown';
+import { Dropdown } from '@root/src/lofi/components/Dropdown';
 import { brand } from '@guardian/src-foundations/palette';
 import { from } from '@guardian/src-foundations/mq';
 

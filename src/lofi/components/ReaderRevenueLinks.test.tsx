@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, wait } from '@testing-library/react';
-import { shouldHideSupportMessaging as shouldHideSupportMessaging_ } from '@root/src/web/lib/contributions';
+import { shouldHideSupportMessaging as shouldHideSupportMessaging_ } from '@root/src/lofi/lib/contributions';
 import { ReaderRevenueLinks } from './ReaderRevenueLinks';
 
 const shouldHideSupportMessaging: any = shouldHideSupportMessaging_;
 
-jest.mock('@root/src/web/lib/contributions', () => ({
+jest.mock('@root/src/lofi/lib/contributions', () => ({
     shouldHideSupportMessaging: jest.fn(() => true),
 }));
 

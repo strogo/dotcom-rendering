@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { mockRESTCalls } from '@root/src/web/lib/mockRESTCalls';
+import { mockRESTCalls } from '@root/src/lofi/lib/mockRESTCalls';
 
 import { CommentsLayout } from './CommentsLayout';
 

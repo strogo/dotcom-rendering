@@ -13,13 +13,13 @@ import {
     getLastOneOffContributionDate,
     shouldHideSupportMessaging,
     getArticleCountConsent,
-} from '@root/src/web/lib/contributions';
-import { getForcedVariant } from '@root/src/web/lib/readerRevenueDevUtils';
-import { initPerf } from '@root/src/web/browser/initPerf';
+} from '@root/src/lofi/lib/contributions';
+import { getForcedVariant } from '@root/src/lofi/lib/readerRevenueDevUtils';
+import { initPerf } from '@root/src/lofi/browser/initPerf';
 import {
     sendOphanComponentEvent,
     TestMeta,
-} from '@root/src/web/browser/ophan/ophan';
+} from '@root/src/lofi/browser/ophan/ophan';
 import { getCookie } from '../browser/cookie';
 import { useHasBeenSeen } from '../lib/useHasBeenSeen';
 

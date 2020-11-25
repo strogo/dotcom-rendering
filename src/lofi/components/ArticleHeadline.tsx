@@ -2,8 +2,8 @@ import React from 'react';
 import { css, cx } from 'emotion';
 
 import { pillarPalette } from '@root/src/lib/pillars';
-import { HeadlineTag } from '@root/src/web/components/HeadlineTag';
-import { HeadlineByline } from '@root/src/web/components/HeadlineByline';
+import { HeadlineTag } from '@root/src/lofi/components/HeadlineTag';
+import { HeadlineByline } from '@root/src/lofi/components/HeadlineByline';
 
 import { headline } from '@guardian/src-foundations/typography';
 import { from, until } from '@guardian/src-foundations/mq';

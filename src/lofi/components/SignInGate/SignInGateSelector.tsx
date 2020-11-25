@@ -14,12 +14,12 @@ import {
 import { getCookie } from '@frontend/web/browser/cookie';
 
 // Sign in Gate A/B Tests
-import { signInGateMainVariant } from '@root/src/web/experiments/tests/sign-in-gate-main-variant';
-import { signInGateMainControl } from '@root/src/web/experiments/tests/sign-in-gate-main-control';
+import { signInGateMainVariant } from '@root/src/lofi/experiments/tests/sign-in-gate-main-variant';
+import { signInGateMainControl } from '@root/src/lofi/experiments/tests/sign-in-gate-main-control';
 
 // Sign in Gate Types
-import { signInGateComponent as gateMainVariant } from '@root/src/web/components/SignInGate/gates/main-variant';
-import { signInGateComponent as gateMainControl } from '@root/src/web/components/SignInGate/gates/main-control';
+import { signInGateComponent as gateMainVariant } from '@root/src/lofi/components/SignInGate/gates/main-variant';
+import { signInGateComponent as gateMainControl } from '@root/src/lofi/components/SignInGate/gates/main-control';
 
 import {
     ComponentEventParams,

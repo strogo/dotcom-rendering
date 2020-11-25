@@ -4,10 +4,10 @@ import { css } from 'emotion';
 import { border, neutral, text } from '@guardian/src-foundations/palette';
 import { headline } from '@guardian/src-foundations/typography';
 import { until } from '@guardian/src-foundations/mq';
-import { BigNumber } from '@root/src/web/components/BigNumber/BigNumber';
-import { AgeWarning } from '@root/src/web/components/AgeWarning';
+import { BigNumber } from '@root/src/lofi/components/BigNumber/BigNumber';
+import { AgeWarning } from '@root/src/lofi/components/AgeWarning';
 
-import { LinkHeadline } from '@root/src/web/components/LinkHeadline';
+import { LinkHeadline } from '@root/src/lofi/components/LinkHeadline';
 
 const gridItem = (position: number) => css`
     position: relative;

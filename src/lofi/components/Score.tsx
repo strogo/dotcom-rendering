@@ -3,17 +3,17 @@ import { css } from 'emotion';
 
 import { text } from '@guardian/src-foundations/palette';
 
-import { Zero } from '@root/src/web/components/numbers/Zero';
-import { One } from '@root/src/web/components/numbers/One';
-import { Two } from '@root/src/web/components/numbers/Two';
-import { Three } from '@root/src/web/components/numbers/Three';
-import { Four } from '@root/src/web/components/numbers/Four';
-import { Five } from '@root/src/web/components/numbers/Five';
-import { Six } from '@root/src/web/components/numbers/Six';
-import { Seven } from '@root/src/web/components/numbers/Seven';
-import { Eight } from '@root/src/web/components/numbers/Eight';
-import { Nine } from '@root/src/web/components/numbers/Nine';
-import { Ten } from '@root/src/web/components/numbers/Ten';
+import { Zero } from '@root/src/lofi/components/numbers/Zero';
+import { One } from '@root/src/lofi/components/numbers/One';
+import { Two } from '@root/src/lofi/components/numbers/Two';
+import { Three } from '@root/src/lofi/components/numbers/Three';
+import { Four } from '@root/src/lofi/components/numbers/Four';
+import { Five } from '@root/src/lofi/components/numbers/Five';
+import { Six } from '@root/src/lofi/components/numbers/Six';
+import { Seven } from '@root/src/lofi/components/numbers/Seven';
+import { Eight } from '@root/src/lofi/components/numbers/Eight';
+import { Nine } from '@root/src/lofi/components/numbers/Nine';
+import { Ten } from '@root/src/lofi/components/numbers/Ten';
 
 type Props = {
     score: number;

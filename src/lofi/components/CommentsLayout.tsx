@@ -5,7 +5,7 @@ import { space } from '@guardian/src-foundations';
 import { App as Comments } from '@guardian/discussion-rendering';
 import { LeftColumn } from '@frontend/web/components/LeftColumn';
 import { RightColumn } from '@frontend/web/components/RightColumn';
-import { StickyAd } from '@root/src/web/components/StickyAd';
+import { StickyAd } from '@root/src/lofi/components/StickyAd';
 import { SignedInAs } from '@frontend/web/components/SignedInAs';
 import { Hide } from '@frontend/web/components/Hide';
 import { Flex } from '@frontend/web/components/Flex';

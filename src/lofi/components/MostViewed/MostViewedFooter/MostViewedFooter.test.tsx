@@ -4,7 +4,7 @@ import {
     responseWithTwoTabs,
     responseWithOneTab,
 } from '@root/fixtures/mostViewed';
-import { useApi as useApi_ } from '@root/src/web/lib/api';
+import { useApi as useApi_ } from '@root/src/lofi/lib/api';
 import { MostViewedFooterData } from './MostViewedFooterData';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

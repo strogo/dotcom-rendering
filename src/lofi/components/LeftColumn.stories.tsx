@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Flex } from '@root/src/web/components/Flex';
-import { RightColumn } from '@root/src/web/components/RightColumn';
-import { ArticleContainer } from '@root/src/web/components/ArticleContainer';
+import { Flex } from '@root/src/lofi/components/Flex';
+import { RightColumn } from '@root/src/lofi/components/RightColumn';
+import { ArticleContainer } from '@root/src/lofi/components/ArticleContainer';
 import { Section } from '@frontend/web/components/Section';
 
 import { LeftColumn } from './LeftColumn';

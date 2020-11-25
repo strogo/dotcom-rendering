@@ -3,11 +3,11 @@ import { css, cx } from 'emotion';
 
 import { from } from '@guardian/src-foundations/mq';
 
-import { ArticleTitle } from '@root/src/web/components/ArticleTitle';
-import { ArticleHeadline } from '@root/src/web/components/ArticleHeadline';
-import { LeftColumn } from '@root/src/web/components/LeftColumn';
-import { Flex } from '@root/src/web/components/Flex';
-import { Caption } from '@root/src/web/components/Caption';
+import { ArticleTitle } from '@root/src/lofi/components/ArticleTitle';
+import { ArticleHeadline } from '@root/src/lofi/components/ArticleHeadline';
+import { LeftColumn } from '@root/src/lofi/components/LeftColumn';
+import { Flex } from '@root/src/lofi/components/Flex';
+import { Caption } from '@root/src/lofi/components/Caption';
 import { Display } from '@root/src/lib/display';
 
 type Props = {

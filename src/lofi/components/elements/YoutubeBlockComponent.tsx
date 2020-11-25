@@ -5,7 +5,7 @@ import { palette, space } from '@guardian/src-foundations';
 import { body } from '@guardian/src-foundations/typography';
 import { SvgAlertRound } from '@guardian/src-icons';
 
-import { Caption } from '@root/src/web/components/Caption';
+import { Caption } from '@root/src/lofi/components/Caption';
 import { Display } from '@root/src/lib/display';
 import { YoutubeAtom } from '@guardian/atoms-rendering';
 

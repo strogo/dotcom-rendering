@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as emotion from 'emotion';
 import * as emotionCore from '@emotion/core';
 import * as emotionTheming from 'emotion-theming';
-import { useHasBeenSeen } from '@root/src/web/lib/useHasBeenSeen';
+import { useHasBeenSeen } from '@root/src/lofi/lib/useHasBeenSeen';
 import {
     getWeeklyArticleHistory,
     logView,
@@ -12,16 +12,16 @@ import {
     getArticleCountConsent,
     withinLocalNoBannerCachePeriod,
     setLocalNoBannerCachePeriod,
-} from '@root/src/web/lib/contributions';
-import { getCookie } from '@root/src/web/browser/cookie';
+} from '@root/src/lofi/lib/contributions';
+import { getCookie } from '@root/src/lofi/browser/cookie';
 import {
     sendOphanComponentEvent,
     submitComponentEvent,
-} from '@root/src/web/browser/ophan/ophan';
-import { getZIndex } from '@root/src/web/lib/getZIndex';
-import { trackNonClickInteraction } from '@root/src/web/browser/ga/ga';
+} from '@root/src/lofi/browser/ophan/ophan';
+import { getZIndex } from '@root/src/lofi/lib/getZIndex';
+import { trackNonClickInteraction } from '@root/src/lofi/browser/ga/ga';
 import { WeeklyArticleHistory } from '@root/node_modules/@guardian/automat-client/dist/types';
-import { getForcedVariant } from '@root/src/web/lib/readerRevenueDevUtils';
+import { getForcedVariant } from '@root/src/lofi/lib/readerRevenueDevUtils';
 import { CanShowResult } from './bannerPicker';
 
 const checkForErrors = (response: any) => {
@@ -120,7 +120,11 @@ export const canShow = async ({
         return Promise.resolve({ result: false });
     }
 
-    if (engagementBannerLastClosedAt && subscriptionBannerLastClosedAt && withinLocalNoBannerCachePeriod()) {
+    if (
+        engagementBannerLastClosedAt &&
+        subscriptionBannerLastClosedAt &&
+        withinLocalNoBannerCachePeriod()
+    ) {
         return Promise.resolve({ result: false });
     }
 
@@ -153,7 +157,10 @@ export const canShow = async ({
         .then((response) => response.json())
         .then((json) => {
             if (!json.data) {
-                if (engagementBannerLastClosedAt && subscriptionBannerLastClosedAt) {
+                if (
+                    engagementBannerLastClosedAt &&
+                    subscriptionBannerLastClosedAt
+                ) {
                     setLocalNoBannerCachePeriod();
                 }
                 return { result: false };

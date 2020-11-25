@@ -1,4 +1,4 @@
-import { record } from '@root/src/web/browser/ophan/ophan';
+import { record } from '@root/src/lofi/browser/ophan/ophan';
 
 export type MaybeFC = React.FC | null;
 type ShowBanner = (meta?: any) => MaybeFC;

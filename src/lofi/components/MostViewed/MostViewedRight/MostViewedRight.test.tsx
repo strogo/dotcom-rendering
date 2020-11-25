@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { mockTab1 } from '@root/fixtures/mostViewed';
-import { useApi as useApi_ } from '@root/src/web/lib/api';
+import { useApi as useApi_ } from '@root/src/lofi/lib/api';
 import { MostViewedRight } from './MostViewedRight';
 
 const response = { data: mockTab1 };

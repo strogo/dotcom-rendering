@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { RichLink, DefaultRichLink } from '@root/src/web/components/RichLink';
+import { RichLink, DefaultRichLink } from '@root/src/lofi/components/RichLink';
 
-import { useApi } from '@root/src/web/lib/api';
+import { useApi } from '@root/src/lofi/lib/api';
 
 type CardStyle =
     | 'special-report'

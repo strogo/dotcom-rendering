@@ -1,5 +1,5 @@
 import { cmp } from '@guardian/consent-management-platform';
-import { getPrivacyFramework } from '@root/src/web/lib/getPrivacyFramework';
+import { getPrivacyFramework } from '@root/src/lofi/lib/getPrivacyFramework';
 
 const newPrivacyLinkName = 'privacy-settings';
 

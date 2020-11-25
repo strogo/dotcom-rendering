@@ -3,8 +3,8 @@ import { css, cx } from 'emotion';
 
 import { until } from '@guardian/src-foundations/mq';
 
-import { ImageComponent } from '@root/src/web/components/elements/ImageComponent';
-import { YoutubeBlockComponent } from '@root/src/web/components/elements/YoutubeBlockComponent';
+import { ImageComponent } from '@root/src/lofi/components/elements/ImageComponent';
+import { YoutubeBlockComponent } from '@root/src/lofi/components/elements/YoutubeBlockComponent';
 import { Display } from '@root/src/lib/display';
 
 const mainMedia = css`

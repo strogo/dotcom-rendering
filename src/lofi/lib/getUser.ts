@@ -1,5 +1,5 @@
-import { joinUrl } from '@root/src/web/lib/joinUrl';
-import { callApi } from '@root/src/web/lib/api';
+import { joinUrl } from '@root/src/lofi/lib/joinUrl';
+import { callApi } from '@root/src/lofi/lib/api';
 
 export const getUser = async (ajaxUrl: string): Promise<UserProfile> => {
     const url = joinUrl([ajaxUrl, 'profile/me']);

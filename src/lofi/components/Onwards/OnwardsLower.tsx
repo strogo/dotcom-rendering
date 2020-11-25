@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { joinUrl } from '@root/src/web/lib/joinUrl';
+import { joinUrl } from '@root/src/lofi/lib/joinUrl';
 import { OnwardsData } from './OnwardsData';
 import { OnwardsLayout } from './OnwardsLayout';
 
@@ -11,7 +11,12 @@ type Props = {
     pillar: Pillar;
 };
 
-export const OnwardsLower = ({ ajaxUrl, hasStoryPackage, tags, pillar }: Props) => {
+export const OnwardsLower = ({
+    ajaxUrl,
+    hasStoryPackage,
+    tags,
+    pillar,
+}: Props) => {
     // In this context, Blog tags are treated the same as Series tags
     const seriesTag = tags.find(
         (tag) => tag.type === 'Series' || tag.type === 'Blog',

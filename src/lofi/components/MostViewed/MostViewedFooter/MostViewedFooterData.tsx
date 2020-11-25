@@ -4,8 +4,8 @@ import { css, cx } from 'emotion';
 import { border } from '@guardian/src-foundations/palette';
 import { from, Breakpoint } from '@guardian/src-foundations/mq';
 
-import { useApi } from '@root/src/web/lib/api';
-import { joinUrl } from '@root/src/web/lib/joinUrl';
+import { useApi } from '@root/src/lofi/lib/api';
+import { joinUrl } from '@root/src/lofi/lib/joinUrl';
 
 import { MostViewedFooterGrid } from './MostViewedFooterGrid';
 import { SecondTierItem } from './SecondTierItem';
