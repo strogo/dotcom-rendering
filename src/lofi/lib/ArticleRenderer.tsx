@@ -112,55 +112,37 @@ export const ArticleRenderer: React.FC<{
                 case 'model.dotcomrendering.pageElements.EmbedBlockElement':
                     if (!element.safe) {
                         return (
-                            <UnsafeEmbedBlockComponent
-                                key={i}
-                                html={element.html}
-                                alt={element.alt || ''}
-                                index={i}
+                            <LofiTextAlternative
+                                altText={element.alt}
+                                elementTypeShownToUser="Content embed"
                             />
                         );
                     }
                     return (
-                        <EmbedBlockComponent
-                            key={i}
-                            html={element.html}
-                            alt={element.alt}
+                        <LofiTextAlternative
+                            altText={element.alt}
+                            elementTypeShownToUser="Content embed"
                         />
                     );
                 case 'model.dotcomrendering.pageElements.ExplainerAtomBlockElement':
                     return (
-                        <ExplainerAtom
-                            key={i}
-                            id={element.id}
-                            title={element.title}
-                            html={element.body}
+                        <LofiTextAlternative
+                            altText={element.title}
+                            elementTypeShownToUser="Explainer"
                         />
                     );
                 case 'model.dotcomrendering.pageElements.GuideAtomBlockElement':
                     return (
-                        <div id={`guide-atom-${i}`}>
-                            <GuideAtom
-                                id={element.id}
-                                title={element.title}
-                                html={element.html}
-                                image={element.img}
-                                credit={element.credit}
-                                pillar={pillar}
-                                likeHandler={() => {}}
-                                dislikeHandler={() => {}}
-                                expandCallback={() => {}}
-                            />
-                        </div>
+                        <LofiTextAlternative
+                            altText={element.title}
+                            elementTypeShownToUser="Quick Guide"
+                        />
                     );
                 case 'model.dotcomrendering.pageElements.GuVideoBlockElement':
                     return (
-                        <GuVideoBlockComponent
-                            html={element.html}
-                            pillar={pillar}
-                            designType={designType}
-                            display={Display.Standard}
-                            credit={element.source}
-                            caption={element.caption}
+                        <LofiTextAlternative
+                            altText={element.caption}
+                            elementTypeShownToUser="Video"
                         />
                     );
                 case 'model.dotcomrendering.pageElements.HighlightBlockElement':
@@ -170,39 +152,23 @@ export const ArticleRenderer: React.FC<{
                 case 'model.dotcomrendering.pageElements.ImageBlockElement':
                     return (
                         <ImageBlockComponent
-                            display={Display.Standard}
-                            designType={designType}
-                            key={i}
                             element={element}
-                            pillar={pillar}
                             title={element.title}
                         />
                     );
                 case 'model.dotcomrendering.pageElements.InstagramBlockElement':
                     return (
-                        <InstagramBlockComponent key={i} element={element} />
+                        <LofiTextAlternative elementTypeShownToUser="Instagram post" />
                     );
                 case 'model.dotcomrendering.pageElements.InteractiveAtomBlockElement':
                     return (
-                        <InteractiveAtom
-                            id={element.id}
-                            html={element.html}
-                            js={element.js}
-                            css={element.css}
-                        />
+                        <LofiTextAlternative elementTypeShownToUser="Interactive Content" />
                     );
                 case 'model.dotcomrendering.pageElements.MapBlockElement':
                     return (
-                        <MapEmbedBlockComponent
-                            pillar={pillar}
-                            embedUrl={element.embedUrl}
-                            height={element.height}
-                            width={element.width}
-                            caption={element.caption}
-                            credit={element.source}
-                            title={element.title}
-                            display={Display.Standard}
-                            designType={designType}
+                        <LofiTextAlternative
+                            altText={element.title}
+                            elementTypeShownToUser="Map"
                         />
                     );
                 case 'model.dotcomrendering.pageElements.MultiImageBlockElement':
@@ -216,21 +182,7 @@ export const ArticleRenderer: React.FC<{
                         />
                     );
                 case 'model.dotcomrendering.pageElements.ProfileAtomBlockElement':
-                    return (
-                        <div id={`profile-atom-${i}`}>
-                            <ProfileAtom
-                                id={element.id}
-                                title={element.title}
-                                html={element.html}
-                                image={element.img}
-                                credit={element.credit}
-                                pillar={pillar}
-                                likeHandler={() => {}}
-                                dislikeHandler={() => {}}
-                                expandCallback={() => {}}
-                            />
-                        </div>
-                    );
+                    return null;
                 case 'model.dotcomrendering.pageElements.PullquoteBlockElement':
                     return (
                         <PullQuoteBlockComponent
@@ -243,21 +195,7 @@ export const ArticleRenderer: React.FC<{
                         />
                     );
                 case 'model.dotcomrendering.pageElements.QABlockElement':
-                    return (
-                        <div id={`qanda-atom-${i}`}>
-                            <QandaAtom
-                                id={element.id}
-                                title={element.title}
-                                html={element.html}
-                                image={element.img}
-                                credit={element.credit}
-                                pillar={pillar}
-                                likeHandler={() => {}}
-                                dislikeHandler={() => {}}
-                                expandCallback={() => {}}
-                            />
-                        </div>
-                    );
+                    return null;
                 case 'model.dotcomrendering.pageElements.RichLinkBlockElement':
                     return (
                         <RichLink
