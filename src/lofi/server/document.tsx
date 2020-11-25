@@ -17,7 +17,7 @@ const replaceStrings = (html: string) => {
     const replacementPairs = [
         {
             old: `font-family:GuardianTextSans,Guardian Text Sans Web,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;`,
-            new: `font-family:Helvetica Neue,Arial,sans-serif;`,
+            new: `font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif;`,
         },
         {
             old: `font-family:GH Guardian Headline,Guardian Egyptian Web,Georgia,serif;`,
