@@ -1,5 +1,6 @@
 import React from 'react';
 import { css } from 'emotion';
+import { ImageComponent } from './ImageComponent';
 
 type Props = {
     element: ImageBlockElement;
@@ -13,5 +14,5 @@ export const ImageBlockComponent = ({
     title,
 }: Props) => {
     // The src here is almost certainly incorrect
-    return <img alt={title} src={element.imageSources[0].srcSet[0].src} />;
+    return <ImageComponent element={element} />;
 };
