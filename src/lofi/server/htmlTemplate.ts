@@ -60,8 +60,9 @@ export const htmlTemplate = ({
 
                 ${twitterSecAndPrivacyMetaTags}
                 <style>
-                body { max-width: 1024px; margin: 0 auto; }
-                ul {margin: 0; padding: 0;}
+                body { max-width: 980px; margin: 0 auto;font-family:Georgia,serif; }
+                ul {margin: 0; padding: 0; list-style: none;}
+                h1, h2, h3, h4, h5, p {margin: 0; padding: 0;}
                 </style>
                 <style>${css}</style>
             </head>
