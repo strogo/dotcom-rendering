@@ -32,6 +32,7 @@ function renderElement(element: CAPIElement) {
                 <LofiTextAlternative
                     altText={element.data.alt}
                     elementTypeShownToUser="Main article image"
+                    sideNote={false}
                 />
             );
 
@@ -51,6 +52,7 @@ function renderElement(element: CAPIElement) {
                 <LofiTextAlternative
                     altText={element.mediaTitle}
                     elementTypeShownToUser="Main article video"
+                    sideNote={false}
                 />
             );
 
