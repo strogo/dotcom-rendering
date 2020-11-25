@@ -5,13 +5,10 @@ import { border } from '@guardian/src-foundations/palette';
 
 import { Standfirst } from '@root/src/lofi/components/Standfirst';
 
-const standfirstStyles = css`
-    max-width: 540px;
-`;
-
 const standfirstLinks = pillarMap(
     (pillar) =>
         css`
+            font-weight: normal;
             a {
                 color: ${pillarPalette[pillar].dark};
                 text-decoration: none;
@@ -32,7 +29,7 @@ export const ArticleStandfirst = ({
     pillar,
     standfirst,
 }: Props) => (
-    <div className={cx(standfirstStyles, standfirstLinks[pillar])}>
+    <div className={cx(standfirstLinks[pillar])}>
         <Standfirst designType={designType} standfirst={standfirst} />
     </div>
 );
