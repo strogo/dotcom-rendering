@@ -31,7 +31,7 @@ const pillarAnc = css`
 
     :hover,
     :focus {
-        border-bottom: 1px dotted #fff;
+        border-bottom: 1px solid #fff;
     }
 `;
 
