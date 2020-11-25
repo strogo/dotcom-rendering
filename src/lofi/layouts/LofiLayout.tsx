@@ -9,7 +9,7 @@ import {
     brandLine,
     brandBorder,
 } from '@guardian/src-foundations/palette';
-import { until } from '@guardian/src-foundations/mq';
+import { until, from } from '@guardian/src-foundations/mq';
 import { GuardianLines } from '@root/src/lofi/components/GuardianLines';
 
 import { StarRating } from '@root/src/lofi/components/StarRating/StarRating';
@@ -62,10 +62,8 @@ const layoutGrid = css`
 
         grid-column-gap: 10px;
 
-
-            grid-template-columns: 1fr; /* Main content */
-            ${gridTemplate}
-        }
+        grid-template-columns: 1fr; /* Main content */
+        ${gridTemplate}
     }
 `;
 
@@ -134,24 +132,30 @@ export const LofiLayout = ({ CAPI, NAV, designType, pillar }: Props) => {
                 >
                     <Header />
                 </Section>
-
-                <Section
-                    showSideBorders={true}
-                    borderColour={brandLine.primary}
-                    showTopBorder={false}
-                    padded={false}
-                    backgroundColour={brandBackground.primary}
-                >
-                    <Nav
-                        pillar={getCurrentPillar(CAPI)}
-                        nav={NAV}
-                        subscribeUrl={
-                            CAPI.nav.readerRevenueLinks.header.subscribe
+                <div
+                    className={css`
+                        ${from.tablet} {
+                            margin-top: -58px;
                         }
-                        edition={CAPI.editionId}
-                    />
-                </Section>
-
+                    `}
+                >
+                    <Section
+                        showSideBorders={true}
+                        borderColour={brandLine.primary}
+                        showTopBorder={false}
+                        padded={false}
+                        backgroundColour={brandBackground.primary}
+                    >
+                        <Nav
+                            pillar={getCurrentPillar(CAPI)}
+                            nav={NAV}
+                            subscribeUrl={
+                                CAPI.nav.readerRevenueLinks.header.subscribe
+                            }
+                            edition={CAPI.editionId}
+                        />
+                    </Section>
+                </div>
                 <Section
                     backgroundColour={background.primary}
                     padded={false}
