@@ -23,9 +23,14 @@ import { recordBaselineCloudWatchMetrics } from './aws/metrics-baseline';
 import { logger } from './logging';
 
 // this export is the function used by webpackHotServerMiddleware in /scripts/frontend-dev-server
+// it uses the serverRendererOptions key
 export default (options: any) => {
     if ('amp' in options) {
         return renderAMPArticle;
+    }
+
+    if ('lofi' in options) {
+        return renderLofiArticle;
     }
 
     return renderArticle;
@@ -108,6 +113,22 @@ if (process.env.NODE_ENV === 'production') {
 
             req.body = config;
             return renderAMPArticle(req, res);
+        } catch (error) {
+            // eslint-disable-next-line no-console
+            console.error(error);
+        }
+    });
+
+    app.get('/LofiArticle', async (req: Request, res: Response) => {
+        // Eg. http://localhost:9000/LofiArticle?url=https://www.theguardian.com/commentisfree/...
+        try {
+            const url = buildUrlFromQueryParam(req);
+            const { html, ...config } = await fetch(url).then((article) =>
+                article.json(),
+            );
+
+            req.body = config;
+            return renderLofiArticle(req, res);
         } catch (error) {
             // eslint-disable-next-line no-console
             console.error(error);
