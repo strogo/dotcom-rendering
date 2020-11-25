@@ -21,7 +21,11 @@ const replaceStrings = (html: string) => {
         },
         {
             old: `font-family:GH Guardian Headline,Guardian Egyptian Web,Georgia,serif;`,
-            new: `font-family:Georgia,serif;`,
+            new: ``,
+        },
+        {
+            old: `font-family:GuardianTextEgyptian,Guardian Text Egyptian Web,Georgia,serif;`,
+            new: ``,
         },
     ];
 
