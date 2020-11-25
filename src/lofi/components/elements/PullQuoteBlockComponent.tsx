@@ -1,6 +1,6 @@
 import React from 'react';
 import { css, cx } from 'emotion';
-import { QuoteIcon } from '@frontend/web/components/QuoteIcon';
+import { QuoteIcon } from '@root/src/lofi/components/QuoteIcon';
 import { pillarPalette } from '@root/src/lib/pillars';
 import { neutral, text } from '@guardian/src-foundations/palette';
 import { headline } from '@guardian/src-foundations/typography';

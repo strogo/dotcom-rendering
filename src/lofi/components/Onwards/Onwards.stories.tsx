@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
-import { Section } from '@frontend/web/components/Section';
+import { Section } from '@root/src/lofi/components/Section';
 
 import {
     linkAndDescription,

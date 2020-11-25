@@ -10,7 +10,7 @@ import { headline, textSans } from '@guardian/src-foundations/typography';
 import { space, palette } from '@guardian/src-foundations';
 import { until } from '@guardian/src-foundations/mq';
 
-import { Score } from '@frontend/web/components/Score';
+import { Score } from '@root/src/lofi/components/Score';
 
 type Props = {
     homeTeam: TeamType;

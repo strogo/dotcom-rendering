@@ -1,6 +1,6 @@
 import React from 'react';
 // import { css } from 'emotion';
-import { Caption } from '@frontend/web/components/Caption';
+import { Caption } from '@root/src/lofi/components/Caption';
 import { Display } from '@root/src/lib/display';
 
 type Props = {

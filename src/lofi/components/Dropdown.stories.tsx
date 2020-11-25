@@ -3,7 +3,7 @@ import { css } from 'emotion';
 
 import { brandBackground } from '@guardian/src-foundations/palette';
 
-import { Dropdown } from '@frontend/web/components/Dropdown';
+import { Dropdown } from '@root/src/lofi/components/Dropdown';
 
 const Header = ({ children }: { children: JSX.Element | JSX.Element[] }) => (
     <div

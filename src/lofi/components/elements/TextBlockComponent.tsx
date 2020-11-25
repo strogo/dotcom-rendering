@@ -9,7 +9,7 @@ import { sanitise } from '@frontend/lib/sanitise-html';
 import { unwrapHtml } from '@root/src/model/unwrapHtml';
 import { RewrappedComponent } from '@root/src/lofi/components/elements/RewrappedComponent';
 
-import { DropCap } from '@frontend/web/components/DropCap';
+import { DropCap } from '@root/src/lofi/components/DropCap';
 import { Display } from '@root/src/lib/display';
 
 type Props = {

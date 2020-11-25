@@ -1,34 +1,10 @@
 import React from 'react';
 import { css } from 'emotion';
 
-import { neutral, text } from '@guardian/src-foundations/palette';
-import { headline, textSans } from '@guardian/src-foundations/typography';
+import { headline } from '@guardian/src-foundations/typography';
 import { pillarPalette } from '@root/src/lib/pillars';
 
-import { BylineLink } from '@frontend/web/components/BylineLink';
-
-import TwitterIcon from '@frontend/static/icons/twitter.svg';
-
-const twitterHandle = css`
-    ${textSans.xsmall()};
-    font-weight: bold;
-    color: ${text.supporting};
-
-    padding-right: 10px;
-    display: inline-block;
-
-    svg {
-        height: 10px;
-        max-width: 12px;
-        margin-right: 0px;
-        fill: ${neutral[46]};
-    }
-
-    a {
-        color: ${text.supporting};
-        text-decoration: none;
-    }
-`;
+import { BylineLink } from '@root/src/lofi/components/BylineLink';
 
 const bylineStyle = (pillar: Pillar) => css`
     ${headline.xxxsmall()};
@@ -48,7 +24,6 @@ const bylineStyle = (pillar: Pillar) => css`
 `;
 
 export const Contributor: React.FC<{
-    designType: DesignType;
     author: AuthorType;
     tags: TagType[];
     pillar: Pillar;
@@ -56,9 +31,6 @@ export const Contributor: React.FC<{
     if (!author.byline) {
         return null;
     }
-
-    const onlyOneContributor: boolean =
-        tags.filter((tag) => tag.type === 'Contributor').length === 1;
 
     return (
         <address
@@ -69,17 +41,6 @@ export const Contributor: React.FC<{
             {designType !== 'Interview' && (
                 <div className={bylineStyle(pillar)}>
                     <BylineLink byline={author.byline} tags={tags} />
-                </div>
-            )}
-            {onlyOneContributor && author.twitterHandle && (
-                <div className={twitterHandle}>
-                    <TwitterIcon />
-                    <a
-                        href={`https://www.twitter.com/${author.twitterHandle}`}
-                        aria-label={`@${author.twitterHandle} on Twitter`}
-                    >
-                        @{author.twitterHandle}
-                    </a>
                 </div>
             )}
         </address>

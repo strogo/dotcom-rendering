@@ -6,7 +6,7 @@ import { headline } from '@guardian/src-foundations/typography';
 import { from, until } from '@guardian/src-foundations/mq';
 import { space, neutral, brandAltBackground } from '@guardian/src-foundations';
 
-import { Hide } from '@frontend/web/components/Hide';
+import { Hide } from '@root/src/lofi/components/Hide';
 import { Display } from '@root/src/lib/display';
 
 type Props = {

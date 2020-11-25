@@ -2,15 +2,12 @@ import React from 'react';
 import { css, cx } from 'emotion';
 
 import { border } from '@guardian/src-foundations/palette';
-import { headline } from '@guardian/src-foundations/typography';
 import { between } from '@guardian/src-foundations/mq';
 import { pillarMap, pillarPalette } from '@root/src/lib/pillars';
 import { ArticleRenderer } from '@root/src/lofi/lib/ArticleRenderer';
-import { Display } from '@root/src/lib/display';
 
 type Props = {
     pillar: Pillar;
-    display: Display;
     blocks: Block[];
     designType: DesignType;
     adTargeting: AdTargeting;
@@ -26,15 +23,13 @@ const pillarColours = pillarMap(
         `,
 );
 
-const bodyStyle = (display: Display) => css`
+const bodyStyle = css`
     ${between.tablet.and.desktop} {
         padding-right: 80px;
     }
 
     h2 {
-        ${display === Display.Immersive
-            ? headline.medium({ fontWeight: 'light' })
-            : headline.xxsmall({ fontWeight: 'bold' })};
+        font-weight: bold;
     }
 
     strong {
@@ -61,22 +56,13 @@ const linkColour = pillarMap(
     `,
 );
 
-export const ArticleBody = ({
-    pillar,
-    display,
-    blocks,
-    designType,
-    adTargeting,
-    host,
-}: Props) => {
+export const ArticleBody = ({ pillar, blocks, designType, host }: Props) => {
     return (
-        <div className={cx(bodyStyle(display), linkColour[pillar])}>
+        <div className={cx(bodyStyle, linkColour[pillar])}>
             <ArticleRenderer
-                display={display}
                 elements={blocks[0] ? blocks[0].elements : []}
                 pillar={pillar}
                 designType={designType}
-                adTargeting={adTargeting}
                 host={host}
             />
         </div>

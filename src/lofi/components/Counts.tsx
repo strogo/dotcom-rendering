@@ -3,8 +3,8 @@ import { css } from 'emotion';
 
 import { border } from '@guardian/src-foundations/palette';
 
-import { ShareCount } from '@frontend/web/components/ShareCount';
-import { CommentCount } from '@frontend/web/components/CommentCount';
+import { ShareCount } from '@root/src/lofi/components/ShareCount';
+import { CommentCount } from '@root/src/lofi/components/CommentCount';
 import { useApi } from '@root/src/lofi/lib/api';
 import { formatCount } from '@root/src/lofi/lib/formatCount';
 import { joinUrl } from '@root/src/lofi/lib/joinUrl';

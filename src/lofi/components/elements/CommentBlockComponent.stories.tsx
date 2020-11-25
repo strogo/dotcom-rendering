@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from 'emotion';
 
-import { CommentBlockComponent } from '@frontend/web/components/elements/CommentBlockComponent';
+import { CommentBlockComponent } from '@root/src/lofi/components/elements/CommentBlockComponent';
 
 export default {
     component: CommentBlockComponent,

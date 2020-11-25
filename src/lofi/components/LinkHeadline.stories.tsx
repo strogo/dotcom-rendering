@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Section } from '@frontend/web/components/Section';
+import { Section } from '@root/src/lofi/components/Section';
 
-import { LinkHeadline } from '@frontend/web/components/LinkHeadline';
+import { LinkHeadline } from '@root/src/lofi/components/LinkHeadline';
 
 export default {
     component: LinkHeadline,

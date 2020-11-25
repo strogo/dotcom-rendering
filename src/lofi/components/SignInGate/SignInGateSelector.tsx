@@ -6,11 +6,11 @@ import { constructQuery } from '@root/src/lib/querystring';
 import {
     incrementUserDismissedGateCount,
     setUserDismissedGate,
-} from '@frontend/web/components/SignInGate/dismissGate';
+} from '@root/src/lofi/components/SignInGate/dismissGate';
 import {
     SignInGateComponent,
     CurrentABTest,
-} from '@frontend/web/components/SignInGate/gateDesigns/types';
+} from '@root/src/lofi/components/SignInGate/gateDesigns/types';
 import { getCookie } from '@frontend/web/browser/cookie';
 
 // Sign in Gate A/B Tests

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Section } from '@frontend/web/components/Section';
+import { Section } from '@root/src/lofi/components/Section';
 
-import { CardHeadline } from '@frontend/web/components/CardHeadline';
+import { CardHeadline } from '@root/src/lofi/components/CardHeadline';
 
 export default {
     component: CardHeadline,

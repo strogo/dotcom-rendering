@@ -5,7 +5,7 @@ import { Flex } from '@root/src/lofi/components/Flex';
 import { RightColumn } from '@root/src/lofi/components/RightColumn';
 import { LeftColumn } from '@root/src/lofi/components/LeftColumn';
 import { ArticleContainer } from '@root/src/lofi/components/ArticleContainer';
-import { Section } from '@frontend/web/components/Section';
+import { Section } from '@root/src/lofi/components/Section';
 
 import { mockTab1 } from '@root/fixtures/mostViewed';
 import { MostViewedRight } from './MostViewedRight';

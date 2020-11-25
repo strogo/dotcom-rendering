@@ -6,7 +6,7 @@ import {
     responseWithOneTab,
     responseWithMissingImage,
 } from '@root/fixtures/mostViewed';
-import { Section } from '@frontend/web/components/Section';
+import { Section } from '@root/src/lofi/components/Section';
 import { ABProvider } from '@guardian/ab-react';
 import { MostViewedFooter } from './MostViewedFooter';
 

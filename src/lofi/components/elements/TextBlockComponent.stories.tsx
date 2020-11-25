@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from 'emotion';
 
-import { TextBlockComponent } from '@frontend/web/components/elements/TextBlockComponent';
+import { TextBlockComponent } from '@root/src/lofi/components/elements/TextBlockComponent';
 import { Display } from '@root/src/lib/display';
 
 const html =

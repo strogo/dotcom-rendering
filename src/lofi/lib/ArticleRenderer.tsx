@@ -1,11 +1,8 @@
 import React from 'react';
-import { css } from 'emotion';
-
+import { LofiTextAlternative } from '@root/src/lofi/components/LofiTextAlternative';
 import { BlockquoteBlockComponent } from '@root/src/lofi/components/elements/BlockquoteBlockComponent';
-import { CalloutBlockComponent } from '@root/src/lofi/components/elements/CalloutBlockComponent';
 import { CaptionBlockComponent } from '@root/src/lofi/components/elements/CaptionBlockComponent';
 import { CommentBlockComponent } from '@root/src/lofi/components/elements/CommentBlockComponent';
-import { DocumentBlockComponent } from '@root/src/lofi/components/elements/DocumentBlockComponent';
 import { DisclaimerBlockComponent } from '@root/src/lofi/components/elements/DisclaimerBlockComponent';
 import { DividerBlockComponent } from '@root/src/lofi/components/elements/DividerBlockComponent';
 import { EmbedBlockComponent } from '@root/src/lofi/components/elements/EmbedBlockComponent';
@@ -16,47 +13,30 @@ import { InstagramBlockComponent } from '@root/src/lofi/components/elements/Inst
 import { MapEmbedBlockComponent } from '@root/src/lofi/components/elements/MapEmbedBlockComponent';
 import { MultiImageBlockComponent } from '@root/src/lofi/components/elements/MultiImageBlockComponent';
 import { PullQuoteBlockComponent } from '@root/src/lofi/components/elements/PullQuoteBlockComponent';
-import { SoundcloudBlockComponent } from '@root/src/lofi/components/elements/SoundcloudBlockComponent';
-import { SpotifyBlockComponent } from '@root/src/lofi/components/elements/SpotifyBlockComponent';
 import { SubheadingBlockComponent } from '@root/src/lofi/components/elements/SubheadingBlockComponent';
 import { TableBlockComponent } from '@root/src/lofi/components/elements/TableBlockComponent';
 import { TextBlockComponent } from '@root/src/lofi/components/elements/TextBlockComponent';
-import { TweetBlockComponent } from '@root/src/lofi/components/elements/TweetBlockComponent';
-import { VideoFacebookBlockComponent } from '@root/src/lofi/components/elements/VideoFacebookBlockComponent';
-import { VimeoBlockComponent } from '@root/src/lofi/components/elements/VimeoBlockComponent';
-import { YoutubeEmbedBlockComponent } from '@root/src/lofi/components/elements/YoutubeEmbedBlockComponent';
-import { YoutubeBlockComponent } from '@root/src/lofi/components/elements/YoutubeBlockComponent';
 
 import {
-    AudioAtom,
-    ChartAtom,
     ExplainerAtom,
     InteractiveAtom,
     QandaAtom,
     GuideAtom,
     ProfileAtom,
     TimelineAtom,
-    VideoAtom,
 } from '@guardian/atoms-rendering';
 import { Display } from '@root/src/lib/display';
-import { withSignInGateSlot } from '@root/src/lofi/lib/withSignInGateSlot';
-import { GuVideoBlockComponent } from '@root/src/lofi/components/elements/GuVideoBlockComponent';
-import { toTypesPillar } from '@root/src/lib/format';
-import { DefaultRichLink } from '../components/RichLink';
 
-// This is required for spacefinder to work!
-const commercialPosition = css`
-    position: relative;
-`;
+import { GuVideoBlockComponent } from '@root/src/lofi/components/elements/GuVideoBlockComponent';
+
+import { RichLink } from '../components/RichLink';
 
 export const ArticleRenderer: React.FC<{
-    display: Display;
     elements: CAPIElement[];
     pillar: Pillar;
     designType: DesignType;
-    adTargeting?: AdTargeting;
     host?: string;
-}> = ({ display, elements, pillar, designType, adTargeting, host }) => {
+}> = ({ elements, pillar, designType }) => {
     // const cleanedElements = elements.map(element =>
     //     'html' in element ? { ...element, html: clean(element.html) } : element,
     // );
@@ -68,15 +48,10 @@ export const ArticleRenderer: React.FC<{
             switch (element._type) {
                 case 'model.dotcomrendering.pageElements.AudioAtomBlockElement':
                     return (
-                        <div id={`audio-atom-${i}`}>
-                            <AudioAtom
-                                id={element.id}
-                                trackUrl={element.trackUrl}
-                                kicker={element.kicker}
-                                title={element.title}
-                                pillar={toTypesPillar(pillar)}
-                            />
-                        </div>
+                        <LofiTextAlternative
+                            altText={element.title}
+                            elementTypeShownToUser="Audio"
+                        />
                     );
                 case 'model.dotcomrendering.pageElements.BlockquoteBlockElement':
                     return (
@@ -84,14 +59,13 @@ export const ArticleRenderer: React.FC<{
                             key={i}
                             html={element.html}
                             pillar={pillar}
-                            quoted={element.quoted}
                         />
                     );
                 case 'model.dotcomrendering.pageElements.CaptionBlockElement':
                     return (
                         <CaptionBlockComponent
                             key={i}
-                            display={display}
+                            display={Display.Standard}
                             designType={designType}
                             pillar={pillar}
                             captionText={element.captionText}
@@ -123,23 +97,16 @@ export const ArticleRenderer: React.FC<{
                 case 'model.dotcomrendering.pageElements.DividerBlockElement':
                     return <DividerBlockComponent />;
                 case 'model.dotcomrendering.pageElements.CalloutBlockElement':
-                    return (
-                        <div id={`callout-${i}`}>
-                            <CalloutBlockComponent
-                                callout={element}
-                                pillar={pillar}
-                            />
-                        </div>
-                    );
+                    return null;
                 case 'model.dotcomrendering.pageElements.ChartAtomBlockElement':
-                    return <ChartAtom id={element.id} html={element.html} />;
+                    return (
+                        <LofiTextAlternative elementTypeShownToUser="Chart" />
+                    );
                 case 'model.dotcomrendering.pageElements.DocumentBlockElement':
                     return (
-                        <DocumentBlockComponent
-                            embedUrl={element.embedUrl}
-                            height={element.height}
-                            width={element.width}
-                            title={element.title}
+                        <LofiTextAlternative
+                            altText={element.title}
+                            elementTypeShownToUser="Document"
                         />
                     );
                 case 'model.dotcomrendering.pageElements.EmbedBlockElement':
@@ -191,7 +158,7 @@ export const ArticleRenderer: React.FC<{
                             html={element.html}
                             pillar={pillar}
                             designType={designType}
-                            display={display}
+                            display={Display.Standard}
                             credit={element.source}
                             caption={element.caption}
                         />
@@ -203,7 +170,7 @@ export const ArticleRenderer: React.FC<{
                 case 'model.dotcomrendering.pageElements.ImageBlockElement':
                     return (
                         <ImageBlockComponent
-                            display={display}
+                            display={Display.Standard}
                             designType={designType}
                             key={i}
                             element={element}
@@ -234,7 +201,7 @@ export const ArticleRenderer: React.FC<{
                             caption={element.caption}
                             credit={element.source}
                             title={element.title}
-                            display={display}
+                            display={Display.Standard}
                             designType={designType}
                         />
                     );
@@ -293,31 +260,20 @@ export const ArticleRenderer: React.FC<{
                     );
                 case 'model.dotcomrendering.pageElements.RichLinkBlockElement':
                     return (
-                        <div key={i} id={`rich-link-${i}`}>
-                            <DefaultRichLink
-                                index={i}
-                                headlineText={element.text}
-                                url={element.url}
-                                isPlaceholder={true}
-                            />
-                        </div>
+                        <RichLink
+                            headlineText={element.text}
+                            url={element.url}
+                        />
                     );
                 case 'model.dotcomrendering.pageElements.SoundcloudBlockElement':
                     return (
-                        <SoundcloudBlockComponent key={i} element={element} />
+                        <LofiTextAlternative elementTypeShownToUser="Soundcloud" />
                     );
                 case 'model.dotcomrendering.pageElements.SpotifyBlockElement':
                     return (
-                        <SpotifyBlockComponent
-                            embedUrl={element.embedUrl}
-                            height={element.height}
-                            width={element.width}
-                            title={element.title}
-                            pillar={pillar}
-                            caption={element.caption}
-                            designType={designType}
-                            display={display}
-                            credit="Spotify"
+                        <LofiTextAlternative
+                            altText={element.title}
+                            elementTypeShownToUser="Spotify"
                         />
                     );
                 case 'model.dotcomrendering.pageElements.SubheadingBlockElement':
@@ -334,75 +290,37 @@ export const ArticleRenderer: React.FC<{
                                 isFirstParagraph={i === 0}
                                 html={element.html}
                                 pillar={pillar}
-                                display={display}
+                                display={Display.Standard}
                                 designType={designType}
                                 forceDropCap={element.dropCap}
                             />
                         </>
                     );
                 case 'model.dotcomrendering.pageElements.TweetBlockElement':
-                    return <TweetBlockComponent key={i} element={element} />;
+                    return (
+                        <LofiTextAlternative elementTypeShownToUser="Tweet" />
+                    );
                 case 'model.dotcomrendering.pageElements.VideoFacebookBlockElement':
                     return (
-                        <VideoFacebookBlockComponent
-                            pillar={pillar}
-                            embedUrl={element.embedUrl}
-                            height={element.height}
-                            width={element.width}
-                            caption={element.caption}
-                            display={display}
-                            designType={designType}
-                            credit={element.caption}
-                            title={element.caption}
+                        <LofiTextAlternative
+                            altText={element.caption}
+                            elementTypeShownToUser="Facebook Video"
                         />
                     );
                 case 'model.dotcomrendering.pageElements.VideoVimeoBlockElement':
-                    return (
-                        <VimeoBlockComponent
-                            pillar={pillar}
-                            embedUrl={element.embedUrl}
-                            height={element.height}
-                            width={element.width}
-                            caption={element.caption}
-                            credit={element.credit}
-                            title={element.title}
-                            display={display}
-                            designType={designType}
-                        />
-                    );
                 case 'model.dotcomrendering.pageElements.VideoYoutubeBlockElement':
                     return (
-                        <YoutubeEmbedBlockComponent
-                            pillar={pillar}
-                            embedUrl={element.embedUrl}
-                            height={element.height}
-                            width={element.width}
-                            caption={element.caption}
-                            credit={element.credit}
-                            title={element.title}
-                            display={display}
-                            designType={designType}
+                        <LofiTextAlternative
+                            altText={element.title}
+                            elementTypeShownToUser="Video"
                         />
                     );
                 case 'model.dotcomrendering.pageElements.YoutubeBlockElement':
                     return (
-                        <div key={i} id={`youtube-block-${i}`}>
-                            <YoutubeBlockComponent
-                                display={display}
-                                designType={designType}
-                                key={i}
-                                element={element}
-                                pillar={pillar}
-                                hideCaption={false}
-                                // eslint-disable-next-line jsx-a11y/aria-role
-                                role="inline"
-                                adTargeting={adTargeting}
-                                isMainMedia={false}
-                                overlayImage={element.overrideImage}
-                                duration={element.duration}
-                                origin={host}
-                            />
-                        </div>
+                        <LofiTextAlternative
+                            altText={element.mediaTitle}
+                            elementTypeShownToUser="Video"
+                        />
                     );
                 case 'model.dotcomrendering.pageElements.TimelineBlockElement':
                     return (
@@ -420,13 +338,7 @@ export const ArticleRenderer: React.FC<{
                     );
                 case 'model.dotcomrendering.pageElements.MediaAtomBlockElement':
                     return (
-                        <VideoAtom
-                            assets={element.assets}
-                            poster={
-                                element.posterImage &&
-                                element.posterImage[0].url
-                            }
-                        />
+                        <LofiTextAlternative elementTypeShownToUser="Video" />
                     );
                 case 'model.dotcomrendering.pageElements.AudioBlockElement':
                 case 'model.dotcomrendering.pageElements.CodeBlockElement':
@@ -438,12 +350,5 @@ export const ArticleRenderer: React.FC<{
         })
         .filter((_) => _ != null);
 
-    return (
-        <div
-            className={`article-body-commercial-selector ${commercialPosition}`}
-        >
-            {/* Insert the placeholder for the sign in gate on the 2nd article element */}
-            {withSignInGateSlot(output)}
-        </div>
-    ); // classname that space finder is going to target for in-body ads in DCR
+    return <div>{output}</div>;
 };

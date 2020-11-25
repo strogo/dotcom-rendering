@@ -7,7 +7,7 @@ import { space, palette, opinion } from '@guardian/src-foundations';
 import { LinkButton } from '@guardian/src-button';
 import { Link } from '@guardian/src-link';
 import { cmp } from '@guardian/consent-management-platform';
-import { trackLink } from '@frontend/web/components/SignInGate/componentEventTracking';
+import { trackLink } from '@root/src/lofi/components/SignInGate/componentEventTracking';
 import { SignInGateProps } from './types';
 
 const signinGate = css`

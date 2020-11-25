@@ -4,14 +4,14 @@ import { Lazy } from '@root/src/lofi/components/Lazy';
 import {
     SignInGateComponent,
     CurrentABTest,
-} from '@frontend/web/components/SignInGate/gateDesigns/types';
+} from '@root/src/lofi/components/SignInGate/gateDesigns/types';
 import {
     isNPageOrHigherPageView,
     isValidContentType,
     isValidSection,
     isValidTag,
     isIOS9,
-} from '@frontend/web/components/SignInGate/displayRule';
+} from '@root/src/lofi/components/SignInGate/displayRule';
 import { initPerf } from '@root/src/lofi/browser/initPerf';
 import { hasUserDismissedGateMoreThanCount } from '../dismissGate';
 

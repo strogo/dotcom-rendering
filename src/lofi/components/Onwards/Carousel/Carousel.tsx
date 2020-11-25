@@ -8,7 +8,7 @@ import { headline } from '@guardian/src-foundations/typography';
 import { from } from '@guardian/src-foundations/mq';
 import { palette, space } from '@guardian/src-foundations';
 import libDebounce from 'lodash/debounce';
-import { LeftColumn } from '@frontend/web/components/LeftColumn';
+import { LeftColumn } from '@root/src/lofi/components/LeftColumn';
 import { formatAttrString } from '@frontend/web/lib/formatAttrString';
 import { pillarPalette } from '@root/src/lib/pillars';
 import { CardAge } from '../../Card/components/CardAge';
@@ -225,7 +225,14 @@ const titleStyle = (pillar: Pillar) => css`
     color: ${pillarPalette[pillar].main};
 `;
 
-export const Title = ({ title, pillar }: { title: string; url?: string; pillar: Pillar }) => (
+export const Title = ({
+    title,
+    pillar,
+}: {
+    title: string;
+    url?: string;
+    pillar: Pillar;
+}) => (
     <h2 className={headerStyles}>
         More from <span className={titleStyle(pillar)}>{title}</span>
     </h2>
@@ -388,7 +395,6 @@ export const Carousel: React.FC<OnwardsType> = ({
                 data-link={formatAttrString(heading)}
             >
                 <div className={navRowStyles}>
-
                     <Title title={heading} pillar={pillar} />
 
                     <div className={navIconStyle} data-link-name="nav-arrow">
@@ -405,7 +411,9 @@ export const Carousel: React.FC<OnwardsType> = ({
                     {trails.map((value, i) => (
                         <span
                             className={
-                                i === index ? dotActiveStyle(i, pillar) : dotStyle(i)
+                                i === index
+                                    ? dotActiveStyle(i, pillar)
+                                    : dotStyle(i)
                             }
                         />
                     ))}

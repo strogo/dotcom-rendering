@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
-import { Section } from '@frontend/web/components/Section';
-import { Flex } from '@frontend/web/components/Flex';
-import { LeftColumn } from '@frontend/web/components/LeftColumn';
-import { ArticleContainer } from '@frontend/web/components/ArticleContainer';
+import { Section } from '@root/src/lofi/components/Section';
+import { Flex } from '@root/src/lofi/components/Flex';
+import { LeftColumn } from '@root/src/lofi/components/LeftColumn';
+import { ArticleContainer } from '@root/src/lofi/components/ArticleContainer';
 
 import { Card } from './Card';
 import { UL } from './components/UL';

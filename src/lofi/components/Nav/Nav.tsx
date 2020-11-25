@@ -2,12 +2,11 @@ import React from 'react';
 import { css, cx } from 'emotion';
 import { Pillars } from '@root/src/lofi/components/Pillars';
 import { clearFix } from '@root/src/lib/mixins';
-import { Display } from '@root/src/lib/display';
 
 type Props = {
     pillar: Pillar;
     nav: NavType;
-    display: Display;
+
     subscribeUrl: string;
     edition: Edition;
 };
@@ -22,19 +21,11 @@ const rowStyles = css`
     justify-content: space-between;
 `;
 
-const minHeight = css`
-    min-height: 48px;
-`;
-
-export const Nav = ({ display, pillar, nav }: Props) => {
+export const Nav = ({ pillar, nav }: Props) => {
     return (
         <div className={rowStyles}>
             <nav
-                className={cx(
-                    clearFixStyle,
-                    rowStyles,
-                    display === Display.Immersive && minHeight,
-                )}
+                className={cx(clearFixStyle, rowStyles)}
                 role="navigation"
                 aria-label="Guardian sections"
                 data-component="nav2"

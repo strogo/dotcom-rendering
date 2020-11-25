@@ -3,9 +3,7 @@ import { css, cx } from 'emotion';
 
 import { until } from '@guardian/src-foundations/mq';
 
-import { ImageComponent } from '@root/src/lofi/components/elements/ImageComponent';
-import { YoutubeBlockComponent } from '@root/src/lofi/components/elements/YoutubeBlockComponent';
-import { Display } from '@root/src/lib/display';
+import { LofiTextAlternative } from '@root/src/lofi/components/LofiTextAlternative';
 
 const mainMedia = css`
     min-height: 1px;
@@ -27,100 +25,48 @@ const mainMedia = css`
     }
 `;
 
-const noGutters = css`
-    ${until.phablet} {
-        margin-left: -20px;
-        margin-right: -20px;
-    }
-
-    ${until.mobileLandscape} {
-        margin-left: -10px;
-        margin-right: -10px;
-    }
-`;
-
-function renderElement(
-    display: Display,
-    designType: DesignType,
-    element: CAPIElement,
-    pillar: Pillar,
-    i: number,
-    hideCaption?: boolean,
-    adTargeting?: AdTargeting,
-    starRating?: number,
-) {
+function renderElement(element: CAPIElement) {
     switch (element._type) {
         case 'model.dotcomrendering.pageElements.ImageBlockElement':
             return (
-                <ImageComponent
-                    display={display}
-                    designType={designType}
-                    key={i}
-                    element={element}
-                    pillar={pillar}
-                    hideCaption={hideCaption}
-                    isMainMedia={true}
-                    role={element.role}
-                    starRating={starRating}
+                <LofiTextAlternative
+                    altText={element.data.alt}
+                    elementTypeShownToUser="Image"
                 />
             );
+
+        // <ImageComponent
+        //     display={display}
+        //     designType={designType}
+        //     key={i}
+        //     element={element}
+        //     pillar={pillar}
+        //     hideCaption={hideCaption}
+        //     isMainMedia={true}
+        //     role={element.role}
+        //     starRating={starRating}
+        // />
         case 'model.dotcomrendering.pageElements.YoutubeBlockElement':
             return (
-                <div key={i} id={`youtube-block-main-media-${i}`}>
-                    <YoutubeBlockComponent
-                        display={display}
-                        designType={designType}
-                        key={i}
-                        element={element}
-                        pillar={pillar}
-                        hideCaption={hideCaption}
-                        // eslint-disable-next-line jsx-a11y/aria-role
-                        role="inline"
-                        adTargeting={adTargeting}
-                        isMainMedia={true}
-                        overlayImage={element.overrideImage}
-                        duration={element.duration}
-                    />
-                </div>
+                <LofiTextAlternative
+                    altText={element.mediaTitle}
+                    elementTypeShownToUser="Video"
+                />
             );
+
         default:
-            // eslint-disable-next-line no-console
-            console.warn(
-                `The following main media element is not supported by DCR ${element._type}`,
-            );
             return null;
     }
 }
 
 export const MainMedia: React.FC<{
-    display: Display;
-    designType: DesignType;
     elements: CAPIElement[];
     pillar: Pillar;
     hideCaption?: boolean;
     adTargeting?: AdTargeting;
     starRating?: number;
-}> = ({
-    display,
-    designType,
-    elements,
-    pillar,
-    hideCaption,
-    adTargeting,
-    starRating,
-}) => (
-    <div className={cx(mainMedia, display !== Display.Immersive && noGutters)}>
-        {elements.map((element, i) =>
-            renderElement(
-                display,
-                designType,
-                element,
-                pillar,
-                i,
-                hideCaption,
-                adTargeting,
-                starRating,
-            ),
-        )}
+}> = ({ elements }) => (
+    <div className={cx(mainMedia)}>
+        {elements.map((element) => renderElement(element))}
     </div>
 );

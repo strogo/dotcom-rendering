@@ -1,5 +1,5 @@
 import React from 'react';
-import { Section } from '@frontend/web/components/Section';
+import { Section } from '@root/src/lofi/components/Section';
 import { SignInGateSelector } from './SignInGateSelector';
 import { SignInGateMain } from './gateDesigns/SignInGateMain';
 

@@ -2,7 +2,7 @@ import {
     OphanComponent,
     OphanComponentEvent,
 } from '@root/src/lofi/browser/ophan/ophan';
-import { CurrentABTest } from '@frontend/web/components/SignInGate/gateDesigns/types';
+import { CurrentABTest } from '@root/src/lofi/components/SignInGate/gateDesigns/types';
 
 type ABTestVariant = {
     name: string;

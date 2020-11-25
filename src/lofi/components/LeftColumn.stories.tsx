@@ -3,7 +3,7 @@ import React from 'react';
 import { Flex } from '@root/src/lofi/components/Flex';
 import { RightColumn } from '@root/src/lofi/components/RightColumn';
 import { ArticleContainer } from '@root/src/lofi/components/ArticleContainer';
-import { Section } from '@frontend/web/components/Section';
+import { Section } from '@root/src/lofi/components/Section';
 
 import { LeftColumn } from './LeftColumn';
 

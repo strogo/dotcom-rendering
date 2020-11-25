@@ -4,7 +4,7 @@ import {
     brandBorder,
 } from '@guardian/src-foundations/palette';
 
-import { Section } from '@frontend/web/components/Section';
+import { Section } from '@root/src/lofi/components/Section';
 
 import { Display } from '@root/src/lib/display';
 import { nav } from './Nav.mock';

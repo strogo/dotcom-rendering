@@ -3,8 +3,7 @@ import { css, cx } from 'emotion';
 import { pillarMap, pillarPalette } from '@root/src/lib/pillars';
 import { border } from '@guardian/src-foundations/palette';
 
-import { Standfirst } from '@frontend/web/components/Standfirst';
-import { Display } from '@root/src/lib/display';
+import { Standfirst } from '@root/src/lofi/components/Standfirst';
 
 const standfirstStyles = css`
     max-width: 540px;
@@ -23,23 +22,17 @@ const standfirstLinks = pillarMap(
 );
 
 type Props = {
-    display: Display;
     designType: DesignType;
     pillar: Pillar;
     standfirst: string; // Can be html
 };
 
 export const ArticleStandfirst = ({
-    display,
     designType,
     pillar,
     standfirst,
 }: Props) => (
     <div className={cx(standfirstStyles, standfirstLinks[pillar])}>
-        <Standfirst
-            display={display}
-            designType={designType}
-            standfirst={standfirst}
-        />
+        <Standfirst designType={designType} standfirst={standfirst} />
     </div>
 );

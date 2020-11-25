@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from 'emotion';
-import { Logo } from '@frontend/web/components/Logo';
+import { Logo } from '@root/src/lofi/components/Logo';
 
 const headerStyles = css`
     /* Ensure header height contains it's children */

@@ -4,10 +4,10 @@ import { css } from 'emotion';
 import { textSans } from '@guardian/src-foundations/typography';
 import { neutral } from '@guardian/src-foundations/palette';
 
-import { SharingIcons } from '@frontend/web/components/ShareIcons';
-import { SubMetaLinksList } from '@frontend/web/components/SubMetaLinksList';
-import { SyndicationButton } from '@frontend/web/components/SyndicationButton';
-import { Badge } from '@frontend/web/components/Badge';
+import { SharingIcons } from '@root/src/lofi/components/ShareIcons';
+import { SubMetaLinksList } from '@root/src/lofi/components/SubMetaLinksList';
+import { SyndicationButton } from '@root/src/lofi/components/SyndicationButton';
+import { Badge } from '@root/src/lofi/components/Badge';
 import { getSharingUrls } from '@frontend/lib/sharing-urls';
 import { until } from '@guardian/src-foundations/mq';
 

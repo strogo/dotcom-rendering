@@ -12,15 +12,11 @@ import {
 import { from, until } from '@guardian/src-foundations/mq';
 import { GuardianLines } from '@root/src/lofi/components/GuardianLines';
 
-import { namedAdSlotParameters } from '@root/src/model/advertisement';
 import { StarRating } from '@root/src/lofi/components/StarRating/StarRating';
-import { StickyAd } from '@root/src/lofi/components/StickyAd';
 import { ArticleBody } from '@root/src/lofi/components/ArticleBody';
-import { RightColumn } from '@root/src/lofi/components/RightColumn';
 import { ArticleTitle } from '@root/src/lofi/components/ArticleTitle';
 import { ArticleContainer } from '@root/src/lofi/components/ArticleContainer';
 import { ArticleMeta } from '@root/src/lofi/components/ArticleMeta';
-import { MostViewedRightIsland } from '@root/src/lofi/components/MostViewedRightIsland';
 import { SubMeta } from '@root/src/lofi/components/SubMeta';
 import { MainMedia } from '@root/src/lofi/components/MainMedia';
 import { ArticleHeadline } from '@root/src/lofi/components/ArticleHeadline';
@@ -28,19 +24,12 @@ import { ArticleHeadlinePadding } from '@root/src/lofi/components/ArticleHeadlin
 import { ArticleStandfirst } from '@root/src/lofi/components/ArticleStandfirst';
 import { Header } from '@root/src/lofi/components/Header';
 import { Footer } from '@root/src/lofi/components/Footer';
-import { SubNav } from '@root/src/lofi/components/SubNav/SubNav';
 import { Section } from '@root/src/lofi/components/Section';
 import { Nav } from '@root/src/lofi/components/Nav/Nav';
-import { HeaderAdSlot } from '@root/src/lofi/components/HeaderAdSlot';
-import {
-    MobileStickyContainer,
-    AdSlot,
-} from '@root/src/lofi/components/AdSlot';
+
 import { Border } from '@root/src/lofi/components/Border';
 import { GridItem } from '@root/src/lofi/components/GridItem';
 import { AgeWarning } from '@root/src/lofi/components/AgeWarning';
-import { CommentsLayout } from '@frontend/web/components/CommentsLayout';
-import { Placeholder } from '@frontend/web/components/Placeholder';
 
 import { buildAdTargeting } from '@root/src/lib/ad-targeting';
 import { parse } from '@frontend/lib/slot-machine-flags';
@@ -50,14 +39,6 @@ import {
     decideLineEffect,
     getCurrentPillar,
 } from '@root/src/lofi/lib/layoutHelpers';
-import {
-    Stuck,
-    SendToBack,
-    BannerWrapper,
-} from '@root/src/lofi/layouts/lib/stickiness';
-import { Display } from '@root/src/lib/display';
-
-const MOSTVIEWED_STICKY_HEIGHT = 1059;
 
 const gridTemplateWide = css`
     grid-template-areas:
@@ -304,7 +285,7 @@ interface Props {
 
 export const LofiLayout = ({ CAPI, NAV, designType, pillar }: Props) => {
     const {
-        config: { isPaidContent, host },
+        config: { host },
     } = CAPI;
 
     const adTargeting: AdTargeting = buildAdTargeting(CAPI.config);
@@ -321,11 +302,7 @@ export const LofiLayout = ({ CAPI, NAV, designType, pillar }: Props) => {
         (tag) => tag.type === 'Series' || tag.type === 'Blog',
     );
 
-    const showOnwardsLower = seriesTag && CAPI.hasStoryPackage;
-
     const showMatchStats = designType === 'MatchReport' && CAPI.matchUrl;
-
-    const showComments = CAPI.isCommentable;
 
     const age = getAgeWarning(CAPI.tags, CAPI.webPublicationDate);
 
@@ -333,68 +310,39 @@ export const LofiLayout = ({ CAPI, NAV, designType, pillar }: Props) => {
     return (
         <>
             <div>
-                <Stuck>
-                    <Section
-                        showTopBorder={false}
-                        showSideBorders={false}
-                        padded={false}
-                        shouldCenter={false}
-                    >
-                        <HeaderAdSlot
-                            isAdFreeUser={CAPI.isAdFreeUser}
-                            shouldHideAds={CAPI.shouldHideAds}
-                        />
-                    </Section>
-                </Stuck>
-                <SendToBack>
-                    <Section
-                        showTopBorder={false}
-                        showSideBorders={false}
-                        padded={false}
-                        backgroundColour={brandBackground.primary}
-                    >
-                        <Header />
-                    </Section>
+                <Section
+                    showTopBorder={false}
+                    showSideBorders={false}
+                    padded={false}
+                    backgroundColour={brandBackground.primary}
+                >
+                    <Header />
+                </Section>
 
-                    <Section
-                        showSideBorders={true}
-                        borderColour={brandLine.primary}
-                        showTopBorder={false}
-                        padded={false}
-                        backgroundColour={brandBackground.primary}
-                    >
-                        <Nav
-                            pillar={getCurrentPillar(CAPI)}
-                            nav={NAV}
-                            subscribeUrl={
-                                CAPI.nav.readerRevenueLinks.header.subscribe
-                            }
-                            edition={CAPI.editionId}
-                        />
-                    </Section>
+                <Section
+                    showSideBorders={true}
+                    borderColour={brandLine.primary}
+                    showTopBorder={false}
+                    padded={false}
+                    backgroundColour={brandBackground.primary}
+                >
+                    <Nav
+                        pillar={getCurrentPillar(CAPI)}
+                        nav={NAV}
+                        subscribeUrl={
+                            CAPI.nav.readerRevenueLinks.header.subscribe
+                        }
+                        edition={CAPI.editionId}
+                    />
+                </Section>
 
-                    {NAV.subNavSections && (
-                        <Section
-                            backgroundColour={background.primary}
-                            padded={false}
-                            sectionId="sub-nav-root"
-                        >
-                            <SubNav
-                                subNavSections={NAV.subNavSections}
-                                currentNavLink={NAV.currentNavLink}
-                                pillar={pillar}
-                            />
-                        </Section>
-                    )}
-
-                    <Section
-                        backgroundColour={background.primary}
-                        padded={false}
-                        showTopBorder={false}
-                    >
-                        <GuardianLines count={4} pillar={pillar} />
-                    </Section>
-                </SendToBack>
+                <Section
+                    backgroundColour={background.primary}
+                    padded={false}
+                    showTopBorder={false}
+                >
+                    <GuardianLines count={4} pillar={pillar} />
+                </Section>
             </div>
 
             <Section showTopBorder={false}>
@@ -413,13 +361,7 @@ export const LofiLayout = ({ CAPI, NAV, designType, pillar }: Props) => {
                     <GridItem area="border">
                         <Border />
                     </GridItem>
-                    <GridItem area="preFurniture">
-                        <div className={maxWidth}>
-                            {designType === 'MatchReport' && CAPI.matchUrl && (
-                                <Placeholder rootId="match-nav" height={230} />
-                            )}
-                        </div>
-                    </GridItem>
+
                     <GridItem area="headline">
                         <div className={maxWidth}>
                             <ArticleHeadlinePadding designType={designType}>
@@ -430,10 +372,6 @@ export const LofiLayout = ({ CAPI, NAV, designType, pillar }: Props) => {
                                 )}
                                 <ArticleHeadline
                                     headlineString={CAPI.headline}
-                                    designType={designType}
-                                    pillar={pillar}
-                                    tags={CAPI.tags}
-                                    byline={CAPI.author.byline}
                                 />
                                 {age && (
                                     <AgeWarning
@@ -535,15 +473,6 @@ export const LofiLayout = ({ CAPI, NAV, designType, pillar }: Props) => {
                             </main>
                         </ArticleContainer>
                     </GridItem>
-                    <GridItem area="right-column">
-                        <RightColumn>
-                            <StickyAd
-                                name="right"
-                                height={MOSTVIEWED_STICKY_HEIGHT}
-                            />
-                            {!isPaidContent ? <MostViewedRightIsland /> : <></>}
-                        </RightColumn>
-                    </GridItem>
                 </StandardGrid>
             </Section>
 
@@ -552,66 +481,7 @@ export const LofiLayout = ({ CAPI, NAV, designType, pillar }: Props) => {
                 showTopBorder={false}
                 showSideBorders={false}
                 backgroundColour={neutral[93]}
-            >
-                <AdSlot asps={namedAdSlotParameters('merchandising-high')} />
-            </Section>
-
-            {!isPaidContent && (
-                <>
-                    {/* Onwards (when signed OUT) */}
-                    <div id="onwards-upper-whensignedout" />
-                    {showOnwardsLower && (
-                        <Section sectionId="onwards-lower-whensignedout" />
-                    )}
-
-                    {showComments && (
-                        <Section sectionId="comments">
-                            <CommentsLayout
-                                pillar={pillar}
-                                baseUrl={CAPI.config.discussionApiUrl}
-                                shortUrl={CAPI.config.shortUrlId}
-                                commentCount={0}
-                                isClosedForComments={true}
-                                discussionD2Uid={CAPI.config.discussionD2Uid}
-                                discussionApiClientHeader={
-                                    CAPI.config.discussionApiClientHeader
-                                }
-                                enableDiscussionSwitch={false}
-                                expanded={false}
-                                onPermalinkClick={() => {}}
-                            />
-                        </Section>
-                    )}
-
-                    {/* Onwards (when signed IN) */}
-                    <div id="onwards-upper-whensignedin" />
-                    {showOnwardsLower && (
-                        <Section sectionId="onwards-lower-whensignedin" />
-                    )}
-
-                    <Section sectionId="most-viewed-footer" />
-                </>
-            )}
-
-            <Section
-                padded={false}
-                showTopBorder={false}
-                showSideBorders={false}
-                backgroundColour={neutral[93]}
-            >
-                <AdSlot asps={namedAdSlotParameters('merchandising')} />
-            </Section>
-
-            {NAV.subNavSections && (
-                <Section padded={false} sectionId="sub-nav-root">
-                    <SubNav
-                        subNavSections={NAV.subNavSections}
-                        currentNavLink={NAV.currentNavLink}
-                        pillar={pillar}
-                    />
-                    <GuardianLines count={4} pillar={pillar} />
-                </Section>
-            )}
+            />
 
             <Section
                 padded={false}
@@ -624,9 +494,6 @@ export const LofiLayout = ({ CAPI, NAV, designType, pillar }: Props) => {
                     pillars={NAV.pillars}
                 />
             </Section>
-
-            <BannerWrapper />
-            <MobileStickyContainer />
         </>
     );
 };

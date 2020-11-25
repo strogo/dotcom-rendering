@@ -3,13 +3,13 @@ import { css } from 'emotion';
 
 import { space } from '@guardian/src-foundations';
 import { App as Comments } from '@guardian/discussion-rendering';
-import { LeftColumn } from '@frontend/web/components/LeftColumn';
-import { RightColumn } from '@frontend/web/components/RightColumn';
+import { LeftColumn } from '@root/src/lofi/components/LeftColumn';
+import { RightColumn } from '@root/src/lofi/components/RightColumn';
 import { StickyAd } from '@root/src/lofi/components/StickyAd';
-import { SignedInAs } from '@frontend/web/components/SignedInAs';
-import { Hide } from '@frontend/web/components/Hide';
-import { Flex } from '@frontend/web/components/Flex';
-import { Lazy } from '@frontend/web/components/Lazy';
+import { SignedInAs } from '@root/src/lofi/components/SignedInAs';
+import { Hide } from '@root/src/lofi/components/Hide';
+import { Flex } from '@root/src/lofi/components/Flex';
+import { Lazy } from '@root/src/lofi/components/Lazy';
 import { from } from '@guardian/src-foundations/mq';
 
 type Props = {

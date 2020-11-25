@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Flex } from '@frontend/web/components/Flex';
-import { LeftColumn } from '@frontend/web/components/LeftColumn';
-import { Hide } from '@frontend/web/components/Hide';
+import { Flex } from '@root/src/lofi/components/Flex';
+import { LeftColumn } from '@root/src/lofi/components/LeftColumn';
+import { Hide } from '@root/src/lofi/components/Hide';
 
 import { useComments } from '@root/src/lofi/lib/useComments';
 import { formatAttrString } from '@frontend/web/lib/formatAttrString';

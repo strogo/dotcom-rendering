@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Section } from '@frontend/web/components/Section';
-import { ArticleContainer } from '@frontend/web/components/ArticleContainer';
-import { LeftColumn } from '@frontend/web/components/LeftColumn';
-import { Flex } from '@frontend/web/components/Flex';
+import { Section } from '@root/src/lofi/components/Section';
+import { ArticleContainer } from '@root/src/lofi/components/ArticleContainer';
+import { LeftColumn } from '@root/src/lofi/components/LeftColumn';
+import { Flex } from '@root/src/lofi/components/Flex';
 
 import { RichLink } from './RichLink';
 

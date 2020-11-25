@@ -5,7 +5,7 @@ import { space } from '@guardian/src-foundations';
 import { from, until } from '@guardian/src-foundations/mq';
 
 import { ImageComponent } from '@root/src/lofi/components/elements/ImageComponent';
-import { Caption } from '@frontend/web/components/Caption';
+import { Caption } from '@root/src/lofi/components/Caption';
 import { GridItem } from '@root/src/lofi/components/GridItem';
 import { Display } from '@root/src/lib/display';
 

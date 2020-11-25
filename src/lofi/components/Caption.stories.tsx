@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Section } from '@frontend/web/components/Section';
-import { Caption } from '@frontend/web/components/Caption';
+import { Section } from '@root/src/lofi/components/Section';
+import { Caption } from '@root/src/lofi/components/Caption';
 import { Display } from '@root/src/lib/display';
 
 export default {

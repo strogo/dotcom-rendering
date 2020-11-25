@@ -2,18 +2,18 @@ import React, { useState, useEffect, Suspense } from 'react';
 import { useAB } from '@guardian/ab-react';
 import { tests } from '@frontend/web/experiments/ab-tests';
 
-import { EditionDropdown } from '@frontend/web/components/EditionDropdown';
-import { MostViewedFooter } from '@frontend/web/components/MostViewed/MostViewedFooter/MostViewedFooter';
-import { Counts } from '@frontend/web/components/Counts';
-import { RichLinkComponent } from '@frontend/web/components/elements/RichLinkComponent';
+import { EditionDropdown } from '@root/src/lofi/components/EditionDropdown';
+import { MostViewedFooter } from '@root/src/lofi/components/MostViewed/MostViewedFooter/MostViewedFooter';
+import { Counts } from '@root/src/lofi/components/Counts';
+import { RichLinkComponent } from '@root/src/lofi/components/elements/RichLinkComponent';
 import { CalloutBlockComponent } from '@root/src/lofi/components/elements/CalloutBlockComponent';
 import { YoutubeBlockComponent } from '@root/src/lofi/components/elements/YoutubeBlockComponent';
-import { ReaderRevenueLinks } from '@frontend/web/components/ReaderRevenueLinks';
-import { SlotBodyEnd } from '@frontend/web/components/SlotBodyEnd';
-import { Links } from '@frontend/web/components/Links';
-import { SubNav } from '@frontend/web/components/SubNav/SubNav';
-import { GetMatchNav } from '@frontend/web/components/GetMatchNav';
-import { CommentsLayout } from '@frontend/web/components/CommentsLayout';
+import { ReaderRevenueLinks } from '@root/src/lofi/components/ReaderRevenueLinks';
+import { SlotBodyEnd } from '@root/src/lofi/components/SlotBodyEnd';
+import { Links } from '@root/src/lofi/components/Links';
+import { SubNav } from '@root/src/lofi/components/SubNav/SubNav';
+import { GetMatchNav } from '@root/src/lofi/components/GetMatchNav';
+import { CommentsLayout } from '@root/src/lofi/components/CommentsLayout';
 import { StickyBottomBanner } from '@root/src/lofi/components/StickyBottomBanner/StickyBottomBanner';
 import { SignInGateSelector } from '@root/src/lofi/components/SignInGate/SignInGateSelector';
 
@@ -27,9 +27,9 @@ import {
     AudioAtom,
 } from '@guardian/atoms-rendering';
 
-import { Portal } from '@frontend/web/components/Portal';
-import { Hydrate } from '@frontend/web/components/Hydrate';
-import { Lazy } from '@frontend/web/components/Lazy';
+import { Portal } from '@root/src/lofi/components/Portal';
+import { Hydrate } from '@root/src/lofi/components/Hydrate';
+import { Lazy } from '@root/src/lofi/components/Lazy';
 import { Placeholder } from '@root/src/lofi/components/Placeholder';
 
 import { decidePillar } from '@root/src/lofi/lib/decidePillar';
@@ -69,7 +69,7 @@ const MostViewedRightWrapper = React.lazy(() => {
     const { start, end } = initPerf('MostViewedRightWrapper');
     start();
     return import(
-        /* webpackChunkName: "MostViewedRightWrapper" */ '@frontend/web/components/MostViewed/MostViewedRight/MostViewedRightWrapper'
+        /* webpackChunkName: "MostViewedRightWrapper" */ '@root/src/lofi/components/MostViewed/MostViewedRight/MostViewedRightWrapper'
     ).then((module) => {
         end();
         return { default: module.MostViewedRightWrapper };
@@ -79,7 +79,7 @@ const OnwardsUpper = React.lazy(() => {
     const { start, end } = initPerf('OnwardsUpper');
     start();
     return import(
-        /* webpackChunkName: "OnwardsUpper" */ '@frontend/web/components/Onwards/OnwardsUpper'
+        /* webpackChunkName: "OnwardsUpper" */ '@root/src/lofi/components/Onwards/OnwardsUpper'
     ).then((module) => {
         end();
         return { default: module.OnwardsUpper };
@@ -89,7 +89,7 @@ const OnwardsLower = React.lazy(() => {
     const { start, end } = initPerf('OnwardsLower');
     start();
     return import(
-        /* webpackChunkName: "OnwardsLower" */ '@frontend/web/components/Onwards/OnwardsLower'
+        /* webpackChunkName: "OnwardsLower" */ '@root/src/lofi/components/Onwards/OnwardsLower'
     ).then((module) => {
         end();
         return { default: module.OnwardsLower };
@@ -99,7 +99,7 @@ const GetMatchStats = React.lazy(() => {
     const { start, end } = initPerf('GetMatchStats');
     start();
     return import(
-        /* webpackChunkName: "GetMatchStats" */ '@frontend/web/components/GetMatchStats'
+        /* webpackChunkName: "GetMatchStats" */ '@root/src/lofi/components/GetMatchStats'
     ).then((module) => {
         end();
         return { default: module.GetMatchStats };

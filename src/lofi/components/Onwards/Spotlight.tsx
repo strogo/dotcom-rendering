@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
-import { Card } from '@frontend/web/components/Card/Card';
+import { Card } from '@root/src/lofi/components/Card/Card';
 
 type Props = {
     content: TrailType[];

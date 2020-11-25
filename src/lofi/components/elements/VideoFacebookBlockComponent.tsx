@@ -2,7 +2,7 @@ import React from 'react';
 import { css } from 'emotion';
 
 import { Caption } from '@root/src/lofi/components/Caption';
-import { MaintainAspectRatio } from '@frontend/web/components/MaintainAspectRatio';
+import { MaintainAspectRatio } from '@root/src/lofi/components/MaintainAspectRatio';
 import { Display } from '@root/src/lib/display';
 
 export const VideoFacebookBlockComponent: React.FC<{

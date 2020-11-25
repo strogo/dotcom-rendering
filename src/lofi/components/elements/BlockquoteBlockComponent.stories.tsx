@@ -1,8 +1,8 @@
 import React from 'react';
 import { css } from 'emotion';
 
-import { BlockquoteBlockComponent } from '@frontend/web/components/elements/BlockquoteBlockComponent';
-import { TextBlockComponent } from '@frontend/web/components/elements/TextBlockComponent';
+import { BlockquoteBlockComponent } from '@root/src/lofi/components/elements/BlockquoteBlockComponent';
+import { TextBlockComponent } from '@root/src/lofi/components/elements/TextBlockComponent';
 import { Display } from '@root/src/lib/display';
 
 const shortQuoteHtml =

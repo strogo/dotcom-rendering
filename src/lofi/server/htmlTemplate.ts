@@ -5,13 +5,9 @@ export const htmlTemplate = ({
     title = 'The Guardian',
     description,
     linkedData,
-
     css,
     html,
-
     openGraphData,
-
-    keywords,
 }: {
     title?: string;
     description: string;

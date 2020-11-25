@@ -9,10 +9,10 @@ import { headline, textSans } from '@guardian/src-foundations/typography';
 import { GridItem } from '@root/src/lofi/components/GridItem';
 import { Hide } from '@root/src/lofi/components/Hide';
 
-import { Donut } from '@frontend/web/components/Donut';
-import { Distribution } from '@frontend/web/components/Distribution';
-import { GoalAttempts } from '@frontend/web/components/GoalAttempts';
-import { Lineup } from '@frontend/web/components/Lineup';
+import { Donut } from '@root/src/lofi/components/Donut';
+import { Distribution } from '@root/src/lofi/components/Distribution';
+import { GoalAttempts } from '@root/src/lofi/components/GoalAttempts';
+import { Lineup } from '@root/src/lofi/components/Lineup';
 
 type Props = {
     home: TeamType;

@@ -4,12 +4,12 @@ import { css } from 'emotion';
 import { brandAltBackground } from '@guardian/src-foundations/palette';
 
 import { StarRating } from '@root/src/lofi/components/StarRating/StarRating';
-import { CardHeadline } from '@frontend/web/components/CardHeadline';
-import { Avatar } from '@frontend/web/components/Avatar';
-import { Flex } from '@frontend/web/components/Flex';
-import { Hide } from '@frontend/web/components/Hide';
-import { MediaMeta } from '@frontend/web/components/MediaMeta';
-import { CardCommentCount } from '@frontend/web/components/CardCommentCount';
+import { CardHeadline } from '@root/src/lofi/components/CardHeadline';
+import { Avatar } from '@root/src/lofi/components/Avatar';
+import { Flex } from '@root/src/lofi/components/Flex';
+import { Hide } from '@root/src/lofi/components/Hide';
+import { MediaMeta } from '@root/src/lofi/components/MediaMeta';
+import { CardCommentCount } from '@root/src/lofi/components/CardCommentCount';
 import { pillarPalette } from '@frontend/lib/pillars';
 
 import { formatCount } from '@root/src/lofi/lib/formatCount';

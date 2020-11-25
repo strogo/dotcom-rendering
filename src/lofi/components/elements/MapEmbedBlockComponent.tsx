@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from 'emotion';
 
-import { MaintainAspectRatio } from '@frontend/web/components/MaintainAspectRatio';
+import { MaintainAspectRatio } from '@root/src/lofi/components/MaintainAspectRatio';
 import { Caption } from '@root/src/lofi/components/Caption';
 import { Display } from '@root/src/lib/display';
 
