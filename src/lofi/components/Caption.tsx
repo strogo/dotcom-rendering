@@ -3,6 +3,7 @@ import React from 'react';
 import { text } from '@guardian/src-foundations/palette';
 import { textSans } from '@guardian/src-foundations/typography';
 import { css, cx } from 'emotion';
+import { from } from '@guardian/src-foundations/mq';
 
 type Props = {
     captionText?: string;
@@ -18,6 +19,12 @@ const captionStyle = css`
     word-wrap: break-word;
     color: ${text.supporting};
     margin-bottom: 1em;
+    ${from.tablet} {
+        clear: right;
+        float: right;
+        width: 300px;
+        margin-left: 1em;
+    }
 `;
 
 export const Caption = ({
