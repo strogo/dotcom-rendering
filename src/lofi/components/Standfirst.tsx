@@ -40,9 +40,7 @@ const nestedStyles = css`
 `;
 
 const standfirstStyles = css`
-    ${headline.xxxsmall({
-        fontWeight: 'bold',
-    })};
+    ${headline.xxxsmall()};
     line-height: 20px;
     margin-bottom: ${space[3]}px;
 `;

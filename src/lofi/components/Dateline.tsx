@@ -17,18 +17,6 @@ const dateline = css`
     margin-bottom: 6px;
 `;
 
-// We use the 'Checkbox Hack' for the show-hide functionality of the secondary date line.
-// https://css-tricks.com/the-checkbox-hack/
-const toggleClass = css`
-    input[type='checkbox'] {
-        display: none;
-    }
-
-    input[type='checkbox']:checked ~ p {
-        max-height: 80px;
-    }
-`;
-
 const pStyle = css`
     max-height: 0;
     overflow: hidden;
@@ -57,16 +45,11 @@ export const Dateline: React.FC<{
         <div className={dateline}>
             {secondaryDateline &&
             !secondaryDateline.includes(primaryDateline) ? (
-                <div className={cx(toggleClass, dateline)}>
+                <div className={dateline}>
                     <label className={labelStyles} htmlFor="dateToggle">
                         {primaryDateline}
                     </label>
 
-                    <input
-                        className={toggleClass}
-                        type="checkbox"
-                        id="dateToggle"
-                    />
                     <p className={pStyle}>{secondaryDateline}</p>
                 </div>
             ) : (
