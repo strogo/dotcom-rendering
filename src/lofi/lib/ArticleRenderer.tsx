@@ -5,29 +5,16 @@ import { CaptionBlockComponent } from '@root/src/lofi/components/elements/Captio
 import { CommentBlockComponent } from '@root/src/lofi/components/elements/CommentBlockComponent';
 import { DisclaimerBlockComponent } from '@root/src/lofi/components/elements/DisclaimerBlockComponent';
 import { DividerBlockComponent } from '@root/src/lofi/components/elements/DividerBlockComponent';
-import { EmbedBlockComponent } from '@root/src/lofi/components/elements/EmbedBlockComponent';
-import { UnsafeEmbedBlockComponent } from '@root/src/lofi/components/elements/UnsafeEmbedBlockComponent';
 import { HighlightBlockComponent } from '@root/src/lofi/components/elements/HighlightBlockComponent';
 import { ImageBlockComponent } from '@root/src/lofi/components/elements/ImageBlockComponent';
-import { InstagramBlockComponent } from '@root/src/lofi/components/elements/InstagramBlockComponent';
-import { MapEmbedBlockComponent } from '@root/src/lofi/components/elements/MapEmbedBlockComponent';
 import { MultiImageBlockComponent } from '@root/src/lofi/components/elements/MultiImageBlockComponent';
 import { PullQuoteBlockComponent } from '@root/src/lofi/components/elements/PullQuoteBlockComponent';
 import { SubheadingBlockComponent } from '@root/src/lofi/components/elements/SubheadingBlockComponent';
 import { TableBlockComponent } from '@root/src/lofi/components/elements/TableBlockComponent';
 import { TextBlockComponent } from '@root/src/lofi/components/elements/TextBlockComponent';
 
-import {
-    ExplainerAtom,
-    InteractiveAtom,
-    QandaAtom,
-    GuideAtom,
-    ProfileAtom,
-    TimelineAtom,
-} from '@guardian/atoms-rendering';
+import { TimelineAtom } from '@guardian/atoms-rendering';
 import { Display } from '@root/src/lib/display';
-
-import { GuVideoBlockComponent } from '@root/src/lofi/components/elements/GuVideoBlockComponent';
 
 import { RichLink } from '../components/RichLink';
 
