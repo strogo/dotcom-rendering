@@ -6,8 +6,6 @@ import { headline } from '@guardian/src-foundations/typography';
 import { from, until } from '@guardian/src-foundations/mq';
 
 import { pillarMap, pillarPalette } from '@root/src/lib/pillars';
-import { Display } from '@root/src/lib/display';
-import { navInputCheckboxId } from './Nav/config';
 
 // CSS Vars
 
@@ -18,10 +16,7 @@ export const preLeftColPillarWidth = 134;
 export const preDesktopPillarWidth = 'auto';
 
 // CSS
-const pillarsStyles = (display: Display) => css`
-    ${until.tablet} {
-        display: ${display === Display.Immersive && 'none'};
-    }
+const pillarsStyles = css`
     clear: right;
     margin: 0;
     list-style: none;
@@ -50,39 +45,6 @@ const pillarsStyles = (display: Display) => css`
         bottom: 0;
         left: 0;
         right: 0;
-        height: ${display === Display.Immersive ? '49px' : '37px'};
-        ${from.tablet} {
-            border-bottom: 0;
-            height: 49px;
-        }
-        ${from.desktop} {
-            height: ${display === Display.Immersive ? '49px' : '43px'};
-        }
-    }
-`;
-
-const showMenuUnderlineStyles = css`
-    /*
-        IMPORTANT NOTE:
-        we need to specify the adjacent path to the a (current) tag
-        to apply styles to the nested tabs due to the fact we use ~
-        to support NoJS
-    */
-    /* stylelint-disable-next-line selector-type-no-unknown */
-    ${`#${navInputCheckboxId}`}:checked ~ ul li & {
-        ${from.desktop} {
-            :before {
-                bottom: 0;
-            }
-        }
-
-        :hover {
-            text-decoration: underline;
-        }
-
-        :after {
-            transform: translateY(4px);
-        }
     }
 `;
 
@@ -131,7 +93,7 @@ const pillarDivider = css`
     }
 `;
 
-const linkStyle = (display: Display) => css`
+const linkStyle = css`
     ${headline.xxxsmall()};
     box-sizing: border-box;
     font-weight: 900;
@@ -139,46 +101,10 @@ const linkStyle = (display: Display) => css`
     cursor: pointer;
     display: block;
     font-size: 15.4px;
-    height: ${display === Display.Immersive ? '48px' : '36px'};
-    padding-top: ${display === Display.Immersive ? '10px' : '9px'};
-    padding-right: ${display === Display.Immersive ? '5px' : '5px'};
-    padding-bottom: ${display === Display.Immersive ? '0' : '0'};
-    padding-left: ${display === Display.Immersive ? '5px' : '5px'};
     position: relative;
     overflow: hidden;
     text-decoration: none;
     z-index: 1;
-    ${from.mobileMedium} {
-        font-size: 15.7px;
-        padding-top: ${display === Display.Immersive ? '9px' : '9px'};
-        padding-right: ${display === Display.Immersive ? '5px' : '5px'};
-        padding-bottom: ${display === Display.Immersive ? '0' : '0'};
-        padding-left: ${display === Display.Immersive ? '5px' : '5px'};
-    }
-    ${from.mobileLandscape} {
-        font-size: 18px;
-        padding-top: ${display === Display.Immersive ? '9px' : '9px'};
-        padding-right: ${display === Display.Immersive ? '5px' : '5px'};
-        padding-bottom: ${display === Display.Immersive ? '0' : '0'};
-        padding-left: ${display === Display.Immersive ? '5px' : '5px'};
-    }
-    ${from.tablet} {
-        font-size: 22px;
-        height: 48px;
-        padding-top: ${display === Display.Immersive ? '9px' : '9px'};
-        padding-right: ${display === Display.Immersive ? '20px' : '20px'};
-        padding-bottom: ${display === Display.Immersive ? '0' : '0'};
-        padding-left: ${display === Display.Immersive ? '9px' : '9px'};
-    }
-    ${from.desktop} {
-        padding-top: ${display === Display.Immersive ? '9px' : '5px'};
-        height: ${display === Display.Immersive ? '48px' : '42px'};
-    }
-
-    ${from.wide} {
-        padding-top: ${display === Display.Immersive ? '10px' : '7px'};
-        font-size: 24px;
-    }
 
     :focus:after {
         transform: translateY(4px);
@@ -224,37 +150,22 @@ const isNotLastPillar = (i: number, noOfPillars: number): boolean =>
     i !== noOfPillars - 1;
 
 export const Pillars: React.FC<{
-    display: Display;
-    isTopNav?: boolean;
     pillars: PillarType[];
     pillar: Pillar;
     showLastPillarDivider?: boolean;
     dataLinkName: string;
-}> = ({
-    display,
-    isTopNav,
-    pillars,
-    pillar,
-    showLastPillarDivider = true,
-    dataLinkName,
-}) => (
-    <ul data-testid="pillar-list" className={pillarsStyles(display)}>
+}> = ({ pillars, pillar, showLastPillarDivider = true }) => (
+    <ul data-testid="pillar-list" className={pillarsStyles}>
         {pillars.map((p, i) => (
             <li key={p.title} className={pillarStyle}>
                 <a
-                    className={cx(
-                        linkStyle(display),
-                        pillarUnderline[p.pillar],
-                        isTopNav && showMenuUnderlineStyles,
-                        {
-                            [pillarDivider]:
-                                showLastPillarDivider ||
-                                isNotLastPillar(i, pillars.length),
-                            [forceUnderline]: p.pillar === pillar,
-                        },
-                    )}
+                    className={cx(linkStyle, pillarUnderline[p.pillar], {
+                        [pillarDivider]:
+                            showLastPillarDivider ||
+                            isNotLastPillar(i, pillars.length),
+                        [forceUnderline]: p.pillar === pillar,
+                    })}
                     href={p.url}
-                    data-link-name={`${dataLinkName} : primary : ${p.title}`}
                 >
                     {p.title}
                 </a>

@@ -46,12 +46,9 @@ export const document = ({ data }: Props) => {
         title,
         description: CAPI.trailText,
         linkedData,
-
         css,
         html,
-
         openGraphData,
-
         keywords,
     });
 };
