@@ -97,6 +97,28 @@ const go = () => {
         }),
     );
 
+    app.get(
+        '/LofiArticle',
+        async (req, res, next) => {
+            try {
+                const url = buildUrlFromQueryParam(req);
+                const { html, ...config } = await fetch(url).then((article) =>
+                    article.json(),
+                );
+
+                req.body = config;
+                next();
+            } catch (error) {
+                // eslint-disable-next-line no-console
+                console.error(error);
+            }
+        },
+        webpackHotServerMiddleware(compiler, {
+            chunkName: `${siteName}.server`,
+            serverRendererOptions: { lofi: true },
+        }),
+    );
+
     app.get('/', (req, res) => {
         res.sendFile(
             path.join(root, 'scripts', 'frontend', 'landing', 'index.html'),

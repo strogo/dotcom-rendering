@@ -14,7 +14,7 @@ import {
     render as renderArticle,
     renderPerfTest as renderArticlePerfTest,
 } from '@root/src/web/server/render';
-
+import { render as renderLofiArticle } from '@root/src/lofi/server/render';
 import {
     getGuardianConfiguration,
     GuardianConfiguration,
@@ -48,15 +48,15 @@ const buildUrlFromQueryParam = (req: Request) => {
 if (process.env.NODE_ENV === 'production') {
     logger.info('dotcom-rendering is GO.');
 
-    if (process.env.DISABLE_LOGGING_AND_METRICS !== "true") {
-       getGuardianConfiguration('prod')
-           .then((config: GuardianConfiguration) => {
-               log(`loaded ${config.size()} configuration parameters`);
-           })
-           .catch((err: any) => {
-               warn('Failed to get configuration. Bad AWS credentials?');
-               warn(err);
-           });
+    if (process.env.DISABLE_LOGGING_AND_METRICS !== 'true') {
+        getGuardianConfiguration('prod')
+            .then((config: GuardianConfiguration) => {
+                log(`loaded ${config.size()} configuration parameters`);
+            })
+            .catch((err: any) => {
+                warn('Failed to get configuration. Bad AWS credentials?');
+                warn(err);
+            });
     }
 
     const app = express();
@@ -80,6 +80,7 @@ if (process.env.NODE_ENV === 'production') {
 
     app.post('/Article', renderArticle);
     app.post('/AMPArticle', renderAMPArticle);
+    app.post('/LofiArticle', renderLofiArticle);
 
     app.get('/Article', async (req: Request, res: Response) => {
         // Eg. http://localhost:9000/Article?url=https://www.theguardian.com/commentisfree/...
@@ -146,7 +147,7 @@ if (process.env.NODE_ENV === 'production') {
         res.status(500).send(`<pre>${err.stack}</pre>`);
     });
 
-    if (process.env.DISABLE_LOGGING_AND_METRICS !== "true") {
+    if (process.env.DISABLE_LOGGING_AND_METRICS !== 'true') {
         setInterval(() => {
             recordBaselineCloudWatchMetrics();
         }, 10 * 1000);
