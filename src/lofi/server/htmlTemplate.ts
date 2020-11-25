@@ -101,6 +101,10 @@ export const htmlTemplate = ({
                 ${openGraphMetaTags}
 
                 ${twitterSecAndPrivacyMetaTags}
+                <style>
+                body { max-width: 1024px; margin: 0 auto; }
+                ul {margin: 0; padding: 0;}
+                </style>
                 <style>${css}</style>
             </head>
 
