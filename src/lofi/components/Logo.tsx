@@ -39,14 +39,6 @@ const style = css`
         height: 56px;
         width: 175px;
     }
-    ${from.tablet} {
-        height: 72px;
-        width: 224px;
-    }
-    ${from.desktop} {
-        height: 95px;
-        width: 295px;
-    }
 
     path {
         fill: ${brandText.primary};
