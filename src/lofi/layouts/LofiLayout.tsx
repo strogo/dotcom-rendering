@@ -128,7 +128,7 @@ export const LofiLayout = ({ CAPI, NAV, designType, pillar }: Props) => {
                     showTopBorder={false}
                     showSideBorders={false}
                     padded={false}
-                    backgroundColour={brandBackground.primary}
+                    backgroundColour={neutral[100]}
                 >
                     <Header />
                 </Section>
@@ -140,11 +140,10 @@ export const LofiLayout = ({ CAPI, NAV, designType, pillar }: Props) => {
                     `}
                 >
                     <Section
-                        showSideBorders={true}
-                        borderColour={brandLine.primary}
+                        showSideBorders={false}
                         showTopBorder={false}
                         padded={false}
-                        backgroundColour={brandBackground.primary}
+                        backgroundColour={neutral[100]}
                     >
                         <Nav
                             pillar={getCurrentPillar(CAPI)}

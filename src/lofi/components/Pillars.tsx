@@ -1,6 +1,7 @@
 import React from 'react';
 import { css } from 'emotion';
-import { from } from '@guardian/src-foundations/mq';
+import { headline } from '@guardian/src-foundations/typography';
+import { neutral } from '@guardian/src-foundations/palette';
 
 // CSS
 const pillarsStyles = css`
@@ -8,10 +9,6 @@ const pillarsStyles = css`
     margin: 0;
     list-style: none;
     list-style-image: none;
-    padding-left: 10px;
-    ${from.mobileLandscape} {
-        padding-left: 20px;
-    }
     li {
         float: left;
         display: block;
@@ -21,17 +18,21 @@ const pillarsStyles = css`
 
 const pillarStyle = css`
     padding: 10px;
+
+    :first-of-type {
+        padding-left: 20px;
+    }
 `;
 
 const pillarAnc = css`
-    color: white;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: ${neutral[0]};
+    ${headline.large()}
     font-size: 24px;
     text-decoration: none;
 
     :hover,
     :focus {
-        border-bottom: 1px solid #fff;
+        border-bottom: 1px solid ${neutral[0]};
     }
 `;
 

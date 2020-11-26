@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from 'emotion';
 
-import { brandText } from '@guardian/src-foundations/palette';
+import { neutral } from '@guardian/src-foundations/palette';
 import { from } from '@guardian/src-foundations/mq';
 import { visuallyHidden } from '@guardian/src-foundations/accessibility';
 
@@ -11,22 +11,13 @@ import { getZIndex } from '@frontend/web/lib/getZIndex';
 const link = css`
     float: right;
     margin-top: 10px;
-    margin-right: 54px;
+    margin-right: 20px;
     margin-bottom: 21px;
 
-    ${from.mobileMedium} {
-        margin-right: 10px;
-    }
-    ${from.mobileLandscape} {
-        margin-right: 20px;
-    }
     ${from.desktop} {
         margin-top: 5px;
         margin-bottom: 15px;
         position: relative;
-    }
-    ${from.wide} {
-        margin-right: 96px;
     }
 
     ${getZIndex('TheGuardian')}
@@ -49,7 +40,7 @@ const style = css`
     }
 
     path {
-        fill: ${brandText.primary};
+        fill: ${neutral[0]};
     }
 `;
 
