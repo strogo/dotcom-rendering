@@ -33,6 +33,7 @@ function renderElement(element: CAPIElement) {
                     altText={element.data.alt}
                     elementTypeShownToUser="Main article image"
                     sideNote={false}
+                    lighter={false}
                 />
             );
 
@@ -53,6 +54,7 @@ function renderElement(element: CAPIElement) {
                     altText={element.mediaTitle}
                     elementTypeShownToUser="Main article video"
                     sideNote={false}
+                    lighter={false}
                 />
             );
 
